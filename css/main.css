@@ -1,0 +1,113 @@
+/*css reset*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*common rules*/
+a {
+    text-decoration: none;
+    color: #3B3B3B;
+}
+.clear {
+    display: block;
+    clear: both;
+}
+
+/*container styles*/
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.top-header {
+    height: 35px;
+    background: transparent url('../images/top_header.png') 0 0 repeat-x;
+}
+.top-header-links {
+    width: 500px;
+    float: right;
+}
+.logo-header {
+    height: 85px;
+    background-color: #c32929;
+}
+
+.top-header-links ul {
+    text-align: right;
+}
+.top-header-links li {
+    display: inline-block;
+    margin-left: 17px;
+    line-height: 35px;
+    color: #FFF;
+}
+.top-header-links li,
+.top-header-links li a {
+    font: bold 12px 'Oxygen', sans-serif;
+    color: #FFF;
+}
+.top-header-links li {
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.logo {
+    width: 280px;
+    float: left;
+    margin-right: 25px;
+}
+.logo h1 {
+    font: bold 26px 'Oxygen', sans-serif;
+    color: #FFF;
+    text-transform: uppercase;
+}
+.search {
+    width: 530px;
+    float: left;
+}
+.social-links {
+    width: 125px;
+    float: right;
+}
