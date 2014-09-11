@@ -2,14 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="description" content="Book Mart Online Store">
+    <meta name="keywords" content="Book Mart Online Store">
+    <meta name="author" content="Nivin CP">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bookmart Online Store</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,700">
 </head>
 <body>
-    <div class="top-header">
+    <div class="top-header wrapper">
         <div class="container">
             <div class="top-header-links">
                 <ul>
@@ -23,31 +25,165 @@
                     <li>
                         <a href="#">Checkout</a>
                     </li>
+                    <li class="currencies">
+                        <a href="#" class="active-currency">SGD</a>
+                        <ul class="dropdown">
+                            <li><a href="#">USD</a></li>
+                            <li class="last"><a href="#">INR</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <span class="clear"></span>
         </div>
     </div>
-    <div class="logo-header">
+    <div class="logo-header wrapper">
         <div class="container">
             <div class="logo">
-                <h1>Book-Mart</h1>
+                <a href="#">
+                    <img src="images/logo.png" alt="Book Mart">
+                </a>
             </div>
             <div class="search">
                 <form action="">
-                    <input type="text" name="query" placeholder="Search for anything here">
-                    <button type="submit">submit</button>
+                    <input type="text" class="search-box"  name="query" placeholder="Search for anything here">
+                    <button type="submit" class="search-btn">submit</button>
                 </form>
             </div>
             <div class="social-links">
+                <ul>
+                    <li><a href="#" class="google" title="Google">Google</a></li>
+                    <li><a href="#" class="fb" title="Facebook">Facebook</a></li>
+                    <li><a href="#" class="twitter" title="Twitter">Twitter</a></li>
+                    <li><a href="#" class="yt" title="YouTube">YouTube</a></li>
+                </ul>
             </div>
             <span class="clear"></span>
         </div>
     </div>
-    <div class="container">
-        ok
+    <div class="wrapper">
+        <div class="container">
+            <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Hot Deals</a></li>
+                <li><a href="#">Education</a></li>
+                <li><a href="#">Magazines</a></li>
+                <li><a href="#">Gift</a></li>
+                <li><a href="#">Reading Accessories</a></li>
+                <li class="last"><a href="#">Bulk Sales</a></li>
+            </ul>
+            <div class="offer">
+                <div class="offer-img">
+                    <img src="images/offer-book.png" class="offer-book" alt="Offer Book">
+                </div>
+                <div class="offer-desc">
+                    <p>
+                        Grab a copy of Gillian Flynn’s global best seller
+                        GONE GIRL before its movie adaption hits the theatres worldwide.
+                    </p>
+                    <a href="#" class="promo-link" title="View Promotion">+ View Promotion</a>
+                </div>
+                <span class="clear"></span>
+            </div>
+            <div class="slides">
+                <div class="active-slide">
+                    <img src="images/slide1.png">
+                    <div class="active-slide-info">
+                        <h3>Greatest <br> Book Collection</h3>
+                    </div>
+                </div>
+                <div class="slide-thumbs">
+                    <ul>
+                        <li class="active-thumb">
+                            <a href="#"><img src="images/slide1_thumb.png"></a>
+                            <span class="overlay"></span>
+                        </li>
+                        <li>
+                            <a href="#"><img src="images/slide2_thumb.png"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="images/slide3_thumb.png"></a>
+                        </li>
+                        <li class="last">
+                            <a href="#"><img src="images/slide4_thumb.png"></a>
+                        </li>
+                    </ul>
+                </div>
+                <span class="clear"></span>
+            </div>
+            <h3 class="sub-header">Our Books</h3>
+            <div class="our-books">
+                <div class="item">
+                    <a href="#"><img src="images/book1.png"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="images/book2.png"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="images/book1.png"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="images/book2.png"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="images/book1.png"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="images/book2.png"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="images/book1.png"></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="images/book2.png"></a>
+                </div>
+                 <div class="item last">
+                    <a href="#"><img src="images/book1.png"></a>
+                </div>
+                <span class="clear"></span>
+            </div>
+            <div class="footer-links">
+                <div class="footer-headers">
+                    <div class="col col-1">Deal<br>Mart</div>
+                    <div class="col col-2">Customer<br>Service</div>
+                    <div class="col col-3">Meet<br>Us On</div>
+                    <div class="col col-4 payment">Payment</div>
+                    <span class="clear"></span>
+                </div>
+                <div class="footer-menus">
+                    <ul class="col col-1">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">User Agreement</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                    <ul class="col col-2 cx-service">
+                        <li><a href="#">Customer Service</a></li>
+                        <li><a href="#">Product Recalls</a></li>
+                        <li><a href="#">Order Status &amp; Tracking</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Tips &amp; Advice</a></li>
+                    </ul>
+                    <ul class="col col-3 social-media">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Youtube</a></li>
+                        <li class="last"><a href="#">Google +</a></li>
+                    </ul>
+                    <div class="col col-4">
+                        <img src="images/payment.png">
+                    </div>
+                    <span class="clear"></span>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/core.js"></script>
+    <div class="footer wrapper">
+        <div class="container">
+            All rights are reserved &copy; 2014 BOOK-MART
+        </div>
+    </div>
 </body>
 </html>
