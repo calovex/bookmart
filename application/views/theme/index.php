@@ -6,18 +6,47 @@
     <meta name="keywords" content="Book Mart Online Store">
     <meta name="author" content="Nivin CP">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bookmart Online Store</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title><?php echo isset($page_title) ? $page_title : SITE_TITLE; ?></title>
+    <link rel="stylesheet" href="<?php echo base_url('css/main.css'); ?>">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,700">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="top-header wrapper">
         <div class="container">
             <div class="top-header-links">
                 <ul>
-                    <li>Welcome to Book-Mart!</li>
                     <li>
-                        <a href="#">Register / Login</a>
+                        <?php if( $this->session->userdata('logged_in') ): ?>
+                            Hi <?php echo $this->session->userdata('first_name'); ?>, welcome to Book-Mart!
+                        <?php else: ?>
+                            Welcome to Book-Mart!
+                        <?php endif; ?>
+                    </li>
+                    <?php if( $this->session->userdata('user_type') == 'admin' ): ?>
+                        <li class="admin-menu">
+                            <a href="#" class="admin-link">Manage</a>
+                            <ul class="admin-links">
+                                <li>
+                                    <?php echo anchor('users', 'Users'); ?>
+                                </li>
+                                <li>
+                                    <?php echo anchor('orders', 'Orders'); ?>
+                                </li>
+                                <li class="last">
+                                    <?php echo anchor('books', 'Books'); ?>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
+                    <li>
+                        <?php if( $this->session->userdata('logged_in') ): ?>
+                            <?php echo anchor('dashboard', 'Dashboard'); ?> / 
+                            <?php echo anchor('logout', 'Logout'); ?>
+                        <?php else: ?>
+                            <?php echo anchor('register', 'Register'); ?> / 
+                            <?php echo anchor('login', 'Login'); ?>
+                        <?php endif; ?>
                     </li>
                     <li>
                         <a href="#">Bag $0.00</a>
@@ -40,8 +69,8 @@
     <div class="logo-header wrapper">
         <div class="container">
             <div class="logo">
-                <a href="#">
-                    <img src="images/logo.png" alt="Book Mart">
+                <a href="<?php echo base_url(); ?>" title="<?php echo SITE_TITLE; ?>">
+                    <img src="<?php echo base_url('images/logo.png'); ?>" alt="Book Mart">
                 </a>
             </div>
             <div class="search">
@@ -64,7 +93,7 @@
     <div class="wrapper">
         <div class="container">
             <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><?php echo anchor('/', 'Home'); ?></li>
                 <li><a href="#">Hot Deals</a></li>
                 <li><a href="#">Education</a></li>
                 <li><a href="#">Magazines</a></li>
@@ -72,75 +101,8 @@
                 <li><a href="#">Reading Accessories</a></li>
                 <li class="last"><a href="#">Bulk Sales</a></li>
             </ul>
-            <div class="offer">
-                <div class="offer-img">
-                    <img src="images/offer-book.png" class="offer-book" alt="Offer Book">
-                </div>
-                <div class="offer-desc">
-                    <p>
-                        Grab a copy of Gillian Flynn’s global best seller
-                        GONE GIRL before its movie adaption hits the theatres worldwide.
-                    </p>
-                    <a href="#" class="promo-link" title="View Promotion">+ View Promotion</a>
-                </div>
-                <span class="clear"></span>
-            </div>
-            <div class="slides">
-                <div class="active-slide">
-                    <img src="images/slide1.png">
-                    <div class="active-slide-info">
-                        <h3>Greatest <br> Book Collection</h3>
-                    </div>
-                </div>
-                <div class="slide-thumbs">
-                    <ul>
-                        <li class="active-thumb">
-                            <a href="#"><img src="images/slide1_thumb.png"></a>
-                            <span class="overlay"></span>
-                        </li>
-                        <li>
-                            <a href="#"><img src="images/slide2_thumb.png"></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="images/slide3_thumb.png"></a>
-                        </li>
-                        <li class="last">
-                            <a href="#"><img src="images/slide4_thumb.png"></a>
-                        </li>
-                    </ul>
-                </div>
-                <span class="clear"></span>
-            </div>
-            <h3 class="sub-header">Our Books</h3>
-            <div class="our-books">
-                <div class="item">
-                    <a href="#"><img src="images/book1.png"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="images/book2.png"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="images/book1.png"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="images/book2.png"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="images/book1.png"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="images/book2.png"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="images/book1.png"></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="images/book2.png"></a>
-                </div>
-                 <div class="item last">
-                    <a href="#"><img src="images/book1.png"></a>
-                </div>
-                <span class="clear"></span>
+            <div class="custom-views">
+                <?php $this->load->view($page_name); ?>
             </div>
             <div class="footer-links">
                 <div class="footer-headers">
@@ -173,7 +135,7 @@
                         <li class="last"><a href="#">Google +</a></li>
                     </ul>
                     <div class="col col-4">
-                        <img src="images/payment.png">
+                        <img src="<?php echo base_url('images/payment.png'); ?>">
                     </div>
                     <span class="clear"></span>
                 </div>
@@ -185,5 +147,6 @@
             All rights are reserved &copy; 2014 BOOK-MART
         </div>
     </div>
+    <script src="<?php echo base_url('js/core.js'); ?>"></script>
 </body>
 </html>
