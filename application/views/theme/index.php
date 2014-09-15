@@ -28,13 +28,16 @@
                             <a href="#" class="admin-link">Manage</a>
                             <ul class="admin-links">
                                 <li>
-                                    <?php echo anchor('users', 'Users'); ?>
+                                    <?php echo anchor('books', 'Books'); ?>
                                 </li>
                                 <li>
                                     <?php echo anchor('orders', 'Orders'); ?>
                                 </li>
+                                <li>
+                                    <?php echo anchor('users', 'Users'); ?>
+                                </li>
                                 <li class="last">
-                                    <?php echo anchor('books', 'Books'); ?>
+                                    <?php echo anchor('settings', 'Settings'); ?>
                                 </li>
                             </ul>
                         </li>
