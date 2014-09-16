@@ -27,18 +27,14 @@
                         <li class="admin-menu">
                             <a href="#" class="admin-link">Manage</a>
                             <ul class="admin-links">
-                                <li>
-                                    <?php echo anchor('books', 'Books'); ?>
-                                </li>
-                                <li>
-                                    <?php echo anchor('orders', 'Orders'); ?>
-                                </li>
-                                <li>
-                                    <?php echo anchor('users', 'Users'); ?>
-                                </li>
-                                <li class="last">
-                                    <?php echo anchor('settings', 'Settings'); ?>
-                                </li>
+                                <li><?php echo anchor('products', 'Products'); ?></li>
+                                <li><?php echo anchor('products/create', 'New Product'); ?></li>
+                                <li><?php echo anchor('categories', 'Categories'); ?></li>
+                                <li><?php echo anchor('orders', 'Orders'); ?></li>
+                                <li><?php echo anchor('users', 'Users'); ?></li>
+                                <li><?php echo anchor('pages', 'Pages'); ?></li>
+                                <li><?php echo anchor('slideshow', 'Slideshow'); ?></li>
+                                <li class="last"><?php echo anchor('settings', 'Settings'); ?></li>
                             </ul>
                         </li>
                     <?php endif; ?>
@@ -52,7 +48,7 @@
                         <?php endif; ?>
                     </li>
                     <li>
-                        <a href="#">Bag $0.00</a>
+                        <a href="#">Bag - SGD 0.00</a>
                     </li>
                     <li>
                         <a href="#">Checkout</a>

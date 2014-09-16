@@ -54,3 +54,66 @@ $config['user'] = array(
         'rules' => 'trim|required|xss_clean'
     ),
 );
+
+$config['product'] = array(
+    array(
+        'field' => 'title',
+        'label' => 'Title',
+        'rules' => 'trim|required|xss_clean'
+    ),
+    array(
+        'field' => 'author',
+        'label' => 'Author',
+        'rules' => 'trim|required|xss_clean'
+    ),
+    array(
+        'field' => 'type',
+        'label' => 'Type',
+        'rules' => 'trim|required|xss_clean'
+    ),
+    array(
+        'field' => 'original_price',
+        'label' => 'Original Price',
+        'rules' => 'trim|required|numeric|xss_clean'
+    ),
+    array(
+        'field' => 'sale_price',
+        'label' => 'Sale Price',
+        'rules' => 'trim|required|numeric|xss_clean'
+    ),
+    array(
+        'field' => 'shipping_costs',
+        'label' => 'Shipping costs',
+        'rules' => 'trim|required|numeric|xss_clean'
+    ),
+    array(
+        'field' => 'category[]',
+        'label' => 'Category',
+        'rules' => 'trim|required|numeric|xss_clean'
+    ),
+    array(
+        'field' => 'weightage',
+        'label' => 'Weightage',
+        'rules' => 'trim|integer|xss_clean'
+    ),
+    array(
+        'field' => 'meta_keywords',
+        'label' => 'Meta keywords',
+        'rules' => 'trim|xss_clean'
+    ),
+    array(
+        'field' => 'meta_desc',
+        'label' => 'Meta description',
+        'rules' => 'trim|xss_clean'
+    ),
+    array(
+        'field' => 'summary',
+        'label' => 'Summary',
+        'rules' => 'trim|xss_clean'
+    ),
+    array(
+        'field' => 'desc',
+        'label' => 'Description',
+        'rules' => 'trim|required|xss_clean'
+    )
+);

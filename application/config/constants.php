@@ -39,6 +39,8 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('SITE_TITLE', 	'Bookmart Online Store');
 define('UPLOADS_PATH', 	'C:/xampp/htdocs/bookmart/uploads/');
 
+define('PRODUCTS_LIMIT', 20);
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
