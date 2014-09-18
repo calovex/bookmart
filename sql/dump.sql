@@ -304,12 +304,13 @@ CREATE TABLE IF NOT EXISTS `products` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`product_id`),
   FULLTEXT KEY `title_author_meta_keywords_meta_desc_summary_desc` (`title`,`author`,`meta_keywords`,`meta_desc`,`summary`,`desc`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table bookmart.products: 1 rows
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`product_id`, `title`, `author`, `type`, `original_price`, `sale_price`, `shipping_costs`, `weightage`, `slug`, `meta_keywords`, `meta_desc`, `image1`, `image2`, `image3`, `summary`, `desc`, `views`, `created_at`, `updated_at`) VALUES
-  (1, 'A Study in Scarlet', 'Arthur Conan Doyle', 'Downloadable', 15, 10, 0, 300, 'a-study-in-scarlet', 'A Study in Scarlet by Arthur Conan Doyle', 'A Study in Scarlet by Arthur Conan Doyle', '', '', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, voluptate.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad nam at architecto non culpa fugiat pariatur quia odio libero, nihil illo qui, quidem, laborum! Voluptate ipsum rerum, aliquam magnam eveniet suscipit qui odit eum, est dolorem accusantium, corporis velit praesentium ut. Voluptatum sint, aut quasi, non esse reprehenderit soluta facere ducimus iure officia, repellendus quae unde. Officiis, esse, ut! Quis necessitatibus, non. Aut consectetur necessitatibus iste consequuntur eaque facilis voluptate!', 0, '2014-09-16 17:54:37', '2014-09-16 17:54:37');
+  (1, 'A Study in Scarlet', 'Arthur Conan Doyle', 'Downloadable', 15, 10, 0, 300, 'a-study-in-scarlet', 'A Study in Scarlet by Arthur Conan Doyle', 'A Study in Scarlet by Arthur Conan Doyle', '', '', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, voluptate.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad nam at architecto non culpa fugiat pariatur quia odio libero, nihil illo qui, quidem, laborum! Voluptate ipsum rerum, aliquam magnam eveniet suscipit qui odit eum, est dolorem accusantium, corporis velit praesentium ut. Voluptatum sint, aut quasi, non esse reprehenderit soluta facere ducimus iure officia, repellendus quae unde. Officiis, esse, ut! Quis necessitatibus, non. Aut consectetur necessitatibus iste consequuntur eaque facilis voluptate!', 0, '2014-09-16 17:54:37', '2014-09-18 23:19:32'),
+  (2, 'Three Men in a Boat', 'Jerome K. Jerome', 'Downloadable', 20, 12, 0, 20, 'three-men-in-a-boat', 'Three Men in a Boat', 'Three Men in a Boat', '', '', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, quasi fugiat exercitationem reiciendis saepe impedit eum quas, ad delectus magni.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim soluta dolores unde voluptatibus, harum veniam modi culpa quis qui alias dicta debitis illum amet labore nihil fuga, suscipit ea, explicabo eligendi iure quam sequi. Aperiam unde ab iste, nemo dolorem.', 0, '2014-09-18 22:50:21', '2014-09-18 23:18:05');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 
@@ -319,13 +320,14 @@ CREATE TABLE IF NOT EXISTS `products_categories` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`products_categories_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table bookmart.products_categories: ~2 rows (approximately)
 /*!40000 ALTER TABLE `products_categories` DISABLE KEYS */;
 INSERT INTO `products_categories` (`products_categories_id`, `product_id`, `category_id`) VALUES
-  (1, 1, 1),
-  (2, 1, 6);
+  (19, 2, 1),
+  (20, 2, 6),
+  (22, 1, 6);
 /*!40000 ALTER TABLE `products_categories` ENABLE KEYS */;
 
 
