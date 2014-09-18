@@ -26,10 +26,13 @@ class Products extends CI_Controller {
 
 	public function create()
 	{
+		$this->load->model('model_product');
+		
 		if ($this->form_validation->run('product') == false)
         {
         	$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
+        	$data['categories'] 	= $this->model_product->get_categories();
 			$data['page_name'] 		= 'products/create';
         	$data['page_title'] 	= 'New Product';
         	
@@ -42,9 +45,52 @@ class Products extends CI_Controller {
 		}
 		else
 		{
-			$this->load->model('model_product');
 			$this->model_product->create();
 			redirect('products');
+		}
+	}
+
+	public function edit($product_id = 0)
+	{
+		$product_id = (int) $product_id;
+
+		if(! $product_id) {
+			redirect('products');
+		}
+
+		$this->load->model('model_product');
+
+		if ($this->form_validation->run('product') == false)
+        {
+        	$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+
+        	$product = $this->model_product->get_product($product_id);
+
+        	if($product == false)
+        	{
+        		redirect('products');
+        	}
+
+        	$data['categories'] 	= $this->model_product->products_categories($product_id);
+			$data['page_name'] 		= 'products/edit';
+        	$data['page_title'] 	= 'Edit Product';
+        	$data['product'] 		= $product;
+        	
+        	$data['types'] = array(
+        		'Downloadable' 	=> 'Downloadable',
+        		'Shipped' 		=> 'Shipped'
+        	);
+
+			$this->load->view('theme/index', $data);
+		}
+		else
+		{
+			$this->model_product->update($product_id);
+
+			$message = '<div class="bg-success">Product has been updated successfully.</div>';
+			$this->session->set_flashdata('message', $message);
+
+			redirect('products/edit/'.$product_id);
 		}
 	}
 

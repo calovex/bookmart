@@ -38,12 +38,16 @@
 		<li>
 			Categories: *<br>
 			<div class="product-categories">
-				<label><?php echo form_checkbox('category[]', 1, set_checkbox('category[]', 1)); ?> Hot Deals</label>
-				<label><?php echo form_checkbox('category[]', 2, set_checkbox('category[]', 2)); ?> Education</label>
-				<label><?php echo form_checkbox('category[]', 3, set_checkbox('category[]', 3)); ?> Magazines</label>
-				<label><?php echo form_checkbox('category[]', 4, set_checkbox('category[]', 4)); ?> Gift</label>
-				<label><?php echo form_checkbox('category[]', 5, set_checkbox('category[]', 5)); ?> Reading Accessories</label>
-				<label class="last"><?php echo form_checkbox('category[]', 6, set_checkbox('category[]', 6)); ?> Bulk Sales</label>
+				<?php if($categories): ?>
+					<?php foreach ($categories as $category): ?>
+						<label>
+							<?php
+								echo form_checkbox('category[]', $category->category_id, set_checkbox('category[]', $category->category_id));
+								echo $category->name;
+							?>
+						</label>
+					<?php endforeach; ?>
+				<?php endif; ?>
 			</div>
 			<?php echo form_error('category[]'); ?>
 		</li>
