@@ -27,7 +27,7 @@ class Model_user extends CI_Model {
             'password'        => md5( $this->input->post('password') ),
             'user_type'       => 'normal_user',
             'blocked'         => 0,
-            'joined'          => time()
+            'joined'          => date('Y-m-d H:i:s', time())
         );
 
         $this->db->insert('users', $data);
@@ -67,6 +67,45 @@ class Model_user extends CI_Model {
         }
     }
 
+    public function users_count()
+    {
+        $this->db->where('user_type', 'normal_user');
+        return $this->db->count_all_results('users');
+    }
+
+    public function users($offset)
+    {
+        $sql = "SELECT      u.user_id, u.first_name, u.last_name, 
+                            u.email, u.phone, u.dob, u.blocked, u.city,
+                            u.joined, c.name country
+                FROM        users u
+                JOIN        countries c
+                ON          u.country_id = c.country_id
+                WHERE       u.user_type = 'normal_user'
+                ORDER BY    u.joined DESC
+                LIMIT       ?, ?";
+
+        $param = array($offset, USERS_LIMIT);
+
+        return $this->db->query($sql, $param)->result();
+    }
+
+    public function block($user_id)
+    {
+        $data = array('blocked' => 1);
+
+        $this->db->where('user_id', $user_id);
+        $this->db->update('users', $data);
+    }
+
+
+    public function unblock($user_id)
+    {
+        $data = array('blocked' => 0);
+
+        $this->db->where('user_id', $user_id);
+        $this->db->update('users', $data);
+    }
 }
 
 /* End of file model_user.php */

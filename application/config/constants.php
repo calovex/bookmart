@@ -40,6 +40,9 @@ define('SITE_TITLE', 	'Bookmart Online Store');
 define('UPLOADS_PATH', 	'C:/xampp/htdocs/bookmart/uploads/');
 
 define('PRODUCTS_LIMIT', 20);
+define('CATEGORIES_LIMIT', 20);
+define('PAGES_LIMIT', 20);
+define('USERS_LIMIT', 20);
 
 
 /* End of file constants.php */

@@ -66,6 +66,11 @@ $config['product'] = array(
         'label' => 'Author',
         'rules' => 'trim|required|xss_clean'
     ),
+     array(
+        'field' => 'service_type',
+        'label' => 'Service Type',
+        'rules' => 'trim|required|xss_clean'
+    ),
     array(
         'field' => 'type',
         'label' => 'Type',
@@ -109,6 +114,42 @@ $config['product'] = array(
     array(
         'field' => 'summary',
         'label' => 'Summary',
+        'rules' => 'trim|xss_clean'
+    ),
+    array(
+        'field' => 'desc',
+        'label' => 'Description',
+        'rules' => 'trim|required|xss_clean'
+    )
+);
+
+$config['category'] = array(
+    array(
+        'field' => 'name',
+        'label' => 'Name',
+        'rules' => 'trim|required|xss_clean'
+    ),
+    array(
+        'field' => 'status',
+        'label' => 'Status',
+        'rules' => 'trim|numeric|xss_clean'
+    )
+);
+
+$config['page'] = array(
+    array(
+        'field' => 'title',
+        'label' => 'Title',
+        'rules' => 'trim|required|xss_clean'
+    ),
+    array(
+        'field' => 'meta_keywords',
+        'label' => 'Meta Keywords',
+        'rules' => 'trim|xss_clean'
+    ),
+    array(
+        'field' => 'meta_desc',
+        'label' => 'Meta Description',
         'rules' => 'trim|xss_clean'
     ),
     array(

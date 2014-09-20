@@ -80,10 +80,10 @@
             </div>
             <div class="social-links">
                 <ul>
-                    <li><a href="#" class="google" title="Google">Google</a></li>
-                    <li><a href="#" class="fb" title="Facebook">Facebook</a></li>
-                    <li><a href="#" class="twitter" title="Twitter">Twitter</a></li>
-                    <li><a href="#" class="yt" title="YouTube">YouTube</a></li>
+                    <li><a href="https://plus.google.com" class="google" title="Google">Google</a></li>
+                    <li><a href="https://www.facebook.com/" class="fb" title="Facebook">Facebook</a></li>
+                    <li><a href="https://twitter.com/" class="twitter" title="Twitter">Twitter</a></li>
+                    <li><a href="https://www.youtube.com/" class="yt" title="YouTube">YouTube</a></li>
                 </ul>
             </div>
             <span class="clear"></span>
@@ -95,7 +95,7 @@
                 <li class="active"><?php echo anchor('/', 'Home'); ?></li>
                 <li><a href="#">Hot Deals</a></li>
                 <li><a href="#">Education</a></li>
-                <li><a href="#">Magazines</a></li>
+                <li><a href="#">Free</a></li>
                 <li><a href="#">Gift</a></li>
                 <li><a href="#">Reading Accessories</a></li>
                 <li class="last"><a href="#">Bulk Sales</a></li>
@@ -113,25 +113,25 @@
                 </div>
                 <div class="footer-menus">
                     <ul class="col col-1">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">User Agreement</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><?php echo anchor('/', 'Home'); ?></li>
+                        <li><?php echo anchor('/about-us', 'About Us'); ?></li>
+                        <li><?php echo anchor('/user-agreement', 'User Agreement'); ?></li>
+                        <li><?php echo anchor('/privacy', 'Privacy'); ?></li>
+                        <li><?php echo anchor('/contact-us', 'Contact Us'); ?></li>
                     </ul>
                     <ul class="col col-2 cx-service">
-                        <li><a href="#">Customer Service</a></li>
-                        <li><a href="#">Product Recalls</a></li>
-                        <li><a href="#">Order Status &amp; Tracking</a></li>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Warranty</a></li>
-                        <li><a href="#">Tips &amp; Advice</a></li>
+                        <li><?php echo anchor('/customer-service', 'Customer Service'); ?></li>
+                        <li><?php echo anchor('/product-recalls', 'Product Recalls'); ?></li>
+                        <li><?php echo anchor('/order-status-tracking', 'Order Status &amp; Tracking'); ?></li>
+                        <li><?php echo anchor('/shipping-policy', 'Shipping Policy'); ?></li>
+                        <li><?php echo anchor('/warranty', 'Warranty'); ?></li>
+                        <li><?php echo anchor('/tips-advice', 'Tips &amp; Advice'); ?></li>
                     </ul>
                     <ul class="col col-3 social-media">
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Youtube</a></li>
-                        <li class="last"><a href="#">Google +</a></li>
+                        <li><a href="https://www.facebook.com/">Facebook</a></li>
+                        <li><a href="https://twitter.com/">Twitter</a></li>
+                        <li><a href="https://www.youtube.com/">Youtube</a></li>
+                        <li class="last"><a href="https://plus.google.com">Google +</a></li>
                     </ul>
                     <div class="col col-4">
                         <img src="<?php echo base_url('images/payment.png'); ?>">

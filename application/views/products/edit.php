@@ -15,6 +15,11 @@
 			<?php echo form_error('author'); ?>
 		</li>
 		<li>
+			Service Type: *<br>
+			<?php echo form_dropdown('service_type', $service_types, set_value('service_type', $product->service_type)); ?>
+			<?php echo form_error('service_type'); ?>
+		</li>
+		<li>
 			Can be: *<br>
 			<?php echo form_dropdown('type', $types, set_value('type', $product->type)); ?>
 			<?php echo form_error('type'); ?>
@@ -79,7 +84,8 @@
 			<?php echo form_error('desc'); ?>
 		</li>
 		<li>
-			<?php echo form_submit('submit', 'Update product', 'class="input-btn"'); ?>
+			<?php echo form_submit('submit', 'Update product', 'class="input-btn"'); ?> &nbsp; &nbsp;
+			<?php echo anchor('products/delete/'.$product->product_id, 'Delete this product', 'class="confirm"'); ?>
 		</li>
 	</ul>
 <?php echo form_close(); ?>

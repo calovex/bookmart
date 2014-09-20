@@ -14,18 +14,22 @@
 CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Dumping data for table bookmart.categories: ~6 rows (approximately)
+-- Dumping data for table bookmart.categories: ~7 rows (approximately)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` (`category_id`, `name`) VALUES
-  (1, 'Hot Deals'),
-  (2, 'Education'),
-  (3, 'Magazines'),
-  (4, 'Gift'),
-  (5, 'Reading Accessories'),
-  (6, 'Bulk Sales');
+INSERT INTO `categories` (`category_id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+  (1, 'Hot Deals', 0, '0000-00-00 00:00:00', '2014-09-20 21:32:53'),
+  (2, 'Education', 1, '0000-00-00 00:00:00', '2014-09-20 18:13:14'),
+  (3, 'Magazines', 0, '0000-00-00 00:00:00', '2014-09-20 22:03:49'),
+  (4, 'Gift', 1, '0000-00-00 00:00:00', '2014-09-20 18:16:58'),
+  (5, 'Reading Accessories', 0, '0000-00-00 00:00:00', '2014-09-20 21:53:42'),
+  (6, 'Bulk Sales', 1, '0000-00-00 00:00:00', '2014-09-20 21:32:46'),
+  (9, 'Free', 1, '2014-09-20 21:53:09', '2014-09-20 21:53:20');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 
@@ -281,11 +285,42 @@ INSERT INTO `countries` (`country_id`, `name`) VALUES
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 
 
+-- Dumping structure for table bookmart.pages
+CREATE TABLE IF NOT EXISTS `pages` (
+  `page_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `meta_keywords` varchar(255) NOT NULL,
+  `meta_desc` varchar(255) NOT NULL,
+  `desc` text NOT NULL,
+  `views` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`page_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table bookmart.pages: ~9 rows (approximately)
+/*!40000 ALTER TABLE `pages` DISABLE KEYS */;
+INSERT INTO `pages` (`page_id`, `title`, `slug`, `meta_keywords`, `meta_desc`, `desc`, `views`, `created_at`, `updated_at`) VALUES
+  (1, 'About us', 'about-us', 'about us', 'about bookmart', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa expedita quod sequi corporis soluta suscipit vel quam ad voluptatibus doloribus tenetur, earum quasi, omnis dolor porro! Molestias officiis placeat velit vero, hic necessitatibus animi deserunt, possimus quisquam ab, officia fugit cumque, obcaecati repellendus iste minima! Reprehenderit officia facere, dolores enim reiciendis totam eos ab sit nulla voluptates, iure maiores ullam aut qui nisi tenetur minus rem molestiae, nam in et. Fugit sit cum aliquam recusandae alias, reprehenderit atque sed ex esse, repellat, corporis impedit qui culpa velit voluptatum. Doloribus, molestias error provident esse ducimus sit magni nisi voluptate vel, illo.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae adipisci culpa hic, rem fuga quasi repellat dicta soluta ab, ipsam expedita. Est eius ab debitis soluta, impedit laudantium delectus, ipsum! Delectus officia est aspernatur! Delectus fugit obcaecati et, ipsa voluptatum velit ea. Sit assumenda asperiores quas aperiam atque, facere repellat maiores voluptate voluptatum quam tempore pariatur error labore non id obcaecati ipsa deserunt enim iste harum! Reprehenderit ex ipsam sapiente beatae vel modi nesciunt quaerat ea cupiditate at possimus sequi ab atque nemo, magni deserunt ducimus cum. Ipsum totam ipsam dignissimos ducimus magnam, sint reprehenderit dolorem in, incidunt dolore ad, odit eum consequuntur quas inventore optio! Pariatur nemo aperiam porro, ut, molestiae ex quasi itaque veniam illum eius? Magni quo molestias blanditiis repudiandae sit esse id amet numquam architecto error quis voluptatem molestiae ratione quam, praesentium doloremque, cum illum accusamus, dolorum eius velit aliquid saepe dolorem non soluta. Aspernatur beatae reprehenderit veritatis perspiciatis molestiae libero magnam repellendus vel. Alias, dolore magnam tenetur tempore nihil, veritatis natus magni harum incidunt unde ducimus. Sapiente vero quibusdam earum a deserunt praesentium ut blanditiis doloremque excepturi. Esse commodi hic similique, illum repellendus maiores aperiam dolorum quasi, architecto molestias officia ut quas, odit voluptates cumque.', 4, '0000-00-00 00:00:00', '2014-09-20 19:40:18'),
+  (2, 'User Agreement', 'user-agreement', 'user agreement', 'bookmart user agreement', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora adipisci, pariatur quaerat et enim a quia magnam? Deserunt saepe, quia sit quas odio culpa error dignissimos ipsum magni, voluptatum, alias corporis adipisci ex minus veritatis consectetur qui quasi sint et sed tempore ut iste necessitatibus. Sint eligendi dicta suscipit sit molestias. Nulla facere itaque officiis eveniet, molestiae nam vero, fuga temporibus voluptatum, ipsum quas expedita? Animi alias veritatis soluta aperiam nulla harum dignissimos dolorum sed maxime quasi iure at temporibus quo omnis, ipsa esse veniam dolorem commodi? Consectetur officiis omnis eveniet iure fuga commodi, nihil numquam, iste, aliquam magnam excepturi eum consequatur magni quam quo vel culpa mollitia labore soluta! Quas dolores excepturi dolore quaerat, id explicabo quod repudiandae distinctio debitis illo ut, voluptatibus ea. Repellat sed, labore perferendis dolorem eum ipsam, mollitia ducimus dicta quasi iste delectus eaque amet accusamus. \r\n\r\nAperiam repudiandae impedit, illum eligendi dignissimos earum perferendis quisquam voluptatum voluptate. Dignissimos harum, commodi fugit? Earum aspernatur, necessitatibus saepe, tempore dolore fuga laborum iure omnis dolorem id similique ea laudantium ullam asperiores reprehenderit quas odio. Vero saepe modi obcaecati alias rerum dolorem voluptates, sed, ab eius, quaerat assumenda amet! Eius facere voluptatibus magni, praesentium tempora architecto autem iusto vero, libero delectus corporis minima, asperiores nisi est blanditiis quis non neque officiis! Hic laudantium illum consectetur ab ducimus odit, maxime magnam? Aperiam repellat unde voluptates magnam perspiciatis. At tenetur animi, quasi deleniti suscipit, culpa aperiam cum excepturi libero placeat voluptates sequi. Nisi natus, unde, quasi architecto eaque suscipit numquam, omnis quo molestiae, hic reiciendis nostrum adipisci corporis itaque quaerat. Adipisci optio minima rem, non. Praesentium placeat laboriosam, doloribus incidunt sed ullam recusandae excepturi. Adipisci excepturi saepe cum rerum, quaerat ea molestiae assumenda accusamus? Accusantium eveniet aliquid vitae necessitatibus, est ratione, quis voluptatum soluta animi perspiciatis, voluptas? Quis optio enim aliquam!', 6, '0000-00-00 00:00:00', '2014-09-20 20:26:32'),
+  (3, 'Privacy', 'privacy', 'privacy', 'bookmart privacy policy', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque nam veniam excepturi maxime pariatur quos, minima fuga aliquid voluptatibus laudantium, soluta, minus tempora velit. Sequi deleniti animi nam rerum laboriosam voluptas, nulla dolorum. Iste voluptatem magnam, tenetur praesentium, vitae, voluptatum architecto vel perspiciatis ipsa sequi saepe voluptatibus. Esse id reprehenderit quibusdam totam pariatur et non! Quidem doloribus quo ex totam incidunt consequatur quis, nemo facere molestias repellat aliquid similique consectetur, ipsa ratione temporibus neque, asperiores quas magni aspernatur! Illum voluptatum nemo, a quibusdam, architecto nam dicta distinctio iure repudiandae voluptate iusto quo. Consequuntur ea delectus illum quidem, repudiandae. Eveniet facere distinctio repellendus sit! Et nulla deserunt quae ut laborum blanditiis, sapiente consectetur libero sint, qui veniam repellendus sequi cupiditate debitis hic vero obcaecati excepturi. \r\n\r\nAutem rem non similique illo necessitatibus unde, veniam corporis eum doloremque a eveniet sit. Sapiente, ipsum. Harum, accusamus modi eligendi neque repudiandae voluptates voluptas cumque nesciunt quae animi repellat commodi at, tempore nihil consectetur recusandae sapiente! Suscipit asperiores officiis facilis. Eius modi, repellendus optio accusantium sint recusandae praesentium id earum sunt voluptas consequuntur quam delectus cum nobis vitae, et ullam nostrum, natus. Quia error eaque omnis magni, deserunt deleniti molestias odio, itaque ab in fuga ut facilis, optio voluptates maiores magnam quidem quasi. Recusandae ducimus explicabo fugit quos aliquam dolorem id, molestias dolore quas repellat ut.', 2, '0000-00-00 00:00:00', '2014-09-20 20:26:39'),
+  (4, 'Contact us', 'contact-us', 'contact us', 'bookmart contact details', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur voluptatum, expedita eius explicabo rem itaque, blanditiis dolorem eos incidunt officia minus laborum corporis debitis est officiis quaerat commodi ipsum nobis.\r\n\r\n2962 Adams Drive\r\nSan Angelo, TX 76903\r\n\r\nPhone: 402-885-7741\r\nEmail Address: info@bookmart.com', 2, '0000-00-00 00:00:00', '2014-09-20 19:48:26'),
+  (5, 'Customer service', 'customer-service', 'customer service', 'bookmart customer service', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, natus eaque dignissimos dolorum suscipit culpa similique, voluptatibus ducimus molestias, inventore laudantium nobis a, modi. Modi, reprehenderit! Pariatur facere, repudiandae consectetur officiis praesentium, laboriosam ea fuga et tempore quo doloribus iure quod ducimus, totam? At, porro veniam quis nostrum, dicta officia dolor sunt reprehenderit totam sint molestias repudiandae, id quae possimus a cupiditate eaque maiores exercitationem obcaecati voluptatibus pariatur. Nisi eos sequi, enim placeat, perspiciatis reprehenderit voluptatibus cum ipsam soluta mollitia nesciunt, fugiat quibusdam minus nostrum ex! Hic repellendus illum, magnam minus iusto alias soluta adipisci molestiae libero ipsa optio. Sed necessitatibus dolorum qui minus nam atque velit tempore illum consequuntur, quas, ab reiciendis quo. Nihil, pariatur sapiente minima, quam nesciunt inventore officia eius ab adipisci dolore! Laboriosam ipsam natus esse provident, tempore voluptas magni quis fugiat nulla amet quae fuga ipsum assumenda quos, beatae dolor optio! Tempore doloremque accusamus, quaerat iusto natus nesciunt in explicabo ad assumenda aliquam animi error, culpa corporis atque saepe fugit earum odit deserunt. Delectus, voluptate.', 2, '0000-00-00 00:00:00', '2014-09-20 19:48:23'),
+  (6, 'Product recalls', 'product-recalls', 'product recalls', 'bookmart product recalls', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet nemo odit non quod a similique magni, ut magnam esse totam commodi quibusdam reprehenderit culpa saepe quas debitis, labore neque modi aliquam cum assumenda. Praesentium fugit soluta mollitia deleniti quae delectus sit laudantium, cumque fugiat ullam, suscipit earum commodi atque repellendus vel non minima autem omnis aut accusantium perspiciatis ad quam enim nulla sapiente. Necessitatibus expedita culpa error odio vero ab provident corporis placeat porro magni consequatur officiis ut molestiae quaerat nostrum veniam, dolorum omnis reiciendis, facere fugit et neque blanditiis. Tempore, praesentium! Eos voluptate sequi veritatis itaque, ipsam modi!\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Esse doloremque, nisi voluptatibus recusandae aliquam est harum excepturi delectus quasi ullam porro vitae, voluptatum, illum beatae fuga natus dolorem eveniet enim dolore unde maiores quas asperiores pariatur laborum. Magni esse nemo, voluptatem, tempora ipsa laborum incidunt modi voluptas enim eaque dolorum!\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Odit aliquam nobis quia a inventore, numquam? Necessitatibus consequatur, quis dicta accusamus reiciendis veniam possimus, voluptas maiores praesentium pariatur. Eius nostrum, adipisci ipsam ipsum quos repudiandae ut incidunt laborum quo provident, cupiditate fuga praesentium earum. Tenetur, assumenda, repellendus? Ut nisi cum expedita alias praesentium quis, molestiae repudiandae atque, debitis autem, ex error ipsa ad. In itaque cumque id nulla quaerat suscipit aliquid quos consequuntur ipsa provident culpa nemo odio rem eum asperiores ducimus quam ipsam quisquam, quia quae doloremque, nihil expedita quas similique facilis? Non magnam pariatur, necessitatibus itaque aut, illum magni iusto fuga optio totam maiores ullam recusandae, quasi nesciunt qui! Eveniet harum, repellat, beatae enim pariatur laborum dicta atque! Pariatur incidunt sunt perspiciatis vitae. Quis veniam unde odio magnam saepe blanditiis commodi iste quos, corrupti, architecto quaerat consequuntur.', 2, '0000-00-00 00:00:00', '2014-09-20 19:48:21'),
+  (7, 'Order status tracking', 'order-status-tracking', 'order status tracking', 'bookmart order status tracking', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, quia. Nisi quae molestias voluptatem reprehenderit velit! Tempore sed corporis rem ipsam quo corrupti consectetur pariatur, provident iusto nostrum incidunt totam.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae harum fugit, natus dicta autem at! Odio recusandae expedita possimus totam eum, quo, reiciendis velit veniam repudiandae architecto minus rerum aperiam aliquam! Temporibus dolorum inventore eum sunt odio quos pariatur sit.', 6, '0000-00-00 00:00:00', '2014-09-20 21:34:31'),
+  (8, 'Shipping Policy', 'shipping-policy', 'shipping policy', 'bookmart shipping policy', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quas voluptate accusantium officiis recusandae sequi voluptatum eligendi quos, commodi qui voluptatem enim illum dicta minima quod nemo quasi obcaecati doloremque perferendis quia repudiandae hic nihil! Est at ipsam dolores libero quisquam atque expedita, iusto velit fuga temporibus repellat, in modi quaerat voluptatum, odit! Perspiciatis aspernatur esse assumenda itaque aut vitae expedita quos eaque enim voluptates. Dignissimos iure eius a, reiciendis tenetur odio, officiis ex laborum ducimus expedita labore autem provident. \r\n\r\nDelectus architecto laborum obcaecati incidunt vero et magnam, blanditiis nesciunt sequi ex quisquam sunt iusto vitae, deleniti facilis odio eos dicta inventore nisi explicabo, ratione illum. Doloremque et veritatis optio ab consectetur quia facere, eligendi at voluptatem tempore eius reiciendis dolores, veniam repellat mollitia. Exercitationem dolor, nesciunt voluptate omnis vero laudantium repudiandae sint veritatis illo minima ipsa porro laborum inventore amet quidem atque qui libero soluta aliquam corporis dicta sequi, dolorem et hic maxime. \r\n\r\n\r\nBlanditiis saepe obcaecati cum labore earum fugiat ipsam delectus fugit iste, ea quod explicabo unde asperiores voluptatum adipisci assumenda enim natus doloribus quo ab et consectetur accusantium quia. Ex vero laboriosam ut, doloremque sed necessitatibus modi mollitia hic, optio quae minus illo deleniti repellat aliquid sint veritatis labore a facilis at molestias libero! Sunt itaque labore quo perferendis eaque veniam, voluptatum cum temporibus officiis cumque delectus soluta eius id quos consequuntur veritatis quae? Doloremque laborum quam, ducimus sed itaque, commodi repellat beatae consequuntur nesciunt nisi, ab odit dolores pariatur ratione veniam debitis! Eaque error nesciunt repellat dolores fuga molestias incidunt, maiores enim veniam. \r\n\r\nMagnam vel accusamus unde earum dolores, itaque expedita soluta ab ipsam quis nisi maxime, commodi rem exercitationem incidunt perspiciatis optio vero labore temporibus assumenda et, provident, laborum eveniet quae ullam. Tempora illo doloribus accusamus adipisci quam, quaerat, officia ex maiores. Earum iste voluptatibus magnam explicabo sed nobis recusandae vitae accusamus quam illum doloremque beatae hic, magni quaerat, iure, fuga asperiores quae. Minima explicabo sint ratione doloremque soluta excepturi hic, id nesciunt aperiam, rem at vero cumque voluptatibus consequatur earum modi unde vel magnam quod mollitia. Nobis labore modi delectus odit sint voluptate dicta?', 1, '0000-00-00 00:00:00', '2014-09-20 19:47:56'),
+  (9, 'Warranty', 'warranty', 'warranty', 'bookmart warranty', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo atque, vel cumque, nisi rerum ab et doloremque voluptatem voluptas necessitatibus. Est libero facere debitis minima quis sint quidem laborum alias repellat velit doloribus ex, distinctio pariatur rem optio amet aperiam assumenda impedit cum quisquam voluptas quo fuga tenetur. \r\n\r\nHic ex et quas officiis officia dolores suscipit, consequatur, quod rem aspernatur ad iusto esse, praesentium pariatur consectetur culpa voluptatum quasi ipsa provident labore! Nemo rerum odio sint similique dolorem? Nam praesentium natus itaque eaque nisi perferendis dolore quia reiciendis vitae eveniet tenetur doloremque veniam quas nostrum assumenda voluptate accusamus dolorem, temporibus tempora repellat atque molestiae est sit sint eum. Ullam iste vitae magni alias eveniet expedita, eos voluptas, porro quidem illum nemo, sunt, corporis. Debitis ipsa facilis dignissimos pariatur, optio autem saepe esse laboriosam, similique at ipsum inventore minima tenetur illo expedita. Voluptate nisi reprehenderit sed obcaecati repudiandae dicta quaerat praesentium perspiciatis molestiae autem sunt voluptas, quae deserunt velit aut. Ut cum eum cumque facere beatae sunt. \r\n\r\nMolestias consequuntur ratione veritatis quas quidem quis, error iure, ut veniam perspiciatis, quo expedita reprehenderit est accusamus harum ipsum aspernatur nam numquam beatae vero! Accusamus a veniam dolor pariatur asperiores dolore minima quaerat vel, error. Eaque velit sapiente sed deserunt provident fugit modi non officia est aperiam. Blanditiis quam maiores sequi nobis repellat natus, laborum ab quisquam esse, rem quidem mollitia incidunt cumque nam, sit aliquam dignissimos deleniti quaerat adipisci! Obcaecati officiis libero recusandae dolorum nisi, beatae aliquam. \r\n\r\nAdipisci, ab ipsam, magni nostrum assumenda ullam. Ad illum dolores tempora laborum aut quos numquam ipsam optio commodi corporis, in modi unde rerum repudiandae fugit cupiditate, odio facere nesciunt iste suscipit. Similique iste deserunt ad officia eligendi blanditiis ipsam est alias dolorem recusandae, numquam quaerat corrupti dignissimos non. \r\n\r\nIn non ducimus cumque aspernatur, quisquam sed nulla, illum minima laboriosam repellat deserunt mollitia officia? Vel, dolor, tempore? Ex sequi quod unde libero, magnam atque necessitatibus ullam officia neque animi culpa veniam reprehenderit obcaecati harum accusantium fugit ducimus ipsam facere, nesciunt et consectetur mollitia delectus. \r\n\r\nIncidunt consequuntur pariatur et est totam temporibus harum iusto velit soluta magnam sint quibusdam labore animi minima molestias id veritatis, reprehenderit commodi aliquid excepturi quidem sunt iste. \r\n\r\nMollitia, repudiandae ex! Quis officia sed cumque ad est ratione labore id, similique, vero ducimus molestias ab, impedit incidunt laudantium dolorem iure sapiente! Aperiam quidem porro obcaecati iure architecto culpa, quo velit ipsum, nihil, est soluta.', 1, '0000-00-00 00:00:00', '2014-09-20 19:49:26'),
+  (10, 'Tips advice', 'tips-advice', 'tips advice', 'bookmart tips advice', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus nostrum autem omnis voluptate quidem quae voluptatem eligendi blanditiis itaque, mollitia, odit qui nam placeat, ad facere. Sunt, inventore sint.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus culpa vel, quaerat repudiandae reprehenderit recusandae cumque corrupti deserunt atque delectus magnam consequatur nobis ullam possimus velit veritatis maxime laboriosam cupiditate veniam quod nulla molestias saepe. Soluta voluptatem ullam, magni illum facere delectus fugit perspiciatis blanditiis repellendus tenetur veritatis suscipit quae placeat, eveniet illo harum provident beatae cumque odit, inventore aut corporis, reiciendis molestias non. Voluptates natus perferendis ad quam minus.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores beatae modi aliquid animi, molestiae incidunt quisquam totam eaque eum! Reprehenderit totam, dolorem iste vitae mollitia rem est voluptas eaque minus. Veniam, possimus, explicabo. Doloribus facilis sapiente eos, adipisci a expedita quidem odit, repellendus esse! Mollitia sit, dolorum earum molestias numquam repudiandae quidem blanditiis enim voluptate, sed, quo quis doloremque optio consequatur impedit facilis. Illum voluptatibus, commodi minus officia dolorem consequatur veniam laborum, porro atque saepe quas. Rem, magnam quaerat eum.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia corporis aspernatur dolores ad, sequi, facilis magni non modi quaerat, quis enim quasi ea cum itaque fugit, deleniti molestias blanditiis voluptate reiciendis dignissimos possimus ipsam quae doloribus placeat. A ea nulla eius cum fuga eaque deleniti, officia asperiores, ducimus enim eligendi voluptatibus voluptate debitis reiciendis esse, aperiam dolor quae nobis. Similique, corrupti optio beatae impedit consectetur explicabo laudantium itaque voluptatibus architecto! Accusamus, quasi reprehenderit, quidem saepe, tempora totam debitis fuga autem facilis corrupti repellendus placeat quisquam veniam qui, consequuntur! Provident quae, possimus temporibus ex pariatur nemo facilis laboriosam? Iste quasi, fugit est voluptate pariatur, sed. Nobis iusto, assumenda dolorum unde beatae, minima cumque nesciunt, eius maxime numquam vitae qui. Assumenda architecto nemo eum provident labore, voluptas eos repellendus similique explicabo natus ullam amet aperiam eligendi laboriosam dolore nesciunt dicta aut voluptates, tempore nisi. Magnam nostrum, vel soluta consequatur dolorem maiores doloribus similique dolore eaque fugiat debitis repellat. Accusantium quasi, recusandae nemo voluptate similique iusto assumenda ex, accusamus! Nisi vero voluptas mollitia natus, explicabo accusantium incidunt saepe quam vel ab odit ratione vitae esse sapiente perspiciatis culpa, reiciendis aperiam a suscipit sunt. Voluptatum, dolores. Modi rem accusamus ipsam tempora harum, obcaecati unde!', 1, '0000-00-00 00:00:00', '2014-09-20 19:50:17');
+/*!40000 ALTER TABLE `pages` ENABLE KEYS */;
+
+
 -- Dumping structure for table bookmart.products
 CREATE TABLE IF NOT EXISTS `products` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `author` varchar(255) NOT NULL,
+  `service_type` enum('Paid','Free') NOT NULL,
   `type` enum('Shipped','Downloadable') NOT NULL,
   `original_price` float NOT NULL,
   `sale_price` float NOT NULL,
@@ -304,13 +339,13 @@ CREATE TABLE IF NOT EXISTS `products` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`product_id`),
   FULLTEXT KEY `title_author_meta_keywords_meta_desc_summary_desc` (`title`,`author`,`meta_keywords`,`meta_desc`,`summary`,`desc`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table bookmart.products: 1 rows
+-- Dumping data for table bookmart.products: 2 rows
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`product_id`, `title`, `author`, `type`, `original_price`, `sale_price`, `shipping_costs`, `weightage`, `slug`, `meta_keywords`, `meta_desc`, `image1`, `image2`, `image3`, `summary`, `desc`, `views`, `created_at`, `updated_at`) VALUES
-  (1, 'A Study in Scarlet', 'Arthur Conan Doyle', 'Downloadable', 15, 10, 0, 300, 'a-study-in-scarlet', 'A Study in Scarlet by Arthur Conan Doyle', 'A Study in Scarlet by Arthur Conan Doyle', '', '', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, voluptate.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad nam at architecto non culpa fugiat pariatur quia odio libero, nihil illo qui, quidem, laborum! Voluptate ipsum rerum, aliquam magnam eveniet suscipit qui odit eum, est dolorem accusantium, corporis velit praesentium ut. Voluptatum sint, aut quasi, non esse reprehenderit soluta facere ducimus iure officia, repellendus quae unde. Officiis, esse, ut! Quis necessitatibus, non. Aut consectetur necessitatibus iste consequuntur eaque facilis voluptate!', 0, '2014-09-16 17:54:37', '2014-09-18 23:19:32'),
-  (2, 'Three Men in a Boat', 'Jerome K. Jerome', 'Downloadable', 20, 12, 0, 20, 'three-men-in-a-boat', 'Three Men in a Boat', 'Three Men in a Boat', '', '', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, quasi fugiat exercitationem reiciendis saepe impedit eum quas, ad delectus magni.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim soluta dolores unde voluptatibus, harum veniam modi culpa quis qui alias dicta debitis illum amet labore nihil fuga, suscipit ea, explicabo eligendi iure quam sequi. Aperiam unde ab iste, nemo dolorem.', 0, '2014-09-18 22:50:21', '2014-09-18 23:18:05');
+INSERT INTO `products` (`product_id`, `title`, `author`, `service_type`, `type`, `original_price`, `sale_price`, `shipping_costs`, `weightage`, `slug`, `meta_keywords`, `meta_desc`, `image1`, `image2`, `image3`, `summary`, `desc`, `views`, `created_at`, `updated_at`) VALUES
+  (1, 'A Study in Scarlet', 'Arthur Conan Doyle', 'Free', 'Downloadable', 15, 10, 0, 300, 'a-study-in-scarlet', 'A Study in Scarlet by Arthur Conan Doyle', 'A Study in Scarlet by Arthur Conan Doyle', '', '', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, voluptate.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad nam at architecto non culpa fugiat pariatur quia odio libero, nihil illo qui, quidem, laborum! Voluptate ipsum rerum, aliquam magnam eveniet suscipit qui odit eum, est dolorem accusantium, corporis velit praesentium ut. Voluptatum sint, aut quasi, non esse reprehenderit soluta facere ducimus iure officia, repellendus quae unde. Officiis, esse, ut! Quis necessitatibus, non. Aut consectetur necessitatibus iste consequuntur eaque facilis voluptate!', 0, '2014-09-16 17:54:37', '2014-09-20 22:02:28'),
+  (2, 'Three Men in a Boat', 'Jerome K. Jerome', 'Paid', 'Downloadable', 20, 12, 0, 20, 'three-men-in-a-boat', 'Three Men in a Boat', 'Three Men in a Boat', '', '', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, quasi fugiat exercitationem reiciendis saepe impedit eum quas, ad delectus magni.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim soluta dolores unde voluptatibus, harum veniam modi culpa quis qui alias dicta debitis illum amet labore nihil fuga, suscipit ea, explicabo eligendi iure quam sequi. Aperiam unde ab iste, nemo dolorem.', 0, '2014-09-18 22:50:21', '2014-09-18 23:18:05');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 
@@ -320,15 +355,34 @@ CREATE TABLE IF NOT EXISTS `products_categories` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`products_categories_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
--- Dumping data for table bookmart.products_categories: ~2 rows (approximately)
+-- Dumping data for table bookmart.products_categories: ~3 rows (approximately)
 /*!40000 ALTER TABLE `products_categories` DISABLE KEYS */;
 INSERT INTO `products_categories` (`products_categories_id`, `product_id`, `category_id`) VALUES
   (19, 2, 1),
   (20, 2, 6),
-  (22, 1, 6);
+  (23, 1, 6);
 /*!40000 ALTER TABLE `products_categories` ENABLE KEYS */;
+
+
+-- Dumping structure for table bookmart.products_images
+CREATE TABLE IF NOT EXISTS `products_images` (
+  `products_images_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`products_images_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table bookmart.products_images: ~5 rows (approximately)
+/*!40000 ALTER TABLE `products_images` DISABLE KEYS */;
+INSERT INTO `products_images` (`products_images_id`, `product_id`, `name`) VALUES
+  (1, 1, 'ArthurConanDoyle_AStudyInScarlet_annual.jpg'),
+  (2, 1, 'study_in_scarlet_sherlock4.jpg'),
+  (4, 1, 'cover.jpg'),
+  (5, 2, 'A008727.jpg'),
+  (6, 2, 'three_man_in_a_boat.jpg');
+/*!40000 ALTER TABLE `products_images` ENABLE KEYS */;
 
 
 -- Dumping structure for table bookmart.users
@@ -347,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `avatar` varchar(255) NOT NULL,
   `profile_desc` text NOT NULL,
   `blocked` tinyint(4) NOT NULL DEFAULT '0',
-  `joined` int(11) NOT NULL,
+  `joined` datetime NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `reset_code` (`reset_code`)
@@ -356,10 +410,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table bookmart.users: 4 rows
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `country_id`, `user_type`, `first_name`, `last_name`, `dob`, `email`, `password`, `reset_code`, `phone`, `city`, `avatar`, `profile_desc`, `blocked`, `joined`) VALUES
-  (1, 99, 'normal_user', 'Nivin', 'CP', '0000-00-00', 'nivincp@gmail.com', '32250170a0dca92d53ec9624f336ca24', NULL, '', 'Kochi', '', '', 0, 1410716666),
-  (2, 225, 'normal_user', 'Alex', 'Garrett', '0000-00-00', 'alex@gmail.com', '32250170a0dca92d53ec9624f336ca24', NULL, '', 'London', '', '', 0, 1410717003),
-  (3, 225, 'normal_user', 'Billy', 'Garrett', '0000-00-00', 'billy@gmail.com', 'd4f71ce1ff9e9536a877eaf8f9cb6e98', NULL, '', 'London', '', '', 0, 1410717646),
-  (4, 0, 'admin', 'Admin', '', '0000-00-00', 'admin@bookmart.com', '32250170a0dca92d53ec9624f336ca24', NULL, '', '', '', '', 0, 0);
+  (1, 99, 'normal_user', 'Nivin', 'CP', '0000-00-00', 'nivincp@gmail.com', '32250170a0dca92d53ec9624f336ca24', NULL, '', 'Kochi', '', '', 0, '0000-00-00 00:00:00'),
+  (2, 225, 'normal_user', 'Alex', 'Garrett', '0000-00-00', 'alex@gmail.com', '32250170a0dca92d53ec9624f336ca24', NULL, '', 'London', '', '', 1, '0000-00-00 00:00:00'),
+  (3, 225, 'normal_user', 'Billy', 'Garrett', '0000-00-00', 'billy@gmail.com', 'd4f71ce1ff9e9536a877eaf8f9cb6e98', NULL, '', 'London', '', '', 1, '0000-00-00 00:00:00'),
+  (4, 0, 'admin', 'Admin', '', '0000-00-00', 'admin@bookmart.com', '32250170a0dca92d53ec9624f336ca24', NULL, '', '', '', '', 0, '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

@@ -13,6 +13,11 @@
 			<?php echo form_error('author'); ?>
 		</li>
 		<li>
+			Service Type: *<br>
+			<?php echo form_dropdown('service_type', $service_types, set_value('service_type')); ?>
+			<?php echo form_error('service_type'); ?>
+		</li>
+		<li>
 			Can be: *<br>
 			<?php echo form_dropdown('type', $types, $this->input->post('type')); ?>
 			<?php echo form_error('type'); ?>

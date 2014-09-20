@@ -18,4 +18,13 @@ $(document).ready(function() {
     	return false;
 	});
 
+	$('.confirm').on('click', function() {
+		var confirm_status = confirm('Are you sure you want to perform this action?');
+		if(confirm_status) {
+			return true;
+		} else {
+			return false;
+		}
+	});
+
 });

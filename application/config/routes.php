@@ -41,5 +41,16 @@
 $route['default_controller'] 	= 'home';
 $route['404_override'] 			= 'errors/page_missing';
 
+$route['about-us'] 				= 'pages/view/1';
+$route['user-agreement'] 		= 'pages/view/2';
+$route['privacy'] 				= 'pages/view/3';
+$route['contact-us'] 			= 'pages/view/4';
+$route['customer-service'] 		= 'pages/view/5';
+$route['product-recalls'] 		= 'pages/view/6';
+$route['order-status-tracking']	= 'pages/view/7';
+$route['shipping-policy'] 		= 'pages/view/8';
+$route['warranty'] 				= 'pages/view/9';
+$route['tips-advice'] 			= 'pages/view/10';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

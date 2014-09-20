@@ -51,6 +51,7 @@ body {
 a {
     text-decoration: none;
     color: #3B3B3B;
+    font: normal 13.3px 'Oxygen', sans-serif;
 }
 .clear {
     display: block;
@@ -144,6 +145,7 @@ td a {
 }
 .custom-views {
     min-height: 300px;
+    margin-bottom: 40px;
 }
 .currencies .active-currency {
     display: inline-block;
@@ -571,6 +573,9 @@ input[type="checkbox"] {
     color: #BE4B49;
     font: bold 12px 'Oxygen', sans-serif;
 }
+.error p {
+    color: #BE4B49;
+}
 
 .bg-success,
 .bg-danger {
@@ -591,6 +596,13 @@ input[type="checkbox"] {
     width: 380px;
     margin-top: 2px;
     padding: 10px;
+    border: 1px solid #BDC7D8;
+    border-radius: 4px;
+}
+.category-status {
+    width: 300px;
+    margin-top: 2px;
+    padding: 7px 10px;
     border: 1px solid #BDC7D8;
     border-radius: 4px;
 }
@@ -616,4 +628,45 @@ input[type="checkbox"] {
 }
 .pagination strong {
     color: #555;
+}
+
+
+/*product images in backend*/
+
+.product-images {
+    margin: 30px 0;
+    padding-top: 20px;
+    border-top: 1px solid #DDD;
+}
+.product-image {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin: 0 20px 20px 0;
+    border: 1px solid #DDD;
+    background-color: #FFF;
+    text-align: center;
+}
+.product-image-delete {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    padding-top: 9px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+}
+.product-image-delete a {
+    font: normal 13px 'Oxygen', sans-serif;
+    color: #FFF;
+}
+.product-image img {
+    max-width: 150px;
+    max-height: 150px;
+}
+.page-data {
+    font: normal 14px 'Oxygen', sans-serif;
+    line-height: 150%;
 }

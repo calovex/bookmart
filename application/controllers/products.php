@@ -36,10 +36,8 @@ class Products extends CI_Controller {
 			$data['page_name'] 		= 'products/create';
         	$data['page_title'] 	= 'New Product';
         	
-        	$data['types'] = array(
-        		'Downloadable' 	=> 'Downloadable',
-        		'Shipped' 		=> 'Shipped'
-        	);
+        	$data['service_types'] = array('Paid' => 'Paid', 'Free' => 'Free');
+        	$data['types'] = array('Downloadable' => 'Downloadable', 'Shipped' => 'Shipped');
 
 			$this->load->view('theme/index', $data);
 		}
@@ -54,7 +52,8 @@ class Products extends CI_Controller {
 	{
 		$product_id = (int) $product_id;
 
-		if(! $product_id) {
+		if(! $product_id)
+		{
 			redirect('products');
 		}
 
@@ -76,10 +75,8 @@ class Products extends CI_Controller {
         	$data['page_title'] 	= 'Edit Product';
         	$data['product'] 		= $product;
         	
-        	$data['types'] = array(
-        		'Downloadable' 	=> 'Downloadable',
-        		'Shipped' 		=> 'Shipped'
-        	);
+        	$data['service_types'] = array('Paid' => 'Paid', 'Free' => 'Free');
+        	$data['types'] = array('Downloadable' => 'Downloadable', 'Shipped' => 'Shipped');
 
 			$this->load->view('theme/index', $data);
 		}
@@ -91,6 +88,89 @@ class Products extends CI_Controller {
 			$this->session->set_flashdata('message', $message);
 
 			redirect('products/edit/'.$product_id);
+		}
+	}
+
+	public function images($product_id = 0)
+	{
+		$product_id = (int)$product_id;
+
+		if(! $product_id)
+		{
+			redirect('products');
+		}
+
+		$this->load->model('model_product');
+
+		$config['upload_path'] 		= './uploads/';
+		$config['allowed_types'] 	= 'gif|jpg|png';
+		$config['max_size']			= '250';
+		$config['max_width']  		= '1024';
+		$config['max_height']  		= '768';
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload())
+		{
+			$data['images'] 		= $this->model_product->get_images($product_id);
+			$data['product_id'] 	= $product_id;
+			$data['product_name'] 	= $this->model_product->get_product_name($product_id);
+			$data['errors'] 		= $this->upload->display_errors();
+			$data['page_name'] 		= 'products/images';
+	        $data['page_title'] 	= 'Manage Product Images';
+			
+			$this->load->view('theme/index', $data);
+		}
+		else
+		{
+			$upload_data 	= $this->upload->data();
+			$file_name 		= $upload_data['file_name'];
+
+			$this->model_product->create_image($product_id, $file_name);
+
+			$message = '<div class="bg-success">Image has been uploaded successfully.</div>';
+			$this->session->set_flashdata('message', $message);					
+			redirect('products/images/'.$product_id);
+		}
+	}
+
+	public function delete($product_id = 0)
+	{
+		$product_id = (int)$product_id;
+
+		if(! $product_id)
+		{
+			redirect('products');
+		}
+
+		$this->load->model('model_product');
+		$this->model_product->delete($product_id);
+
+		$message = '<div class="bg-success">Product has been deleted successfully.</div>';
+		$this->session->set_flashdata('message', $message);
+		redirect('products');
+	}
+
+	public function delete_image($products_images_id = 0)
+	{
+		$products_images_id = (int)$products_images_id;
+
+		if(! $products_images_id)
+		{
+			redirect('products');
+		}
+
+		$this->load->model('model_product');
+
+		$image = $this->model_product->get_image($products_images_id);
+		
+		if($image)
+		{
+			$this->model_product->delete_image($products_images_id, $image->name);
+
+			$message = '<div class="bg-success">Image has been deleted successfully.</div>';
+			$this->session->set_flashdata('message', $message);
+			redirect('products/images/'.$image->product_id);
 		}
 	}
 
