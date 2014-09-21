@@ -56,6 +56,8 @@ class Model_product extends CI_Model {
         }
 
         $this->db->insert_batch('products_categories', $category_array);
+
+        return $product_id;
 	}
 
     public function get_product($product_id)
@@ -186,6 +188,40 @@ class Model_product extends CI_Model {
     {
         $data = array('name' => $file_name, 'product_id' => $product_id);
         $this->db->insert('products_images', $data);
+
+        $products_images_id = $this->db->insert_id();
+
+        $this->db->where('product_id', $product_id);
+        $count = $this->db->count_all_results('products_images');
+
+        //set the first image uploaded as the cover by default
+        if($count == 1)
+        {
+            $data = array('is_cover'=>1);
+            $this->db->where('products_images_id', $products_images_id);
+            $this->db->update('products_images', $data);
+
+            $data = array('cover_image'=>$file_name);
+            $this->db->where('product_id', $product_id);
+            $this->db->update('products', $data);
+        }
+
+        $this->create_thumbnail($file_name);
+    }
+
+    private function create_thumbnail($name)
+    {
+        $config['image_library']    = 'gd2';
+        $config['source_image']     = UPLOADS_PATH.$name;
+        $config['new_image']        = THUMBS_PATH.$name;
+        $config['create_thumb']     = true;
+        $config['thumb_marker']     = '';
+        $config['maintain_ratio']   = true;
+        $config['width']            = 150;
+        $config['height']           = 150;
+
+        $this->load->library('image_lib', $config);
+        $this->image_lib->resize();
     }
 
     public function create_ebook($product_id, $file_name)
@@ -194,15 +230,74 @@ class Model_product extends CI_Model {
         $this->db->insert('products_ebooks', $data);
     }
 
-    public function delete_image($products_images_id, $image)
+    public function delete_image($product_id, $products_images_id, $image)
     {
         if( file_exists(UPLOADS_PATH.$image) )
         {
             unlink(UPLOADS_PATH.$image);
         }
 
+        if( file_exists(THUMBS_PATH.$image) )
+        {
+            unlink(THUMBS_PATH.$image);
+        }
+
+        //check if it's the cover image
+        $this->db->where('products_images_id', $products_images_id);
+        $this->db->where('is_cover', 1);
+        $count = $this->db->count_all_results('products_images');
+
+        if($count == 1)
+        {
+            $data = array('cover_image'=>'');
+            $this->db->where('product_id', $product_id);
+            $this->db->update('products', $data);
+
+            //checking if there is any other images available
+            $this->db->where('product_id', $product_id);
+            $count = $this->db->count_all_results('products_images');
+
+            if($count >= 1)
+            { // atleast an image found, set the first one as cover
+
+                $this->db->select('*');
+                $this->db->where('product_id', $product_id);
+                $this->db->where('products_images_id !=', $products_images_id);
+                $this->db->from('products_images');
+                $this->db->order_by('products_images_id', 'asc');
+                $this->db->limit(1);        
+                
+                $item = $this->db->get()->result();
+                $item = $item[0];        
+
+                $data = array('is_cover'=>1);
+                $this->db->where('products_images_id', $item->products_images_id);
+                $this->db->update('products_images', $data);
+
+                $data = array('cover_image'=>$item->name);
+                $this->db->where('product_id', $product_id);
+                $this->db->update('products', $data);
+
+            }
+        }
+
         $this->db->where('products_images_id', $products_images_id);
         $this->db->delete('products_images');
+    }
+
+    public function set_cover($product_id, $products_images_id, $image)
+    {
+        $data = array('is_cover'=>0);
+        $this->db->where('product_id', $product_id);
+        $this->db->update('products_images', $data);
+
+        $data = array('is_cover'=>1);
+        $this->db->where('products_images_id', $products_images_id);
+        $this->db->update('products_images', $data);
+
+        $data = array('cover_image'=>$image);
+        $this->db->where('product_id', $product_id);
+        $this->db->update('products', $data);
     }
 
     public function delete_ebook($products_ebooks_id, $ebook)
@@ -227,6 +322,11 @@ class Model_product extends CI_Model {
                 if( file_exists(UPLOADS_PATH.$image->name) )
                 {
                     unlink(UPLOADS_PATH.$image->name);
+                }
+
+                if( file_exists(THUMBS_PATH.$image->name) )
+                {
+                    unlink(THUMBS_PATH.$image->name);
                 }
             }
         }

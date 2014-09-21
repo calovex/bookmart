@@ -28,10 +28,15 @@
 		<?php foreach ($images as $image): ?>
 			<div class="product-image">
 				<a href="<?php echo base_url('uploads/'.$image->name); ?>">
-					<img src="<?php echo base_url('uploads/'.$image->name); ?>">
+					<img src="<?php echo base_url('uploads/thumbs/'.$image->name); ?>">
 				</a>
 				<div class="product-image-delete">
-					<?php echo anchor('products/delete_image/'.$image->products_images_id, 'Delete', 'class="confirm"'); ?>
+					<?php if($image->is_cover): ?>
+					 	<a href="#">Cover Image</a>
+					<?php else: ?>
+						<?php echo anchor('products/cover_image/'.$image->products_images_id, 'Set as cover', 'title="Set as cover image"'); ?>
+					<?php endif; ?>
+					<?php echo anchor('products/delete_image/'.$image->products_images_id, ' - Delete', 'class="confirm"'); ?>
 				</div>
 			</div>
 		<?php endforeach; ?>		

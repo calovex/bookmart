@@ -43,8 +43,12 @@ class Products extends CI_Controller {
 		}
 		else
 		{
-			$this->model_product->create();
-			redirect('products');
+			$product_id = $this->model_product->create();
+
+			$message = '<div class="bg-success">New product has been created successfully.</div>';
+			$this->session->set_flashdata('message', $message);
+
+			redirect('products/edit/'.$product_id);
 		}
 	}
 
@@ -207,9 +211,32 @@ class Products extends CI_Controller {
 		
 		if($image)
 		{
-			$this->model_product->delete_image($products_images_id, $image->name);
+			$this->model_product->delete_image($image->product_id, $products_images_id, $image->name);
 
 			$message = '<div class="bg-success">Image has been deleted successfully.</div>';
+			$this->session->set_flashdata('message', $message);
+			redirect('products/images/'.$image->product_id);
+		}
+	}
+
+	public function cover_image($products_images_id = 0)
+	{
+		$products_images_id = (int)$products_images_id;
+
+		if(! $products_images_id)
+		{
+			redirect('products');
+		}
+
+		$this->load->model('model_product');
+
+		$image = $this->model_product->get_image($products_images_id);
+		
+		if($image)
+		{
+			$this->model_product->set_cover($image->product_id, $products_images_id, $image->name);
+
+			$message = '<div class="bg-success">Image has been set as the cover.</div>';
 			$this->session->set_flashdata('message', $message);
 			redirect('products/images/'.$image->product_id);
 		}

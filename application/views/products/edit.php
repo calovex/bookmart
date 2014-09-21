@@ -10,7 +10,7 @@
 
 <?php echo $this->session->flashdata('message'); ?>
 
-<?php echo form_open('products/edit/'.$product->product_id); ?>
+<?php echo form_open('products/edit/'.$product->product_id, 'autocomplete="off"'); ?>
 	<ul class="form">
 		<li>
 			Title: *<br>

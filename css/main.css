@@ -129,6 +129,8 @@ td a {
     min-width: 1000px;
 }
 .top-header {
+    position: fixed;
+    z-index: 100;
     width: 100%;
     height: 35px;
     background: transparent url('../images/top_header.png') 0 0 repeat-x;
@@ -180,7 +182,7 @@ td a {
 .logo-header {
     height: 60px;
     margin-bottom: 27px;
-    padding-top: 25px;
+    padding-top: 60px;
     background-color: #c32929;
 }
 
@@ -673,4 +675,43 @@ input[type="checkbox"] {
 .page-data {
     font: normal 14px 'Oxygen', sans-serif;
     line-height: 150%;
+}
+
+/*category products listing*/
+
+.product-item {
+    width: 150px;
+    height: 240px;
+    overflow: hidden;
+    float: left;
+    margin: 0 10px 20px 0;
+}
+.product-cover {
+    width: 148px;
+    height: 148px;
+    border: 1px solid #DDD;
+    text-align: center;
+}
+.product-cover img {
+    max-width: 148px;
+    max-height: 148px;
+}
+.product-info {
+    margin-top: 7px;
+}
+.product-title {
+    margin-bottom: 6px;
+    text-align: center;
+}
+.product-price {
+    font: bold 15px 'Oxygen', sans-serif;
+    text-align: center;   
+    color: #961313;
+}
+.product-price .original-price {
+    display: inline-block;
+    margin-left: 4px;
+    font: normal 12px 'Oxygen', sans-serif;
+    text-decoration: line-through;
+    color: #666;
 }

@@ -96,7 +96,7 @@
                 <?php $top_menus = top_menu(); ?>
                 <?php if($top_menus): ?>
                     <?php foreach ($top_menus as $top_menu): ?>
-                        <li><?php echo anchor('categories/'.$top_menu->slug, $top_menu->name); ?></li>
+                        <li><?php echo anchor('category/'.$top_menu->slug, $top_menu->name); ?></li>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </ul>

@@ -1,6 +1,6 @@
 <h1>New Product</h1>
 
-<?php echo form_open('products/create'); ?>
+<?php echo form_open('products/create', 'autocomplete="off"'); ?>
 	<ul class="form">
 		<li>
 			Title: *<br>
