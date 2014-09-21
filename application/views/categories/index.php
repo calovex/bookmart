@@ -13,6 +13,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Status</th>
+				<th>Weightage</th>
 				<th>Created</th>
 				<th>Updated</th>
 				<th>Edit</th>
@@ -23,6 +24,7 @@
 				<tr>
 					<td><?php echo $category->name; ?></td>
 					<td><?php echo $category->status ? 'Enabled' : 'Disabled'; ?></td>
+					<td><?php echo $category->weightage; ?></td>
 					<td><?php echo $category->created_at; ?></td>
 					<td><?php echo $category->updated_at; ?></td>
 					<td><?php echo anchor('categories/edit/'.$category->category_id, 'Edit'); ?></td>

@@ -93,12 +93,12 @@
         <div class="container">
             <ul class="nav">
                 <li class="active"><?php echo anchor('/', 'Home'); ?></li>
-                <li><a href="#">Hot Deals</a></li>
-                <li><a href="#">Education</a></li>
-                <li><a href="#">Free</a></li>
-                <li><a href="#">Gift</a></li>
-                <li><a href="#">Reading Accessories</a></li>
-                <li class="last"><a href="#">Bulk Sales</a></li>
+                <?php $top_menus = top_menu(); ?>
+                <?php if($top_menus): ?>
+                    <?php foreach ($top_menus as $top_menu): ?>
+                        <li><?php echo anchor('categories/'.$top_menu->slug, $top_menu->name); ?></li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </ul>
             <div class="custom-views">
                 <?php $this->load->view($page_name); ?>

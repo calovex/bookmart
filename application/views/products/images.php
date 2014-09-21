@@ -1,4 +1,12 @@
-<h1>Manage Product Images <?php echo ($product_name) ? '- '.$product_name : ''; ?></h1>
+<h1>
+	Manage Product Images <?php echo ($product_name) ? '- '.$product_name : ''; ?>
+	<span>
+		<?php echo anchor('products/ebooks/'.$product_id, ' | Ebooks'); ?>
+	</span>
+	<span>
+		<?php echo anchor('products/edit/'.$product_id, ' | Details'); ?>
+	</span>
+</h1>
 
 <?php echo $this->session->flashdata('message'); ?>
 

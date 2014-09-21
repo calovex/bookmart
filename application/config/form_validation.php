@@ -133,6 +133,11 @@ $config['category'] = array(
         'field' => 'status',
         'label' => 'Status',
         'rules' => 'trim|numeric|xss_clean'
+    ),
+    array(
+        'field' => 'weightage',
+        'label' => 'Weightage',
+        'rules' => 'trim|required|integer|xss_clean'
     )
 );
 

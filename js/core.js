@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	//admin menu feature
-	$('.admin-link').on('click', function(event) {
+	$('.admin-link').on('click mouseenter', function(event) {
 		event.stopPropagation();
 		var admin_links = $(this).parent('li').find('ul.admin-links');
 

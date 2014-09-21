@@ -1,4 +1,12 @@
-<h1>Edit Product - <?php echo $product->title; ?></h1>
+<h1>
+	Edit Product - <?php echo $product->title; ?>
+	<span>
+		<?php echo anchor('products/images/'.$product->product_id, ' | Images'); ?>
+	</span>
+	<span>
+		<?php echo anchor('products/ebooks/'.$product->product_id, ' | Ebooks'); ?>
+	</span>
+</h1>
 
 <?php echo $this->session->flashdata('message'); ?>
 

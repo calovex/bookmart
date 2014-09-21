@@ -150,11 +150,32 @@ class Model_product extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function get_ebooks($product_id)
+    {
+        $this->db->select('*');
+        $this->db->where('product_id', $product_id);
+        $this->db->from('products_ebooks');
+        $this->db->order_by('products_ebooks_id', 'desc');
+        
+        return $this->db->get()->result();
+    }
+
     public function get_image($products_images_id)
     {
         $this->db->select('product_id, name');
         $this->db->where('products_images_id', $products_images_id);
         $this->db->from('products_images');
+        
+        $data = $this->db->get()->result();
+
+        return ($data) ? $data[0] : false;
+    }
+
+    public function get_ebook($products_ebooks_id)
+    {
+        $this->db->select('product_id, name');
+        $this->db->where('products_ebooks_id', $products_ebooks_id);
+        $this->db->from('products_ebooks');
         
         $data = $this->db->get()->result();
 
@@ -167,6 +188,12 @@ class Model_product extends CI_Model {
         $this->db->insert('products_images', $data);
     }
 
+    public function create_ebook($product_id, $file_name)
+    {
+        $data = array('name' => $file_name, 'product_id' => $product_id);
+        $this->db->insert('products_ebooks', $data);
+    }
+
     public function delete_image($products_images_id, $image)
     {
         if( file_exists(UPLOADS_PATH.$image) )
@@ -176,6 +203,17 @@ class Model_product extends CI_Model {
 
         $this->db->where('products_images_id', $products_images_id);
         $this->db->delete('products_images');
+    }
+
+    public function delete_ebook($products_ebooks_id, $ebook)
+    {
+        if( file_exists(UPLOADS_PATH.'books/'.$ebook) )
+        {
+            unlink(UPLOADS_PATH.'books/'.$ebook);
+        }
+
+        $this->db->where('products_ebooks_id', $products_ebooks_id);
+        $this->db->delete('products_ebooks');
     }
 
     public function delete($product_id)
@@ -193,11 +231,27 @@ class Model_product extends CI_Model {
             }
         }
 
+        $ebooks = $this->get_ebooks($product_id);
+
+        if($ebooks)
+        {
+            foreach ($ebooks as $ebook)
+            {
+                if( file_exists(UPLOADS_PATH.'books/'.$ebook->name) )
+                {
+                    unlink(UPLOADS_PATH.'books/'.$ebook->name);
+                }
+            }
+        }
+
         $this->db->where('product_id', $product_id);
         $this->db->delete('products_categories');
 
         $this->db->where('product_id', $product_id);
         $this->db->delete('products_images');
+
+        $this->db->where('product_id', $product_id);
+        $this->db->delete('products_ebooks');
 
         $this->db->where('product_id', $product_id);
         $this->db->delete('products');

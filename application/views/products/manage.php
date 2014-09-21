@@ -14,8 +14,8 @@
 				<th>Created at</th>
 				<th>Updated at</th>
 				<th>Ebooks</th>
-				<th>Details</th>
 				<th>Images</th>
+				<th>Details</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,8 +29,8 @@
 					<td><?php echo $product->created_at; ?></td>
 					<td><?php echo $product->updated_at; ?></td>
 					<td><?php echo anchor('products/ebooks/'.$product->product_id, 'Edit'); ?></td>
-					<td><?php echo anchor('products/edit/'.$product->product_id, 'Edit'); ?></td>
 					<td><?php echo anchor('products/images/'.$product->product_id, 'Edit'); ?></td>
+					<td><?php echo anchor('products/edit/'.$product->product_id, 'Edit'); ?></td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>

@@ -282,7 +282,7 @@ input[type="text"].search-box {
     display: inline-block;
     border-right: 1px solid #FFFFFF;
 }
-.nav .last {
+.nav li:last-child {
     border-right: none;
 }
 .nav a {
@@ -605,6 +605,10 @@ input[type="checkbox"] {
     padding: 7px 10px;
     border: 1px solid #BDC7D8;
     border-radius: 4px;
+}
+.category-status label {
+    display: block;
+    margin-bottom: 5px;
 }
 .product-categories label {
     display: block;

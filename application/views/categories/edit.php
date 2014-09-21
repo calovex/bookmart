@@ -20,6 +20,11 @@
 			<?php echo form_error('status'); ?>
 		</li>
 		<li>
+			Weightage (to manage the sort order of top menu): *<br>
+			<?php echo form_input('weightage', set_value('weightage', $category->weightage)); ?>
+			<?php echo form_error('weightage'); ?>
+		</li>
+		<li>
 			<?php echo form_submit('submit', 'Update category', 'class="input-btn"'); ?>
 		</li>
 	</ul>

@@ -11,7 +11,7 @@ class Model_category extends CI_Model {
 	{
 		$this->db->select('*');
     	$this->db->from('categories');
-		$this->db->order_by('updated_at', 'desc');
+		$this->db->order_by('weightage', 'desc');
 		$this->db->limit(CATEGORIES_LIMIT, $offset);
 		
 		return $this->db->get()->result();
@@ -32,7 +32,9 @@ class Model_category extends CI_Model {
 	{
 		$data = array(
             'name'          => $this->input->post('name'),
+            'slug'          => url_title($this->input->post('name'), '-', true),
             'status' 		=> ( isset($_POST['status']) ) ? 1 : 0,
+            'weightage' 	=> $this->input->post('weightage'),
             'updated_at'    => date('Y-m-d H:i:s', time())
         );
 
@@ -44,7 +46,9 @@ class Model_category extends CI_Model {
 	{
 		$data = array(
             'name'          => $this->input->post('name'),
+            'slug'          => url_title($this->input->post('name'), '-', true),
             'status' 		=> ( isset($_POST['status']) ) ? 1 : 0,
+            'weightage' 	=> $this->input->post('weightage'),
             'created_at'    => date('Y-m-d H:i:s', time()),
             'updated_at'    => date('Y-m-d H:i:s', time())
         );
