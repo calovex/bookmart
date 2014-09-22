@@ -52,8 +52,10 @@ $route['shipping-policy'] 		= 'pages/view/8';
 $route['warranty'] 				= 'pages/view/9';
 $route['tips-advice'] 			= 'pages/view/10';
 
-$route['category/(:any)'] 			= "category/products/$1";
 $route['category/(:any)/(:num)'] 	= "category/products/$1/$2";
+$route['category/(:any)'] 			= "category/products/$1";
+
+$route['product/(:num)/(:any)'] 	= "product/view/$1/$2";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

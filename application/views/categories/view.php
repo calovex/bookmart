@@ -5,13 +5,13 @@
 		<?php foreach ($products as $product): ?>
 			<div class="product-item">
 				<div class="product-cover">
-					<a href="<?php echo base_url('products/'.$product->product_id.'/'.$product->slug); ?>" title="<?php echo $product->title; ?>">
+					<a href="<?php echo base_url('product/'.$product->product_id.'/'.$product->slug); ?>" title="<?php echo $product->title; ?>">
 						<img src="<?php echo base_url('uploads/thumbs/'.$product->cover_image); ?>" title="<?php echo $product->title; ?>" alt="<?php echo $product->summary; ?>">
 					</a>
 				</div>
 				<div class="product-info">
 					<div class="product-title">
-						<a href="<?php echo base_url('products/'.$product->product_id.'/'.$product->slug); ?>" title="<?php echo $product->title; ?>">
+						<a href="<?php echo base_url('product/'.$product->product_id.'/'.$product->slug); ?>" title="<?php echo $product->title; ?>">
 							<?php echo (strlen($product->title) > 30) ? substr($product->title, 0, 30) . ' ...' : $product->title; ?>
 						</a>
 						<span class="book-author">
@@ -30,3 +30,7 @@
 		<span class="clear"></span>
 	</div>
 <?php endif; ?>
+
+<div class="pagination">
+	<?php echo $this->pagination->create_links(); ?>
+</div>

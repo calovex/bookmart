@@ -56,6 +56,22 @@ class Model_category extends CI_Model {
 		return $this->db->query($sql, $param)->result();
 	}
 
+	public function get_products_count($category_id)
+	{
+		$sql = "SELECT COUNT(product_id) products_count
+				FROM products
+				WHERE product_id IN (
+					SELECT product_id
+					FROM products_categories
+					WHERE category_id = ?
+				)";
+		
+		$param 	= array($category_id);
+		$data 	= $this->db->query($sql, $param)->result();
+
+		return $data[0]->products_count;
+	}
+
 	public function update($category_id)
 	{
 		$data = array(

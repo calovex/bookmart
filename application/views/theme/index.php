@@ -33,7 +33,7 @@
                                 <li><?php echo anchor('orders', 'Orders'); ?></li>
                                 <li><?php echo anchor('users', 'Users'); ?></li>
                                 <li><?php echo anchor('pages', 'Pages'); ?></li>
-                                <li><?php echo anchor('slideshow', 'Slideshow'); ?></li>
+                                <li><?php echo anchor('pages/home', 'Home'); ?></li>
                                 <li class="last"><?php echo anchor('settings', 'Settings'); ?></li>
                             </ul>
                         </li>
@@ -92,11 +92,15 @@
     <div class="wrapper">
         <div class="container">
             <ul class="nav">
-                <li class="active"><?php echo anchor('/', 'Home'); ?></li>
+                <li <?php echo active_menu(''); ?>>
+                    <?php echo anchor('/', 'Home'); ?>
+                </li>
                 <?php $top_menus = top_menu(); ?>
                 <?php if($top_menus): ?>
                     <?php foreach ($top_menus as $top_menu): ?>
-                        <li><?php echo anchor('category/'.$top_menu->slug, $top_menu->name); ?></li>
+                        <li <?php echo active_menu($top_menu->slug); ?>>
+                            <?php echo anchor('category/'.$top_menu->slug, $top_menu->name); ?>
+                        </li>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </ul>
