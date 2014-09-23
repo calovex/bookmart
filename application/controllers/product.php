@@ -4,8 +4,18 @@ class Product extends CI_Controller {
 
 	public function view($product_id, $slug)
 	{
+        $this->load->model('model_product');
+        $product = $this->model_product->get_product_slug($product_id, $slug);
+
+        if($product == false)
+        {
+            redirect('/');
+        }
+
 		$data['page_name'] 		= 'products/view';
-        $data['page_title'] 	= 'Bookmart - product name';
+        $data['page_title'] 	= 'Bookmart - '.$product->title;
+        $data['product']        = $product;
+        $data['images']         = $this->model_product->get_images($product_id);
 
         $this->load->view('theme/index', $data);
 	}

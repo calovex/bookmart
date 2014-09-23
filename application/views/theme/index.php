@@ -7,6 +7,8 @@
     <meta name="author" content="Nivin CP">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo isset($page_title) ? $page_title : SITE_TITLE; ?></title>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url('favicon.png'); ?>"/>
     <link rel="stylesheet" href="<?php echo base_url('css/main.css'); ?>">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,700">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -40,10 +42,10 @@
                     <?php endif; ?>
                     <li>
                         <?php if( $this->session->userdata('logged_in') ): ?>
-                            <?php echo anchor('dashboard', 'Dashboard'); ?> / 
+                            <?php echo anchor('dashboard', 'Dashboard'); ?> /
                             <?php echo anchor('logout', 'Logout'); ?>
                         <?php else: ?>
-                            <?php echo anchor('register', 'Register'); ?> / 
+                            <?php echo anchor('register', 'Register'); ?> /
                             <?php echo anchor('login', 'Login'); ?>
                         <?php endif; ?>
                     </li>

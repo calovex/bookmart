@@ -10,13 +10,13 @@ class Model_product extends CI_Model {
 	public function products($offset)
 	{
 		$this->db->select(
-			'product_id, slug, title, service_type, original_price, 
+			'product_id, slug, title, service_type, original_price,
 			sale_price, shipping_costs, weightage, views, created_at, updated_at'
 		);
     	$this->db->from('products');
 		$this->db->order_by('updated_at', 'desc');
 		$this->db->limit(PRODUCTS_LIMIT, $offset);
-		
+
 		return $this->db->get()->result();
 	}
 
@@ -42,7 +42,7 @@ class Model_product extends CI_Model {
 
 
         $this->db->insert('products', $data);
-        
+
         $product_id 	= $this->db->insert_id();
         $categories 	= $this->input->post('category');
         $category_array = array();
@@ -65,9 +65,21 @@ class Model_product extends CI_Model {
         $this->db->select('*');
         $this->db->where('product_id', $product_id);
         $this->db->from('products');
-        
+
         $data = $this->db->get()->result();
-        
+
+        return ($data) ? $data[0] : false;
+    }
+
+    public function get_product_slug($product_id, $slug)
+    {
+        $this->db->select('*');
+        $this->db->where('product_id', $product_id);
+        $this->db->where('slug', $slug);
+        $this->db->from('products');
+
+        $data = $this->db->get()->result();
+
         return ($data) ? $data[0] : false;
     }
 
@@ -76,15 +88,15 @@ class Model_product extends CI_Model {
         $this->db->select('title');
         $this->db->where('product_id', $product_id);
         $this->db->from('products');
-        
+
         $data = $this->db->get()->result();
-        
+
         return ($data) ? $data[0]->title : false;
     }
 
     public function get_categories()
     {
-        $data = $this->db->get('categories')->result();        
+        $data = $this->db->get('categories')->result();
         return ($data) ? $data : false;
     }
 
@@ -92,8 +104,8 @@ class Model_product extends CI_Model {
     {
        $sql =   "SELECT c.category_id, c.name, IF(pc.product_id, 1, 0) is_checked
                 FROM categories c
-                LEFT JOIN (SELECT * 
-                FROM products_categories 
+                LEFT JOIN (SELECT *
+                FROM products_categories
                 WHERE product_id = ?) pc
                 ON c.category_id = pc.category_id
                 ORDER BY c.category_id ASC";
@@ -138,7 +150,7 @@ class Model_product extends CI_Model {
         }
 
         $this->db->where('product_id', $product_id);
-        $this->db->delete('products_categories');         
+        $this->db->delete('products_categories');
         $this->db->insert_batch('products_categories', $category_array);
     }
 
@@ -148,7 +160,7 @@ class Model_product extends CI_Model {
         $this->db->where('product_id', $product_id);
         $this->db->from('products_images');
         $this->db->order_by('products_images_id', 'desc');
-        
+
         return $this->db->get()->result();
     }
 
@@ -158,7 +170,7 @@ class Model_product extends CI_Model {
         $this->db->where('product_id', $product_id);
         $this->db->from('products_ebooks');
         $this->db->order_by('products_ebooks_id', 'desc');
-        
+
         return $this->db->get()->result();
     }
 
@@ -167,7 +179,7 @@ class Model_product extends CI_Model {
         $this->db->select('product_id, name');
         $this->db->where('products_images_id', $products_images_id);
         $this->db->from('products_images');
-        
+
         $data = $this->db->get()->result();
 
         return ($data) ? $data[0] : false;
@@ -178,7 +190,7 @@ class Model_product extends CI_Model {
         $this->db->select('product_id, name');
         $this->db->where('products_ebooks_id', $products_ebooks_id);
         $this->db->from('products_ebooks');
-        
+
         $data = $this->db->get()->result();
 
         return ($data) ? $data[0] : false;
@@ -265,10 +277,10 @@ class Model_product extends CI_Model {
                 $this->db->where('products_images_id !=', $products_images_id);
                 $this->db->from('products_images');
                 $this->db->order_by('products_images_id', 'asc');
-                $this->db->limit(1);        
-                
+                $this->db->limit(1);
+
                 $item = $this->db->get()->result();
-                $item = $item[0];        
+                $item = $item[0];
 
                 $data = array('is_cover'=>1);
                 $this->db->where('products_images_id', $item->products_images_id);
