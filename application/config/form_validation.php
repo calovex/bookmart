@@ -55,11 +55,44 @@ $config['user'] = array(
     ),
 );
 
+$config['guest_checkout'] = array(
+    array(
+        'field' => 'guest_email',
+        'label' => 'Email',
+        'rules' => 'trim|required|valid_email|is_unique[users.email]|xss_clean'
+    ),
+    array(
+        'field' => 'first_name',
+        'label' => 'First Name',
+        'rules' => 'trim|required|xss_clean'
+    ),
+    array(
+        'field' => 'last_name',
+        'label' => 'Last Name',
+        'rules' => 'trim|required|xss_clean'
+    ),
+    array(
+        'field' => 'country',
+        'label' => 'Country',
+        'rules' => 'trim|required|numeric|xss_clean'
+    ),
+    array(
+        'field' => 'city',
+        'label' => 'City',
+        'rules' => 'trim|required|xss_clean'
+    )
+);
+
 $config['product'] = array(
     array(
         'field' => 'title',
         'label' => 'Title',
         'rules' => 'trim|required|xss_clean'
+    ),
+    array(
+        'field' => 'tags',
+        'label' => 'Tags',
+        'rules' => 'trim|required|max_length[255]|xss_clean'
     ),
     array(
         'field' => 'author',

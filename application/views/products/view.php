@@ -25,17 +25,24 @@
                 <?php endif; ?>
 			</div>
 			<div class="px-checkout-btn">
-				<a href="#">Buy Now</a>
+				<?php
+					$buy_btn_title = 'title="Buy Now - '.$product->title.'"';
+					echo anchor('cart/add/'.$product->product_id, 'Buy Now', $buy_btn_title);
+				?>
 			</div>
 			<div class="px-readable">
-				<a href="#">Read Instantly on your Web Browser</a><br>
-				<a href="#">Also read on iOS, Android and WindowsPhone</a>
+				<?php echo anchor('read-instantly-on-your-web-browser', 'Read Instantly on your Web Browser'); ?> <br>
+				<?php echo anchor('also-read-on-ios-android-and-windowsphone', 'Also read on iOS, Android and WindowsPhone'); ?>
 			</div>
 		</div>
 		<div class="px-actions">
 			<ul>
-				<li><a href="#">Add to My Wishlist</a></li>
 				<li><?php echo anchor('search/results/?author='.urlencode($product->author), 'More from '.$product->author); ?></li>
+				<li class="px-tags">Tags</li>
+				<?php $tags = explode(',', $product->tags); ?>
+				<?php foreach ($tags as $tag): ?>
+					<li><?php echo anchor('search/results/?tag='.urlencode($tag), $tag); ?></li>
+				<?php endforeach; ?>
 			</ul>
 		</div>
 		<span class="clear"></span>
@@ -64,112 +71,41 @@
 		<h2>Details</h2>
         <?php echo $product->desc; ?>
 	</div>
-	<div class="px-related">
-		<h3>You might also like</h3>
-		<div class="product-items">
-			<div class="product-item">
-				<div class="product-cover">
-					<a href="#"><img src="http://localhost/bookmart/uploads/thumbs/emma.jpg"></a>
-				</div>
-				<div class="product-info">
-					<div class="product-title">
-						<a href="#">Emma</a>
-						<span class="book-author">
-							<a href="#">by Jane Austen</a>
-						</span>
+	<?php if($related_products): ?>
+		<div class="px-related">
+			<h3>You might also like</h3>
+			<div class="product-items">
+				<?php foreach ($related_products as $related_product): ?>
+					<div class="product-item">
+						<div class="product-cover">
+							<a href="<?php echo base_url('product/'.$related_product->product_id.'/'.$related_product->slug); ?>" title="<?php echo $related_product->title; ?>">
+								<img src="<?php echo base_url('uploads/thumbs/'.$related_product->cover_image); ?>" title="<?php echo $related_product->title; ?>" alt="<?php echo $related_product->summary; ?>">
+							</a>
+						</div>
+						<div class="product-info">
+							<div class="product-title">
+								<a href="<?php echo base_url('product/'.$related_product->product_id.'/'.$related_product->slug); ?>" title="<?php echo $related_product->title; ?>">
+									<?php echo (strlen($related_product->title) > 30) ? substr($related_product->title, 0, 30) . ' ...' : $related_product->title; ?>
+								</a>
+								<span class="book-author">
+									<a href="<?php echo base_url('search/results/?author='.urlencode($related_product->author)); ?>" title="<?php echo $related_product->author; ?>">
+										by <?php echo $related_product->author; ?>
+									</a>
+								</span>
+							</div>
+							<div class="product-price">
+								<span class="sale-price">
+									<?php echo number_format((float)$related_product->sale_price, 2); ?>
+								</span>
+								<span class="original-price">
+									<?php echo number_format((float)$related_product->original_price, 2); ?>
+								</span>
+							</div>
+						</div>
 					</div>
-					<div class="product-price">
-						<span class="sale-price">70.00</span>
-						<span class="original-price">85.00</span>
-					</div>
-				</div>
+				<?php endforeach; ?>
+				<span class="clear"></span>
 			</div>
-			<div class="product-item">
-				<div class="product-cover">
-					<a href="#"><img src="http://localhost/bookmart/uploads/thumbs/leaves-grass-classic-collection-walt-whitman-cd-cover-art.jpg"></a>
-				</div>
-				<div class="product-info">
-					<div class="product-title">
-						<a href="#">Emma</a>
-						<span class="book-author">
-							<a href="#">by Jane Austen</a>
-						</span>
-					</div>
-					<div class="product-price">
-						<span class="sale-price">70.00</span>
-						<span class="original-price">85.00</span>
-					</div>
-				</div>
-			</div>
-			<div class="product-item">
-				<div class="product-cover">
-					<a href="#"><img src="http://localhost/bookmart/uploads/thumbs/709306_w185.png"></a>
-				</div>
-				<div class="product-info">
-					<div class="product-title">
-						<a href="#">Emma</a>
-						<span class="book-author">
-							<a href="#">by Jane Austen</a>
-						</span>
-					</div>
-					<div class="product-price">
-						<span class="sale-price">70.00</span>
-						<span class="original-price">85.00</span>
-					</div>
-				</div>
-			</div>
-			<div class="product-item">
-				<div class="product-cover">
-					<a href="#"><img src="http://localhost/bookmart/uploads/thumbs/72.jpg"></a>
-				</div>
-				<div class="product-info">
-					<div class="product-title">
-						<a href="#">Emma</a>
-						<span class="book-author">
-							<a href="#">by Jane Austen</a>
-						</span>
-					</div>
-					<div class="product-price">
-						<span class="sale-price">70.00</span>
-						<span class="original-price">85.00</span>
-					</div>
-				</div>
-			</div>
-			<div class="product-item">
-				<div class="product-cover">
-					<a href="#"><img src="http://localhost/bookmart/uploads/thumbs/mysteriousaffairatstyles.jpg"></a>
-				</div>
-				<div class="product-info">
-					<div class="product-title">
-						<a href="#">Emma</a>
-						<span class="book-author">
-							<a href="#">by Jane Austen</a>
-						</span>
-					</div>
-					<div class="product-price">
-						<span class="sale-price">70.00</span>
-						<span class="original-price">85.00</span>
-					</div>
-				</div>
-			</div>
-			<div class="product-item">
-				<div class="product-cover">
-					<a href="#"><img src="http://localhost/bookmart/uploads/thumbs/thepictureofdoriangray.jpg"></a>
-				</div>
-				<div class="product-info">
-					<div class="product-title">
-						<a href="#">Emma</a>
-						<span class="book-author">
-							<a href="#">by Jane Austen</a>
-						</span>
-					</div>
-					<div class="product-price">
-						<span class="sale-price">70.00</span>
-						<span class="original-price">85.00</span>
-					</div>
-				</div>
-			</div>
-			<span class="clear"></span>
 		</div>
-	</div>
+	<?php endif; ?>
 </div>

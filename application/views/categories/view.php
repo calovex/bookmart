@@ -21,8 +21,12 @@
 						</span>
 					</div>
 					<div class="product-price">
-						<span class="sale-price">70.00</span>
-						<span class="original-price">85.00</span>
+						<span class="sale-price">
+							<?php echo number_format((float)$product->sale_price, 2); ?>
+						</span>
+						<span class="original-price">
+							<?php echo number_format((float)$product->original_price, 2); ?>
+						</span>
 					</div>
 				</div>
 			</div>

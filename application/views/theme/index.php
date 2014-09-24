@@ -50,10 +50,10 @@
                         <?php endif; ?>
                     </li>
                     <li>
-                        <a href="#">Bag - SGD 0.00</a>
+                        <?php echo anchor('/cart', 'Bag - SGD '.cart_total()); ?>
                     </li>
                     <li>
-                        <a href="#">Checkout</a>
+                        <?php echo anchor('/cart', 'Checkout'); ?>
                     </li>
                     <li class="currencies">
                         <a href="#" class="active-currency">SGD</a>

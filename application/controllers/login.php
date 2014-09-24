@@ -11,6 +11,7 @@ class Login extends CI_Controller {
 
         if ($this->form_validation->run('login') == false)
         {
+            $this->form_validation->set_error_delimiters('<div class="error">', '</div>');            
             $data['status'] = '';
         } 
         else 

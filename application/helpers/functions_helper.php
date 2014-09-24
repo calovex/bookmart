@@ -27,3 +27,14 @@ function top_menu()
 
 	return $ci->db->get()->result();
 }
+
+function cart_total()
+{
+	$ci =& get_instance();
+
+	$ci->load->library('cart');
+
+	$total = $ci->cart->format_number($ci->cart->total());
+
+	return  $total ? $total : '0.00';
+}

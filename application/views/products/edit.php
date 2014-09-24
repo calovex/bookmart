@@ -18,6 +18,11 @@
 			<?php echo form_error('title'); ?>
 		</li>
 		<li>
+			Tags (comma separated words, max 255 characters, used to display the related products, eg: fiction, comdey etc. ): *<br>
+			<?php echo form_input('tags', set_value('tags', $product->tags), 'class="large" maxlength="255"'); ?>
+			<?php echo form_error('tags'); ?>
+		</li>
+		<li>
 			Author: *<br>
 			<?php echo form_input('author', set_value('author', $product->author)); ?>
 			<?php echo form_error('author'); ?>

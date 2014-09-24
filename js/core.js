@@ -42,4 +42,12 @@ $(document).ready(function() {
 		}
 	});
 
+	$('#new-billing-adress').on('click', function(){
+		$('#new-billing-adress-form').addClass('visible');
+	});
+
+	$('#same-as-shipping').on('click', function(){
+		$('#new-billing-adress-form').removeClass('visible');
+	});
+
 });

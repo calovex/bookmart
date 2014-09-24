@@ -8,6 +8,11 @@
 			<?php echo form_error('title'); ?>
 		</li>
 		<li>
+			Tags (comma separated words, max 255 characters, used to display the related products, eg: fiction, comdey etc. ): *<br>
+			<?php echo form_input('tags', set_value('tags'), 'class="large" maxlength="255"'); ?>
+			<?php echo form_error('tags'); ?>
+		</li>
+		<li>
 			Author: *<br>
 			<?php echo form_input('author', set_value('author')); ?>
 			<?php echo form_error('author'); ?>
@@ -21,6 +26,11 @@
 			Can be: *<br>
 			<?php echo form_dropdown('type', $types, $this->input->post('type')); ?>
 			<?php echo form_error('type'); ?>
+			<div class="bg-info dev">
+				Note: For the time being only digital goods can be managed, 
+				no shipment tracking or billing address management features are available as of now and
+				creating products with 'can be shipped' mode is not recommended.
+			</div>
 		</li>
 		<li>
 			<div class="col-1">

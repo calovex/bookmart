@@ -16,27 +16,35 @@ class Model_user extends CI_Model {
         return $list;
     }
 
-    public function create()
+    public function create($mode = '')
     {
+        $password   = ($mode == 'guest') ? md5( uniqid() ) : md5( $this->input->post('password') );
+        $email      = ($mode == 'guest') ? $this->input->post('guest_email') : $this->input->post('email');
+
         $data = array(
             'first_name'      => $this->input->post('first_name'),
             'last_name'       => $this->input->post('last_name'),
             'country_id'      => $this->input->post('country'),
             'city'            => $this->input->post('city'),
-            'email'           => $this->input->post('email'),
-            'password'        => md5( $this->input->post('password') ),
+            'email'           => $email,
+            'password'        => $password,
             'user_type'       => 'normal_user',
             'blocked'         => 0,
             'joined'          => date('Y-m-d H:i:s', time())
         );
 
         $this->db->insert('users', $data);
+
+        if($mode == 'guest')
+        {
+            return $password;
+        }
     }
 
-    public function verify_login()
+    public function verify_login($password = '')
     {
         $email      = $this->input->post('email');
-        $password   = md5($this->input->post('password'));
+        $password   = ($password) ? $password : md5($this->input->post('password'));
 
         $this->db->select('user_id, user_type, country_id, first_name, last_name, email');
         $this->db->from('users');

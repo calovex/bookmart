@@ -46,6 +46,9 @@ define('CATEGORIES_LIMIT', 		20);
 define('PAGES_LIMIT', 			20);
 define('USERS_LIMIT', 			20);
 
+define('PAYPAL_SANDBOX_URL', 	'https://www.sandbox.paypal.com/cgi-bin/webscr');
+define('PAYPAL_LIVE_URL', 		'https://www.paypal.com/cgi-bin/webscr');
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

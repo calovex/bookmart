@@ -24,6 +24,7 @@ class Model_product extends CI_Model {
 	{
 		$data = array(
             'title'      		=> $this->input->post('title'),
+            'tags'              => $this->input->post('tags'),
             'author'       		=> $this->input->post('author'),
             'service_type'      => $this->input->post('service_type'),
             'type'      		=> $this->input->post('type'),
@@ -120,6 +121,7 @@ class Model_product extends CI_Model {
     {
         $data = array(
             'title'             => $this->input->post('title'),
+            'tags'              => $this->input->post('tags'),
             'author'            => $this->input->post('author'),
             'service_type'      => $this->input->post('service_type'),
             'type'              => $this->input->post('type'),
@@ -367,6 +369,21 @@ class Model_product extends CI_Model {
 
         $this->db->where('product_id', $product_id);
         $this->db->delete('products');
+    }
+
+    public function related_products($tags, $author, $product_id)
+    {
+        $against    = $tags .' '.$author;
+        $param      = array($against, $product_id);
+        
+        $sql = "SELECT product_id, title, slug, author, cover_image, original_price, sale_price, summary
+                FROM products
+                WHERE MATCH (title, tags, author, meta_keywords, meta_desc, summary, `desc`) 
+                AGAINST (?)
+                AND product_id != ?  
+                LIMIT 0, 6";
+
+        return $this->db->query($sql, $param)->result();
     }
 
 }
