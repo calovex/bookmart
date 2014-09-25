@@ -34,9 +34,7 @@
                                 <li><?php echo anchor('categories', 'Categories'); ?></li>
                                 <li><?php echo anchor('orders', 'Orders'); ?></li>
                                 <li><?php echo anchor('users', 'Users'); ?></li>
-                                <li><?php echo anchor('pages', 'Pages'); ?></li>
-                                <li><?php echo anchor('pages/home', 'Home'); ?></li>
-                                <li class="last"><?php echo anchor('settings', 'Settings'); ?></li>
+                                <li class="last"><?php echo anchor('pages', 'Pages'); ?></li>
                             </ul>
                         </li>
                     <?php endif; ?>
@@ -50,16 +48,15 @@
                         <?php endif; ?>
                     </li>
                     <li>
-                        <?php echo anchor('/cart', 'Bag - SGD '.cart_total()); ?>
+                        <?php echo anchor('/cart', 'Bag - '.CURRENCY_CODE.' '.cart_total()); ?>
                     </li>
                     <li>
                         <?php echo anchor('/cart', 'Checkout'); ?>
                     </li>
                     <li class="currencies">
-                        <a href="#" class="active-currency">SGD</a>
+                        <a href="#" class="active-currency"><?php echo CURRENCY_CODE; ?></a>
                         <ul class="dropdown">
-                            <li><a href="#">USD</a></li>
-                            <li class="last"><a href="#">INR</a></li>
+                            <li><a href="#"><?php echo CURRENCY_CODE; ?></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -75,8 +72,8 @@
                 </a>
             </div>
             <div class="search">
-                <form action="">
-                    <input type="text" class="search-box"  name="query" placeholder="Search for anything here">
+                <form action="<?php echo base_url('search'); ?>">
+                    <input type="text" class="search-box"  name="query" placeholder="Search for anything here" value="<?php echo isset($_GET['query']) ? urldecode($_GET['query']) : ''; ?>">
                     <button type="submit" class="search-btn">submit</button>
                 </form>
             </div>

@@ -99,6 +99,16 @@ $config['product'] = array(
         'label' => 'Author',
         'rules' => 'trim|required|xss_clean'
     ),
+    array(
+        'field' => 'published',
+        'label' => 'Published Status',
+        'rules' => 'trim|xss_clean'
+    ),
+    array(
+        'field' => 'our_product',
+        'label' => 'Our Product',
+        'rules' => 'trim|xss_clean'
+    ),
      array(
         'field' => 'service_type',
         'label' => 'Service Type',

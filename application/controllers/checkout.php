@@ -8,7 +8,7 @@ class Checkout extends CI_Controller {
 
 		if( $this->cart->contents() )
 		{
-			$this->load->model('model_cart');		
+			$this->load->model('model_cart');
 
 			$data['page_name'] 		= 'checkout/digital';
 	        $data['page_title'] 	= 'Bookmart - Checkout';
@@ -49,13 +49,13 @@ class Checkout extends CI_Controller {
 			$data	 	= $this->model_user->verify_login($guest_pwd);
 
 			if($data)
-			{ //login success				
+			{ //login success
 				$this->session->set_userdata($data);
 				redirect('checkout');
 			}
 			else
 			{ //login failed
-				
+
 				die('Something went wrong with the guest checkout.');
 			}
 		}
@@ -75,11 +75,11 @@ class Checkout extends CI_Controller {
         {
         	$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
             $data['status'] = '';
-        } 
-        else 
+        }
+        else
         { // form validation success
             $data = $this->model_user->verify_login();
-            
+
             if ($data)
             { //login success
                 $this->session->set_userdata($data);
@@ -108,10 +108,13 @@ class Checkout extends CI_Controller {
 
 	public function success()
 	{
+        $this->load->library('cart');
+        $this->cart->destroy();
+
 		$data['page_name'] 		= 'checkout/success';
         $data['page_title'] 	= 'Bookmart - Payment success';
 
-        $this->load->view('theme/index', $data);	
+        $this->load->view('theme/index', $data);
 	}
 
 }

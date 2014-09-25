@@ -15,17 +15,17 @@
 							<?php echo (strlen($product->title) > 30) ? substr($product->title, 0, 30) . ' ...' : $product->title; ?>
 						</a>
 						<span class="book-author">
-							<a href="<?php echo base_url('search/results/?author='.urlencode($product->author)); ?>" title="<?php echo $product->author; ?>">
+							<a href="<?php echo base_url('search/?query='.urlencode($product->author)); ?>" title="<?php echo $product->author; ?>">
 								by <?php echo $product->author; ?>
 							</a>
 						</span>
 					</div>
 					<div class="product-price">
 						<span class="sale-price">
-							<?php echo number_format((float)$product->sale_price, 2); ?>
+							<?php echo CURRENCY_SYMBOL.' '.number_format((float)$product->sale_price, 2); ?>
 						</span>
 						<span class="original-price">
-							<?php echo number_format((float)$product->original_price, 2); ?>
+							<?php echo CURRENCY_SYMBOL.' '.number_format((float)$product->original_price, 2); ?>
 						</span>
 					</div>
 				</div>

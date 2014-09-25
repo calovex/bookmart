@@ -1,70 +1,41 @@
-<div class="offer">
-    <div class="offer-img">
-        <img src="<?php echo base_url('images/offer-book'); ?>.png" class="offer-book" alt="Offer Book">
-    </div>
-    <div class="offer-desc">
-        <p>
-            Grab a copy of Gillian Flynn’s global best seller
-            GONE GIRL before its movie adaption hits the theatres worldwide.
-        </p>
-        <a href="#" class="promo-link" title="View Promotion">+ View Promotion</a>
-    </div>
-    <span class="clear"></span>
-</div>
-<div class="slides">
-    <div class="active-slide">
-        <img src="<?php echo base_url('images/slide1.png'); ?>">
-        <div class="active-slide-info">
-            <h3>Greatest <br> Book Collection</h3>
+<?php if($promotion): ?>
+    <div class="offer">
+        <div class="offer-img">
+            <a href="<?php echo base_url('product/view/'.$promotion->product_id.'/'.$promotion->slug); ?>" title="<?php echo $promotion->title; ?>">
+                <img src="<?php echo base_url('uploads/'.$promotion->image); ?>" class="offer-book" alt="Offer Book">
+            </a>
         </div>
+        <div class="offer-desc">
+            <p>
+                <?php echo (strlen($promotion->summary) > 126) ? substr($promotion->summary, 0, 120).' ...' : $promotion->summary; ?>
+            </p>
+            <?php echo anchor('product/view/'.$promotion->product_id.'/'.$promotion->slug, '+ View Promotion', 'class="promo-link" title="View Promotion"'); ?>
+        </div>
+        <span class="clear"></span>
     </div>
-    <div class="slide-thumbs">
-        <ul>
-            <li class="active-thumb">
-                <a href="#"><img src="<?php echo base_url('images/slide1_thumb.png'); ?>"></a>
-                <span class="overlay"></span>
-            </li>
-            <li>
-                <a href="#"><img src="<?php echo base_url('images/slide2_thumb.png'); ?>"></a>
-            </li>
-            <li>
-                <a href="#"><img src="<?php echo base_url('images/slide3_thumb.png'); ?>"></a>
-            </li>
-            <li class="last">
-                <a href="#"><img src="<?php echo base_url('images/slide4_thumb.png'); ?>"></a>
-            </li>
-        </ul>
+<?php endif; ?>
+<?php if($slides): ?>
+    <div class="slides">
+        <div id="slideshow">
+            <?php foreach ($slides as $slide): ?>
+                <div class="slide" style="background-image: url(<?php echo base_url('uploads/'.$slide->image); ?>)">
+                    <a href="<?php echo base_url('product/view/'.$slide->product_id.'/'.$slide->slug); ?>"><?php echo base_url('uploads/'.$slide->image); ?></a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <span class="clear"></span>
     </div>
-    <span class="clear"></span>
-</div>
-<h3 class="sub-header">Our Books</h3>
+<?php endif; ?>
+<h3 class="sub-header our-product">Our Books</h3>
 <div class="our-books">
-    <div class="item">
-        <a href="#"><img src="<?php echo base_url('images/book1.png'); ?>"></a>
-    </div>
-    <div class="item">
-        <a href="#"><img src="<?php echo base_url('images/book2.png'); ?>"></a>
-    </div>
-    <div class="item">
-        <a href="#"><img src="<?php echo base_url('images/book1.png'); ?>"></a>
-    </div>
-    <div class="item">
-        <a href="#"><img src="<?php echo base_url('images/book2.png'); ?>"></a>
-    </div>
-    <div class="item">
-        <a href="#"><img src="<?php echo base_url('images/book1.png'); ?>"></a>
-    </div>
-    <div class="item">
-        <a href="#"><img src="<?php echo base_url('images/book2.png'); ?>"></a>
-    </div>
-    <div class="item">
-        <a href="#"><img src="<?php echo base_url('images/book1.png'); ?>"></a>
-    </div>
-    <div class="item">
-        <a href="#"><img src="<?php echo base_url('images/book2.png'); ?>"></a>
-    </div>
-     <div class="item last">
-        <a href="#"><img src="<?php echo base_url('images/book1.png'); ?>"></a>
-    </div>
+    <?php if($our_products): ?>
+        <?php foreach ($our_products as $our_product): ?>
+            <div class="item">
+                <a href="<?php echo base_url('product/view/'.$our_product->product_id.'/'.$our_product->slug); ?>" title="<?php echo $our_product->title; ?>">
+                    <img src="<?php echo base_url('uploads/thumbs/'.$our_product->cover_image); ?>" alt="<?php echo $our_product->title; ?>">
+                </a>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
     <span class="clear"></span>
 </div>

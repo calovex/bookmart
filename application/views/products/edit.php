@@ -27,6 +27,26 @@
 			<?php echo form_input('author', set_value('author', $product->author)); ?>
 			<?php echo form_error('author'); ?>
 		</li>
+        <li>
+            Published: <br>
+            <div class="category-status">
+                <label>
+                    <?php echo form_checkbox('published', 1, set_checkbox('published', 1, $product->published ? true : false)); ?>
+                    Yes / No
+                </label>
+            </div>
+            <?php echo form_error('published'); ?>
+        </li>
+        <li>
+            Our Product: <br>
+            <div class="category-status">
+                <label>
+                    <?php echo form_checkbox('our_product', 1, set_checkbox('our_product', 1, $product->our_product ? true : false)); ?>
+                    Yes / No
+                </label>
+            </div>
+            <?php echo form_error('our_product'); ?>
+        </li>
 		<li>
 			Service Type: *<br>
 			<?php echo form_dropdown('service_type', $service_types, set_value('service_type', $product->service_type)); ?>

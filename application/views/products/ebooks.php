@@ -34,7 +34,7 @@
 		<tbody>
 			<?php foreach ($ebooks as $ebook): ?>
 				<tr>
-					<td><?php echo anchor('uploads/books/'.$ebook->name, $ebook->name); ?></td>
+					<td><?php echo anchor('download/'.$product_id.'/'.$ebook->name, $ebook->name); ?></td>
 					<td><?php echo anchor('products/delete_ebook/'.$ebook->products_ebooks_id, 'Delete', 'class="confirm"'); ?></td>
 				</tr>
 			<?php endforeach; ?>

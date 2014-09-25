@@ -25,7 +25,9 @@ class Model_product extends CI_Model {
 		$data = array(
             'title'      		=> $this->input->post('title'),
             'tags'              => $this->input->post('tags'),
-            'author'       		=> $this->input->post('author'),
+            'author'            => $this->input->post('author'),
+            'our_product'       => $this->input->post('our_product'),
+            'published'         => $this->input->post('published'),
             'service_type'      => $this->input->post('service_type'),
             'type'      		=> $this->input->post('type'),
             'original_price'    => $this->input->post('original_price'),
@@ -77,6 +79,7 @@ class Model_product extends CI_Model {
         $this->db->select('*');
         $this->db->where('product_id', $product_id);
         $this->db->where('slug', $slug);
+        $this->db->where('published', 1);
         $this->db->from('products');
 
         $data = $this->db->get()->result();
@@ -123,6 +126,8 @@ class Model_product extends CI_Model {
             'title'             => $this->input->post('title'),
             'tags'              => $this->input->post('tags'),
             'author'            => $this->input->post('author'),
+            'our_product'       => $this->input->post('our_product'),
+            'published'         => $this->input->post('published'),
             'service_type'      => $this->input->post('service_type'),
             'type'              => $this->input->post('type'),
             'original_price'    => $this->input->post('original_price'),
@@ -200,7 +205,11 @@ class Model_product extends CI_Model {
 
     public function create_image($product_id, $file_name)
     {
-        $data = array('name' => $file_name, 'product_id' => $product_id);
+        $data = array(
+            'name'          => $file_name,
+            'product_id'    => $product_id,
+            'updated_at'    => date('Y-m-d H:i:s', time())
+        );
         $this->db->insert('products_images', $data);
 
         $products_images_id = $this->db->insert_id();
@@ -314,11 +323,44 @@ class Model_product extends CI_Model {
         $this->db->update('products', $data);
     }
 
+    public function set_promotion($products_images_id)
+    {
+        $data = array(
+            'is_promotion'  =>  1,
+            'updated_at'    =>  date('Y-m-d H:i:s', time())
+        );
+
+        $this->db->where('products_images_id', $products_images_id);
+        $this->db->update('products_images', $data);
+    }
+
+    public function set_slider_image($products_images_id)
+    {
+        $data = array(
+            'is_slider'     =>  1,
+            'updated_at'    =>  date('Y-m-d H:i:s', time())
+        );
+
+        $this->db->where('products_images_id', $products_images_id);
+        $this->db->update('products_images', $data);
+    }
+
+    public function remove_slider($products_images_id)
+    {
+        $data = array(
+            'is_slider'     =>  0,
+            'updated_at'    =>  date('Y-m-d H:i:s', time())
+        );
+
+        $this->db->where('products_images_id', $products_images_id);
+        $this->db->update('products_images', $data);
+    }
+
     public function delete_ebook($products_ebooks_id, $ebook)
     {
-        if( file_exists(UPLOADS_PATH.'books/'.$ebook) )
+        if( file_exists(EBOOKS_PATH.$ebook) )
         {
-            unlink(UPLOADS_PATH.'books/'.$ebook);
+            unlink(EBOOKS_PATH.$ebook);
         }
 
         $this->db->where('products_ebooks_id', $products_ebooks_id);
@@ -351,9 +393,9 @@ class Model_product extends CI_Model {
         {
             foreach ($ebooks as $ebook)
             {
-                if( file_exists(UPLOADS_PATH.'books/'.$ebook->name) )
+                if( file_exists(EBOOKS_PATH.$ebook->name) )
                 {
-                    unlink(UPLOADS_PATH.'books/'.$ebook->name);
+                    unlink(EBOOKS_PATH.$ebook->name);
                 }
             }
         }
@@ -375,15 +417,24 @@ class Model_product extends CI_Model {
     {
         $against    = $tags .' '.$author;
         $param      = array($against, $product_id);
-        
+
         $sql = "SELECT product_id, title, slug, author, cover_image, original_price, sale_price, summary
                 FROM products
-                WHERE MATCH (title, tags, author, meta_keywords, meta_desc, summary, `desc`) 
+                WHERE MATCH (title, tags, author, meta_keywords, meta_desc, summary, `desc`)
                 AGAINST (?)
-                AND product_id != ?  
+                AND product_id != ?
+                AND published = 1
                 LIMIT 0, 6";
 
         return $this->db->query($sql, $param)->result();
+    }
+
+    public function update_view_counter($product_id)
+    {
+        $sql    = "UPDATE products SET views = views + 1 WHERE product_id = ?";
+        $param  = array($product_id);
+
+        $this->db->query($sql, $param);
     }
 
 }

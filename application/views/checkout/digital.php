@@ -16,10 +16,10 @@
 					  	<td><?php  echo $items['qty']; ?>
 					  	</td>
 					  	<td class="right">
-					  		<?php echo $this->cart->format_number($items['price']); ?>
+					  		<?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($items['price']); ?>
 					  	</td>
 					  	<td class="right">
-					  		<?php echo $this->cart->format_number($items['subtotal']); ?>
+					  		<?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($items['subtotal']); ?>
 					  	</td>
 					</tr>
 					<?php $i++; ?>
@@ -27,7 +27,7 @@
 				<tr>
 					<td colspan="2" class="last"></td>
 				  	<td class="right last"><strong>Total</strong></td>
-				  	<td class="right last">$<?php echo $this->cart->format_number($this->cart->total()); ?></td>
+				  	<td class="right last"><?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($this->cart->total()); ?></td>
 				</tr>
 			</table>
 		</div>
@@ -37,11 +37,11 @@
 	</div>
 	<?php if($this->session->userdata('logged_in')): ?>
 		<div class="payment-center-btn">
-			<form action="<?php echo PAYPAL_SANDBOX_URL; ?>" method="post">
+			<form action="<?php echo PAYPAL_CHECKOUT_URL; ?>" method="post">
 			    <input type="hidden" name="cmd" value="_cart">
 			    <input type="hidden" name="upload" value="1">
-			    <input type="hidden" name="business" value="nivincp@gmail.com">
-			    <input type="hidden" name="currency_code" value="SGD">
+			    <input type="hidden" name="business" value="<?php echo PAYPAL_RECEIVER_EMAIL; ?>">
+			    <input type="hidden" name="currency_code" value="USD">
 			    <input type="hidden" name="return" value="<?php echo base_url('checkout/success'); ?>">
 			    <input type="hidden" name="cancel_return" value="<?php echo base_url('checkout/cancelled'); ?>">
 			    <input type="hidden" name="notify_url" value="<?php echo base_url('ipn/paypal'); ?>">
@@ -86,8 +86,8 @@
 <?php if($this->session->userdata('logged_in')): ?>
 	<span class="clear"></span>
 	<div class="order-terms">
-		By placing your order, you agree to Bookmart's 
-		<a href="<?php echo base_url('privacy'); ?>">privacy notice</a> and 
+		By placing your order, you agree to Bookmart's
+		<a href="<?php echo base_url('privacy'); ?>">privacy notice</a> and
 		<a href="<?php echo base_url('user-agreement'); ?>">conditions of use</a>.
 	</div>
 <?php else: ?>
@@ -119,7 +119,7 @@
 					City: *<br>
 					<?php echo form_input('city', set_value('city')); ?>
 					<?php echo form_error('city'); ?>
-				</li>		
+				</li>
 				<li>
 					<?php echo form_submit('submit', 'Guest Checkout', 'class="input-btn"'); ?>
 				</li>
@@ -135,8 +135,8 @@
 	</div>
 	<span class="clear"></span>
 	<div class="order-terms">
-		By placing your order, you agree to Bookmart's 
-		<a href="<?php echo base_url('privacy'); ?>" target="_blank">privacy notice</a> and 
+		By placing your order, you agree to Bookmart's
+		<a href="<?php echo base_url('privacy'); ?>" target="_blank">privacy notice</a> and
 		<a href="<?php echo base_url('user-agreement'); ?>" target="_blank">conditions of use</a>.
 	</div>
 <?php endif; ?>

@@ -17,6 +17,26 @@
 			<?php echo form_input('author', set_value('author')); ?>
 			<?php echo form_error('author'); ?>
 		</li>
+        <li>
+            Published: <br>
+            <div class="category-status">
+                <label>
+                    <?php echo form_checkbox('published', 1, set_checkbox('published', 1)); ?>
+                    Yes / No
+                </label>
+            </div>
+            <?php echo form_error('published'); ?>
+        </li>
+        <li>
+            Our Product: <br>
+            <div class="category-status">
+                <label>
+                    <?php echo form_checkbox('our_product', 1, set_checkbox('our_product', 1)); ?>
+                    Yes / No
+                </label>
+            </div>
+            <?php echo form_error('our_product'); ?>
+        </li>
 		<li>
 			Service Type: *<br>
 			<?php echo form_dropdown('service_type', $service_types, set_value('service_type')); ?>
@@ -27,9 +47,9 @@
 			<?php echo form_dropdown('type', $types, $this->input->post('type')); ?>
 			<?php echo form_error('type'); ?>
 			<div class="bg-info dev">
-				Note: For the time being only digital goods can be managed, 
-				no shipment tracking or billing address management features are available as of now and
-				creating products with 'can be shipped' mode is not recommended.
+				Note: For the time being only digital goods can be managed,
+				no shipment tracking or billing address management features are available and
+				creating products with 'can be shipped' mode is not recommended as of now.
 			</div>
 		</li>
 		<li>

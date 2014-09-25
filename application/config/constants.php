@@ -37,18 +37,23 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 define('SITE_TITLE', 	'Bookmart Online Store');
-define('UPLOADS_PATH', 	'C:/xampp/htdocs/bookmart/uploads/');
+define('UPLOADS_PATH',  'C:/xampp/htdocs/bookmart/uploads/');
+define('EBOOKS_PATH', 	'C:/xampp/htdocs/books/');
 define('THUMBS_PATH', 	UPLOADS_PATH.'thumbs/');
 
 define('PRODUCTS_LIMIT', 		20);
 define('PRODUCTS_LIMIT_BM', 	18);
 define('CATEGORIES_LIMIT', 		20);
 define('PAGES_LIMIT', 			20);
-define('USERS_LIMIT', 			20);
+define('USERS_LIMIT',           20);
+define('ORDERS_LIMIT', 			20);
 
-define('PAYPAL_SANDBOX_URL', 	'https://www.sandbox.paypal.com/cgi-bin/webscr');
-define('PAYPAL_LIVE_URL', 		'https://www.paypal.com/cgi-bin/webscr');
-
+//sandbox url   - https://www.sandbox.paypal.com/cgi-bin/webscr
+//live url      - https://www.paypal.com/cgi-bin/webscr
+define('PAYPAL_CHECKOUT_URL', 	 'https://www.sandbox.paypal.com/cgi-bin/webscr');
+define('PAYPAL_RECEIVER_EMAIL',  'payments@bookmart.com');
+define('CURRENCY_CODE',          'USD');
+define('CURRENCY_SYMBOL',         '$');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

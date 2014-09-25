@@ -12,6 +12,8 @@ class Product extends CI_Controller {
             redirect('/');
         }
 
+        $this->model_product->update_view_counter($product->product_id);
+
 		$data['page_name'] 		     = 'products/view';
         $data['page_title'] 	     = 'Bookmart - '.$product->title;
         $data['product']             = $product;

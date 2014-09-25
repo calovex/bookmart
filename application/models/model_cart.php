@@ -22,7 +22,7 @@ class Model_cart extends CI_Model {
 			'name'    => $this->sanitize_cart_entry($product->title),
 			'options' => array(
 				'original_price' 	=> $product->original_price,
-				'cover_image' 		=> $this->sanitize_cart_entry($product->cover_image), 
+				'cover_image' 		=> $this->sanitize_cart_entry($product->cover_image),
 				'url' 				=> base_url('product/'.$product->product_id.'/'.$product->slug)
 			)
         );
@@ -30,7 +30,7 @@ class Model_cart extends CI_Model {
         return $data;
 	}
 
-	/*	
+	/*
 		fix for CI cart entry restrictions
 		http://stackoverflow.com/questions/
 		21508566/removing-restriction-on-characters-in-cart-in-codeigniter
@@ -43,7 +43,7 @@ class Model_cart extends CI_Model {
 	public function get_countries()
     {
         $countries = $this->db->get('countries')->result();
-        
+
         $list = array(''=>'Select');
 
         foreach ($countries as $country)
@@ -73,10 +73,12 @@ class Model_cart extends CI_Model {
 
         //create order
         $data = array(
-        	'product_ids' 	=> $product_ids,
-        	'user_id' 		=> $user_id,
-        	'order_amount' 	=> $this->cart->format_number($this->cart->total()),
-        	'created_time'  => date('Y-m-d H:i:s', time())
+        	'product_ids' 	   => $product_ids,
+        	'user_id' 		   => $user_id,
+            'receiver_email'   => PAYPAL_RECEIVER_EMAIL,
+        	'order_amount' 	   => $this->cart->format_number($this->cart->total()),
+            'payment_currency' => CURRENCY_CODE,
+        	'created_at'     => date('Y-m-d H:i:s', time())
         );
 
         $this->db->insert('orders', $data);

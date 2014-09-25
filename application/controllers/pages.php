@@ -49,7 +49,7 @@ class Pages extends CI_Controller {
 			$data['page_name'] 		= 'pages/edit';
         	$data['page_title'] 	= 'Edit Page - '.$page->title;
         	$data['page'] 			= $page;
-        	
+
 			$this->load->view('theme/index', $data);
         }
         else
@@ -70,9 +70,9 @@ class Pages extends CI_Controller {
 		if(!$page_id)
 		{
 			redirect('/');
-		}		
+		}
 
-		$this->load->model('model_page');		
+		$this->load->model('model_page');
 		$page = $this->model_page->get_page($page_id);
 
 		if($page == false)
@@ -85,7 +85,7 @@ class Pages extends CI_Controller {
 		$data['page_name'] 		= 'pages/view';
     	$data['page_title'] 	= 'Bookmart - '.$page->title;
     	$data['page'] 			= $page;
-    	
+
 		$this->load->view('theme/index', $data);
 	}
 

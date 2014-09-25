@@ -21,13 +21,13 @@ class Products extends CI_Controller {
 		$data['page_name'] 		= 'products/manage';
         $data['page_title'] 	= 'Manage Products';
 
-        $this->load->view('theme/index', $data);		
+        $this->load->view('theme/index', $data);
 	}
 
 	public function create()
 	{
 		$this->load->model('model_product');
-		
+
 		if ($this->form_validation->run('product') == false)
         {
         	$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -35,7 +35,7 @@ class Products extends CI_Controller {
         	$data['categories'] 	= $this->model_product->get_categories();
 			$data['page_name'] 		= 'products/create';
         	$data['page_title'] 	= 'New Product';
-        	
+
         	$data['service_types'] = array('Paid' => 'Paid', 'Free' => 'Free');
         	$data['types'] = array('Downloadable' => 'Downloadable', 'Shipped' => 'Shipped');
 
@@ -78,7 +78,7 @@ class Products extends CI_Controller {
 			$data['page_name'] 		= 'products/edit';
         	$data['page_title'] 	= 'Edit Product';
         	$data['product'] 		= $product;
-        	
+
         	$data['service_types'] = array('Paid' => 'Paid', 'Free' => 'Free');
         	$data['types'] = array('Downloadable' => 'Downloadable', 'Shipped' => 'Shipped');
 
@@ -122,7 +122,7 @@ class Products extends CI_Controller {
 			$data['errors'] 		= $this->upload->display_errors();
 			$data['page_name'] 		= 'products/images';
 	        $data['page_title'] 	= 'Manage Product Images';
-			
+
 			$this->load->view('theme/index', $data);
 		}
 		else
@@ -133,7 +133,7 @@ class Products extends CI_Controller {
 			$this->model_product->create_image($product_id, $file_name);
 
 			$message = '<div class="bg-success">Image has been uploaded successfully.</div>';
-			$this->session->set_flashdata('message', $message);					
+			$this->session->set_flashdata('message', $message);
 			redirect('products/images/'.$product_id);
 		}
 	}
@@ -149,7 +149,7 @@ class Products extends CI_Controller {
 
 		$this->load->model('model_product');
 
-		$config['upload_path'] 		= './uploads/books/';
+		$config['upload_path'] 		= EBOOKS_PATH;
 		$config['allowed_types'] 	= 'epub|pdf|doc|docx';
 		$config['max_size']			= '2024';
 
@@ -163,7 +163,7 @@ class Products extends CI_Controller {
 			$data['errors'] 		= $this->upload->display_errors();
 			$data['page_name'] 		= 'products/ebooks';
 	        $data['page_title'] 	= 'Manage Ebooks';
-			
+
 			$this->load->view('theme/index', $data);
 		}
 		else
@@ -174,7 +174,7 @@ class Products extends CI_Controller {
 			$this->model_product->create_ebook($product_id, $file_name);
 
 			$message = '<div class="bg-success">Ebook has been uploaded successfully.</div>';
-			$this->session->set_flashdata('message', $message);					
+			$this->session->set_flashdata('message', $message);
 			redirect('products/ebooks/'.$product_id);
 		}
 	}
@@ -208,7 +208,7 @@ class Products extends CI_Controller {
 		$this->load->model('model_product');
 
 		$image = $this->model_product->get_image($products_images_id);
-		
+
 		if($image)
 		{
 			$this->model_product->delete_image($image->product_id, $products_images_id, $image->name);
@@ -231,7 +231,7 @@ class Products extends CI_Controller {
 		$this->load->model('model_product');
 
 		$image = $this->model_product->get_image($products_images_id);
-		
+
 		if($image)
 		{
 			$this->model_product->set_cover($image->product_id, $products_images_id, $image->name);
@@ -241,6 +241,66 @@ class Products extends CI_Controller {
 			redirect('products/images/'.$image->product_id);
 		}
 	}
+
+    public function set_promotion($products_images_id = 0, $product_id = 0)
+    {
+        $products_images_id = (int)$products_images_id;
+        $product_id         = (int)$product_id;
+
+        if(! $products_images_id)
+        {
+            redirect('products');
+        }
+
+        $this->load->model('model_product');
+
+        $image = $this->model_product->set_promotion($products_images_id);
+
+
+        $message = '<div class="bg-success">Product has been set as the promotion in home page.</div>';
+        $this->session->set_flashdata('message', $message);
+        redirect('products/images/'.$product_id);
+    }
+
+    public function slider_image($products_images_id = 0, $product_id = 0)
+    {
+        $products_images_id = (int)$products_images_id;
+        $product_id         = (int)$product_id;
+
+        if(! $products_images_id)
+        {
+            redirect('products');
+        }
+
+        $this->load->model('model_product');
+
+        $image = $this->model_product->set_slider_image($products_images_id);
+
+
+        $message = '<div class="bg-success">Image has been added to the slideshow in home page.</div>';
+        $this->session->set_flashdata('message', $message);
+        redirect('products/images/'.$product_id);
+    }
+
+    public function remove_slider($products_images_id = 0, $product_id = 0)
+    {
+        $products_images_id = (int)$products_images_id;
+        $product_id         = (int)$product_id;
+
+        if(! $products_images_id)
+        {
+            redirect('products');
+        }
+
+        $this->load->model('model_product');
+
+        $image = $this->model_product->remove_slider($products_images_id);
+
+
+        $message = '<div class="bg-success">Image has been removed from the slideshow in home page.</div>';
+        $this->session->set_flashdata('message', $message);
+        redirect('products/images/'.$product_id);
+    }
 
 	public function delete_ebook($products_ebooks_id = 0)
 	{
@@ -254,7 +314,7 @@ class Products extends CI_Controller {
 		$this->load->model('model_product');
 
 		$ebook = $this->model_product->get_ebook($products_ebooks_id);
-		
+
 		if($ebook)
 		{
 			$this->model_product->delete_ebook($products_ebooks_id, $ebook->name);

@@ -13,7 +13,7 @@ class Model_category extends CI_Model {
     	$this->db->from('categories');
 		$this->db->order_by('weightage', 'desc');
 		$this->db->limit(CATEGORIES_LIMIT, $offset);
-		
+
 		return $this->db->get()->result();
 	}
 
@@ -24,7 +24,7 @@ class Model_category extends CI_Model {
     	$this->db->where('category_id', $category_id);
 
     	$data = $this->db->get()->result();
-        
+
         return ($data) ? $data[0] : false;
 	}
 
@@ -35,16 +35,17 @@ class Model_category extends CI_Model {
     	$this->db->where('slug', $slug);
 
     	$data = $this->db->get()->result();
-        
+
         return ($data) ? $data[0] : false;
 	}
 
 	public function get_products($category_id, $offset)
 	{
-		$sql = "SELECT  product_id, title, slug, author, cover_image, 
+		$sql = "SELECT  product_id, title, slug, author, cover_image,
 						original_price, sale_price, summary
 				FROM products
-				WHERE product_id IN (
+                WHERE published = 1
+				AND product_id IN (
 					SELECT product_id
 					FROM products_categories
 					WHERE category_id = ?
@@ -60,12 +61,13 @@ class Model_category extends CI_Model {
 	{
 		$sql = "SELECT COUNT(product_id) products_count
 				FROM products
-				WHERE product_id IN (
+                WHERE published = 1
+				AND product_id IN (
 					SELECT product_id
 					FROM products_categories
 					WHERE category_id = ?
 				)";
-		
+
 		$param 	= array($category_id);
 		$data 	= $this->db->query($sql, $param)->result();
 

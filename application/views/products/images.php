@@ -32,14 +32,20 @@
 				</a>
 				<div class="product-image-delete">
 					<?php if($image->is_cover): ?>
-					 	<a href="#">Cover Image</a>
+					 	<a href="#">Is Cover</a>
 					<?php else: ?>
-						<?php echo anchor('products/cover_image/'.$image->products_images_id, 'Set as cover', 'title="Set as cover image"'); ?>
+						<?php echo anchor('products/cover_image/'.$image->products_images_id, 'Cover', 'title="Set as cover image"'); ?>
 					<?php endif; ?>
-					<?php echo anchor('products/delete_image/'.$image->products_images_id, ' - Delete', 'class="confirm"'); ?>
+                    <?php echo anchor('products/set_promotion/'.$image->products_images_id.'/'.$product_id, 'Set as Promo'); ?>
+                    <?php if($image->is_slider): ?>
+                        <?php echo anchor('products/remove_slider/'.$image->products_images_id.'/'.$product_id, 'Remove from Slides'); ?>
+                    <?php else: ?>
+                        <?php echo anchor('products/slider_image/'.$image->products_images_id.'/'.$product_id, 'Set as Slider'); ?>
+                    <?php endif; ?>
+					<?php echo anchor('products/delete_image/'.$image->products_images_id, 'Delete', 'class="confirm"'); ?>
 				</div>
 			</div>
-		<?php endforeach; ?>		
+		<?php endforeach; ?>
 		<span class="clear"></span>
 	</div>
 <?php endif; ?>

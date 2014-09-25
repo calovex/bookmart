@@ -10,14 +10,14 @@
 		<h1><?php echo $product->title; ?></h1>
 		<div class="px-author">
 			<strong>By Author : </strong>
-            <?php echo anchor('search/results/?author='.urlencode($product->author), $product->author, 'class="px-author-name"'); ?>
+            <?php echo anchor('search/?query='.urlencode($product->author), $product->author, 'class="px-author-name"'); ?>
 		</div>
 		<div class="px-price">
 			<div class="px-original-price">
-				SGD <?php echo number_format((float)$product->original_price, 2); ?>
+				<?php echo CURRENCY_SYMBOL; ?> <?php echo number_format((float)$product->original_price, 2); ?>
 			</div>
 			<div class="px-sale-price">
-                SGD <?php echo number_format((float)$product->sale_price, 2); ?>
+                <?php echo CURRENCY_SYMBOL; ?> <?php echo number_format((float)$product->sale_price, 2); ?>
 			</div>
 			<div class="px-status">
 				<?php if($product->type == 'Downloadable'): ?>
@@ -37,11 +37,11 @@
 		</div>
 		<div class="px-actions">
 			<ul>
-				<li><?php echo anchor('search/results/?author='.urlencode($product->author), 'More from '.$product->author); ?></li>
+				<li><?php echo anchor('search/?query='.urlencode($product->author), 'More from '.$product->author); ?></li>
 				<li class="px-tags">Tags</li>
 				<?php $tags = explode(',', $product->tags); ?>
 				<?php foreach ($tags as $tag): ?>
-					<li><?php echo anchor('search/results/?tag='.urlencode($tag), $tag); ?></li>
+					<li><?php echo anchor('search/?query='.urlencode($tag), $tag); ?></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
@@ -88,17 +88,17 @@
 									<?php echo (strlen($related_product->title) > 30) ? substr($related_product->title, 0, 30) . ' ...' : $related_product->title; ?>
 								</a>
 								<span class="book-author">
-									<a href="<?php echo base_url('search/results/?author='.urlencode($related_product->author)); ?>" title="<?php echo $related_product->author; ?>">
+									<a href="<?php echo base_url('search/?query='.urlencode($related_product->author)); ?>" title="<?php echo $related_product->author; ?>">
 										by <?php echo $related_product->author; ?>
 									</a>
 								</span>
 							</div>
 							<div class="product-price">
 								<span class="sale-price">
-									<?php echo number_format((float)$related_product->sale_price, 2); ?>
+									<?php echo CURRENCY_SYMBOL.' '.number_format((float)$related_product->sale_price, 2); ?>
 								</span>
 								<span class="original-price">
-									<?php echo number_format((float)$related_product->original_price, 2); ?>
+									<?php echo CURRENCY_SYMBOL.' '.number_format((float)$related_product->original_price, 2); ?>
 								</span>
 							</div>
 						</div>

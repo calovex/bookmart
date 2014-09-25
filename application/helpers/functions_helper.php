@@ -2,7 +2,7 @@
 
 function active_menu($page = '')
 {
-	
+
 	$ci =& get_instance();
 
 	if($page == $ci->uri->segment(1))
@@ -12,7 +12,7 @@ function active_menu($page = '')
 
 	if($ci->uri->segment(2) != '' && $page == $ci->uri->segment(2))
 	{
-		return 'class="active"';	
+		return 'class="active"';
 	}
 }
 

@@ -30,21 +30,21 @@
 						<span class="clear"></span>
 				  	</td>
 				  	<td>
-				  		<?php 
+				  		<?php
 					  		//echo form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'class' => 'qty', 'disabled' => 'true'));
 					  		echo $items['qty'];
 				  		?>
 				  	</td>
 				  	<td class="right">
 				  		<div class="cart-item-sale-price">
-				  			<?php echo $this->cart->format_number($items['price']); ?>
+				  			<?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($items['price']); ?>
 				  		</div>
 				  		<div class="cart-item-original-price">
-				  			<?php echo $this->cart->format_number($options['original_price']); ?>
+				  			<?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($options['original_price']); ?>
 				  		</div>
 				  	</td>
 				  	<td class="right">
-				  		<?php echo $this->cart->format_number($items['subtotal']); ?>
+				  		<?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($items['subtotal']); ?>
 				  	</td>
 				</tr>
 				<?php $i++; ?>
@@ -52,7 +52,7 @@
 			<tr>
 				<td colspan="2" class="last"></td>
 			  	<td class="right last"><strong>Total</strong></td>
-			  	<td class="right last">$<?php echo $this->cart->format_number($this->cart->total()); ?></td>
+			  	<td class="right last"><?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($this->cart->total()); ?></td>
 			</tr>
 		</table>
 		<div class="checkout">
