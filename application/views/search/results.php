@@ -24,9 +24,14 @@
                         <span class="sale-price">
                             <?php echo CURRENCY_SYMBOL.' '.number_format((float)$product->sale_price, 2); ?>
                         </span>
-                        <span class="original-price">
-                            <?php echo CURRENCY_SYMBOL.' '.number_format((float)$product->original_price, 2); ?>
-                        </span>
+                        <?php if($product->original_price > $product->sale_price): ?>
+                            <span class="original-price">
+                                <?php echo CURRENCY_SYMBOL.' '.number_format((float)$product->original_price, 2); ?>
+                            </span>
+                            <span class="savings">
+                                <?php echo $product->savings; ?>% OFF
+                            </span>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

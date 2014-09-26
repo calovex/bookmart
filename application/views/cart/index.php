@@ -39,9 +39,14 @@
 				  		<div class="cart-item-sale-price">
 				  			<?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($items['price']); ?>
 				  		</div>
-				  		<div class="cart-item-original-price">
-				  			<?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($options['original_price']); ?>
-				  		</div>
+				  		<?php if($options['original_price'] > $items['price']): ?>
+					  		<div class="cart-item-original-price">
+					  			<?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($options['original_price']); ?>
+					  		</div>
+					  		<div class="cart-item-savings">
+					  			<?php echo savings($options['original_price'], $items['price']); ?>% OFF
+					  		</div>
+					  	<?php endif; ?>
 				  	</td>
 				  	<td class="right">
 				  		<?php echo CURRENCY_SYMBOL.' '.$this->cart->format_number($items['subtotal']); ?>

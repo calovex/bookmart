@@ -114,6 +114,70 @@ class Model_user extends CI_Model {
         $this->db->where('user_id', $user_id);
         $this->db->update('users', $data);
     }
+
+    public function create_pwd_reset_link($email)
+    {
+        $hash = md5(str_shuffle($email.uniqid().SALT_RESET_CODE));
+        
+        $data = array('reset_code' => $hash);
+
+        $this->db->where('email', $email);
+        $this->db->update('users', $data);
+
+        $reset_link = base_url('login/reset_password/'.$hash);
+
+        return $reset_link;
+    }
+
+    public function reset_password($hash, $password)
+    {
+        $data = array('password' => $password, 'reset_code' => NULL);
+
+        $this->db->where('reset_code', $hash);
+        $this->db->update('users', $data);
+    }
+
+    public function update_password($user_id, $password)
+    {
+        $data = array('password' => $password);
+
+        $this->db->where('user_id', $user_id);
+        $this->db->update('users', $data);
+    }
+
+    public function valid_reset_hash($hash)
+    {
+        $this->db->where('reset_code', $hash);
+        $count = $this->db->count_all_results('users');
+
+        return ($count == 1) ? true : false;
+    }
+
+    public function get_profile($user_id)
+    {
+        $this->db->select('country_id, first_name, last_name, phone, city');
+        $this->db->from('users');
+        $this->db->where('user_id', $user_id);
+
+        $data = $this->db->get()->result();
+
+        return $data ? $data[0] : false;
+    }
+
+    public function update_profile($user_id)
+    {
+        $data['first_name']     = $this->input->post('first_name');
+        $data['last_name']      = $this->input->post('last_name');
+        $data['country_id']     = $this->input->post('country');
+        $data['city']           = $this->input->post('city');
+        $data['phone']          = $this->input->post('phone');
+        $array                  = array('first_name' => $this->input->post('first_name'));
+        
+        $this->session->set_userdata($array);
+
+        $this->db->where('user_id', $user_id);
+        $this->db->update('users', $data);
+    }
 }
 
 /* End of file model_user.php */

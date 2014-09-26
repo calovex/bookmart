@@ -38,3 +38,8 @@ function cart_total()
 
 	return  $total ? $total : '0.00';
 }
+
+function savings($orignal_price, $sale_price)
+{
+	return round ((($orignal_price - $sale_price) / $orignal_price) * 100);
+}

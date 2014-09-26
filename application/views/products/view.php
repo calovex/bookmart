@@ -13,9 +13,14 @@
             <?php echo anchor('search/?query='.urlencode($product->author), $product->author, 'class="px-author-name"'); ?>
 		</div>
 		<div class="px-price">
-			<div class="px-original-price">
-				<?php echo CURRENCY_SYMBOL; ?> <?php echo number_format((float)$product->original_price, 2); ?>
-			</div>
+			<?php if($product->original_price > $product->sale_price): ?>
+				<div class="px-original-price">
+					<?php echo CURRENCY_SYMBOL; ?> <?php echo number_format((float)$product->original_price, 2); ?>
+					<span class="savings">
+						<?php echo $product->savings; ?>% OFF
+					</span>
+				</div>
+			<?php endif; ?>
 			<div class="px-sale-price">
                 <?php echo CURRENCY_SYMBOL; ?> <?php echo number_format((float)$product->sale_price, 2); ?>
 			</div>
@@ -97,9 +102,14 @@
 								<span class="sale-price">
 									<?php echo CURRENCY_SYMBOL.' '.number_format((float)$related_product->sale_price, 2); ?>
 								</span>
-								<span class="original-price">
-									<?php echo CURRENCY_SYMBOL.' '.number_format((float)$related_product->original_price, 2); ?>
-								</span>
+								<?php if($related_product->original_price > $related_product->sale_price): ?>
+									<span class="original-price">
+										<?php echo CURRENCY_SYMBOL.' '.number_format((float)$related_product->original_price, 2); ?>
+									</span>
+									<span class="savings">
+										<?php echo $related_product->savings; ?>% OFF
+									</span>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>

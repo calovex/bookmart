@@ -4,12 +4,18 @@ class Model_home extends CI_Model {
 
     public function our_products()
     {
-        $this->db->select('product_id, title, slug, cover_image');
+        $this->db->select(
+            'product_id, title, slug, 
+            author, original_price, sale_price, cover_image,
+            ROUND (((original_price - sale_price) / original_price) * 100) savings',
+            false
+        );
+
         $this->db->from('products');
         $this->db->where('published', 1);
         $this->db->where('our_product', 1);
         $this->db->order_by('updated_at', 'desc');
-        $this->db->limit(8);
+        $this->db->limit(9);
 
         return $this->db->get()->result();
     }

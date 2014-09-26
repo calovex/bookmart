@@ -42,7 +42,8 @@ class Model_category extends CI_Model {
 	public function get_products($category_id, $offset)
 	{
 		$sql = "SELECT  product_id, title, slug, author, cover_image,
-						original_price, sale_price, summary
+						original_price, sale_price, summary,
+						ROUND (((original_price - sale_price) / original_price) * 100) savings
 				FROM products
                 WHERE published = 1
 				AND product_id IN (

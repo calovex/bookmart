@@ -53,16 +53,34 @@ $(document).ready(function() {
 		$('#new-billing-adress-form').removeClass('visible');
 	});
 
-    $('#slideshow').after('<ul id="slides-nav">').cycle({
-        timeout: 2000,
-        speed: 1500,
-        slideResize: false,
-        pager:  '#slides-nav',
-        // callback fn that creates a thumbnail to use as pager anchor
-        pagerAnchorBuilder: function(idx, slide) {
-            var slide_src = $(slide).find('a').text();
-            return '<li><a href="#"><img src="' + slide_src + '" height="77" /></a></li>';
-        }
+    $('.modal-link').on('click', function(){
+    	
+    	var modal_div = $(this).next('.modal');
+
+    	$(modal_div).addClass('visible');
+
+    	$(document.body).on('click', function(){
+        	$(modal_div).removeClass('visible');
+    	});
+
+    	$(document).keyup(function(e) {
+  			if (e.keyCode == 27) {
+  				$(modal_div).removeClass('visible');
+  			}
+		});
+
+    	$(modal_div).find('.modal-content').on('click', function(event){
+    		event.stopPropagation();
+    	});
+
+    	return false;
+    });
+
+    handle_form('#forgot-pwd-form', function(data){
+    	$('#forgot-pwd-form').find('.ajax-resp').html(data.response);
+    	if(data.result == 1) {
+    		$('#forgot-pwd-email').val('');	
+    	}    	
     });
 
 });
@@ -71,4 +89,37 @@ function redirect_to(page_url, page_time) {
 	window.setTimeout(function(){
         window.location.href = page_url;
     }, page_time);
+}
+
+function handle_form(el, success_callback) {
+
+    $(el).submit(function(e) {
+        
+        e.preventDefault();
+        var url = $(this).attr('action');
+        var postData = $(this).serialize();
+        var submit_btn = $(this).find('input[type=submit]');
+        var submit_text = $(this).find('input[type=submit]').val();
+
+        $(this).find('input[type=submit]').val('processing..');
+
+        $.post(url, postData, function(o) {
+            submit_btn.val(submit_text);
+            success_callback(o);
+        }, 'json');
+    })
+}
+
+function start_slideshow() {
+	$('#slideshow').after('<ul id="slides-nav">').cycle({
+        timeout: 2000,
+        speed: 1500,
+        slideResize: false,
+        pager:  '#slides-nav',
+        // callback fn that creates a thumbnail to use as pager anchor
+        pagerAnchorBuilder: function(idx, slide) {
+            var slide_src = $(slide).find('a').text();
+            return '<li><a href="#"><div style="background-image: url(' + slide_src + ')"></div></a></li>';
+        }
+    });
 }

@@ -661,19 +661,29 @@ input[type="text"].search-box {
 }
 #slides-nav li a {
     display: block;
+    width: 100%;
+    height: 100%;
     text-align: center;
+}
+#slides-nav li a div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
 }
 #slides-nav .activeSlide {
     position: relative;
 }
-#slides-nav .activeSlide a {
+#slides-nav li.activeSlide a div:after {
+    content: " ";
     position: absolute;
     top: 0;
     left: 0;
     display: block;
     width: 100%;
     height: 100%;
-    background-color: #020202;
+    z-index: 200;
+    background-color: rgba(0,0,0,0.35);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
 }
 #slides-nav .activeSlide:after {
@@ -706,19 +716,41 @@ input[type="text"].search-box {
     margin-bottom: 40px;
 }
 .our-books .item {
-    width: 76px;
+    width: 78px;
     height: 116px;
     border: 1px solid #DDD;
-    margin-right: 32px;
     text-align: center;
+}
+.our-books .our-product {
+    width: 80px;
     float: left;
+    margin-right: 30px;
+}
+.our-product.last {
+    margin-right: 0;
 }
 .our-books .item img {
-    max-width: 76px;
+    max-width: 78px;
     max-height: 114px;
 }
 .our-books .item.last {
     margin-right: 0;
+}
+.our-product-info {
+    margin-top: 10px;
+    text-align: center;
+}
+.our-product-title {
+    margin-bottom: 6px;
+}
+.our-product-price {
+    font: normal 12px 'Oxygen', sans-serif;
+    text-align: center;
+    color: #961313;
+}
+.our-product-savings {
+    margin-top: 6px;
+    color: green;
 }
 
 /*footer*/
@@ -977,7 +1009,7 @@ input[type="checkbox"] {
 
 .product-item {
     width: 150px;
-    height: 240px;
+    height: 255px;
     overflow: hidden;
     float: left;
     margin: 0 10px 20px 0;
@@ -1010,6 +1042,12 @@ input[type="checkbox"] {
     font: normal 12px 'Oxygen', sans-serif;
     text-decoration: line-through;
     color: #666;
+}
+.product-price .savings {
+    display: inline-block;
+    margin-left: 4px;
+    font: normal 12px 'Oxygen', sans-serif;
+    color: green;
 }
 
 /*product main page*/
@@ -1060,8 +1098,15 @@ input[type="checkbox"] {
     text-decoration: line-through;
     color: #888;
 }
+.px-original-price .savings {
+    display: inline-block;
+    margin-left: 10px;
+    text-decoration: none;
+    color: green;
+    font: normal 15px 'Oxygen', sans-serif;
+}
 .px-sale-price {
-    font: bold 23px 'Oxygen', sans-serif;
+    font: bold 25px 'Oxygen', sans-serif;
     color: #961313;
 }
 .px-status {
@@ -1209,6 +1254,11 @@ input[type="checkbox"] {
     text-decoration: line-through;
     color: #444;
 }
+.cart-item-savings {
+    margin-top: 7px;
+    font: normal 13px 'Oxygen', sans-serif;
+    color: green;
+}
 .checkout {
     margin: 35px 0;
     text-align: right;
@@ -1294,4 +1344,37 @@ input[type="checkbox"] {
 .top-header-links li a.profile-link {
   font-weight: normal;
   font-size: 13px;
+}
+
+
+/*modal window*/
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    background-color: rgba(0,0,0,0.5);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+.modal-content {
+    width: 100%;
+    margin: 0 auto;
+}
+.modal-content.forgot-pwd {
+    width: 385px;
+    height: 195px;
+    margin-top: 14%;
+    border-radius: 4px;
+    background-color: #FFF;
+}
+.forgot-pwd .form {
+    padding: 30px;
+}
+.ajax-success {
+    margin-top: 15px;
+    color: green;
 }

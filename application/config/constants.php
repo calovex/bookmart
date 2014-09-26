@@ -51,12 +51,20 @@ define('PAGES_LIMIT', 			20);
 define('USERS_LIMIT',           20);
 define('ORDERS_LIMIT', 			20);
 
+define('SALT_RESET_CODE', '23476@@*#$');
+
 //sandbox url   - https://www.sandbox.paypal.com/cgi-bin/webscr
 //live url      - https://www.paypal.com/cgi-bin/webscr
 define('PAYPAL_CHECKOUT_URL', 	 'https://www.sandbox.paypal.com/cgi-bin/webscr');
 define('PAYPAL_RECEIVER_EMAIL',  'payments@bookmart.com');
 define('CURRENCY_CODE',          'USD');
 define('CURRENCY_SYMBOL',         '$');
+
+//SMTP params for auto emails
+define('SMTP_HOST', 	'smtp.mediamaxx.in');
+define('SMTP_PORT', 	25);
+define('SMTP_USER', 	'info@bookmart.mediamaxx.in');
+define('SMTP_PASS', 	'password@0');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

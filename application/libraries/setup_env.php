@@ -85,7 +85,10 @@ class Setup_env {
             'orders/details',
             'orders/cancel',
             'checkout/success',
-            'checkout/cancelled'
+            'checkout/cancelled',
+            'profile',
+            'profile/index',
+            'login/change_password'
         );
 
         if(in_array($current_page, $pages))

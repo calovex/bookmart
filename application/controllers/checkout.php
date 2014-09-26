@@ -135,6 +135,8 @@ class Checkout extends CI_Controller {
         $this->load->library('cart');
         $this->cart->destroy();
 
+        $this->session->unset_userdata('pending_order_id');
+
 		$data['page_name'] 		= 'checkout/success';
         $data['page_title'] 	= 'Bookmart - Payment success';
 

@@ -1,7 +1,8 @@
-Note
------
+Please note that I couldn't get enough time to host the application on herokuapp.com since usually I don't use it for development and was not completely sure about whether it'd be possible to setup a mail server over there for notification mails. Furthermore I have been on a hectic schedule at my office this week and it took me a day extra than I actually expected, apologies for the inconvenience and I hope you may consider this entry for the developer challenge. To save some time it's hosted on my server now (http://bookmart.mediamaxx.in/). If you'd like me to host it on herokuapp.com please let me know, I'll configure it over there as soon as possible.
 
-Please note that I couldn't get enough time to host the application on herokuapp.com since usually I don't use it for development and to save some time it's hosted on my server now (http://bookmart.mediamaxx.in/). If you'd like me to host it on on herokuapp.com please let me know, I'll configure it over there as soon as possible.
+Application URL
+---------------
+http://bookmart.mediamaxx.in/
 
 Technology Used
 ----------------
@@ -11,7 +12,7 @@ Linux, Apache, MySQL, PHP, JavaScript, jQuery, CSS3, OOP Concepts
 Important Logins
 -----------------
 
-Paypal Sandbox Accounts
+PayPal Sandbox Accounts
 
 https://www.sandbox.paypal.com/in/webapps/mpp/home
 
@@ -36,8 +37,11 @@ pass123
 Developed Features
 ------------------
 Login / Registration
+Profile management
+Change password / reset password (email is getting triggered from my sub domain info@bookmart.mediamaxx.in so if you don't receive the reset link please check your mailbox spam folder too.)
 Products Management
-Checkout / Paypal Integration (in Sandbox mode as of now)
+Checkout / shopping cart Integration
+PayPal integration (in Sandbox mode as of now) / IPN validations
 Order Management
 Download Protection for Ebook files
 Full text search
@@ -45,16 +49,16 @@ Basic CMS to manage pages such about us, privacy etc.
 Category Management for top level menus
 Dynamic Slideshow / Promotions management
 Page views tracking
-jQuery Cycle / Lightbox plugins integration
 User level access validations
-Manage Users (Basic features to block / unblock)
+Manage Users (Basic features such as block, unblock)
+jQuery Cycle / Lightbox plugins integration
 
 How to test
 ------------
 
-Please note that the current application is a minimum viable product without much advanced features and here is how I would recommend you to test the application. First login as super admin with the above mentioned login credential and have a look around with the backend features, logout and browse the products listing, search features, CMS pages and add a couple of items to the cart, proceed with checkout. You can proceed with the guest checkout option or if you'd like to create an account before proceeding please create an account over here http://localhost/bookmart/register
+Please note that the current application is a minimum viable product without much advanced features and here is how I would recommend you to test the application. First login as super admin with the above mentioned login credential and have a look around with the backend features (all admin features can be accessed from 'manage' drop down menu in top bar), logout and browse the products listing, search features, CMS pages and add a couple of items to the cart, proceed with checkout. You can proceed with the guest checkout option or if you'd like to create an account before proceeding please create an account over here http://bookmart.mediamaxx.in/register
 
-To test the payment features and to download the ebook you can use the demo buyer sandbox account provided above. After the checkout and validations process you'll be redirected back to your Bookmart account and from the dashboard you can access your purchased ebook download / order details.
+To test the payment features and to download the ebook you can use the demo buyer PayPal sandbox account provided above. After the checkout and IPN validations process you'll be redirected back to your Bookmart account and from the dashboard you can access your purchased ebook download / order details.
 
 Browsers tested and design compatibility
 ----------------------------------------
@@ -65,4 +69,4 @@ IE 8 - works well (except for the home page slideshow since it's making use of b
 Latest versions of Firefox and Chrome - works well
 I certainly believe this would work on other browser versions as well since almost all the css properties and markup used is well supported in recent versions of almost all the browsers.
 
-If you have any clarifications, any issues you may find while during your testing phase or even if you'd like to have a look into the source code (available in a Bitbucket private repo) please don't hesitate to contact me at nivincp@gmail.com
+If you have any clarifications or any issues you may find while during your testing phase or even if you'd like to have a look into the source code (available in a Bitbucket private repo) please don't hesitate to contact me at nivincp@gmail.com

@@ -76,7 +76,7 @@ class Model_product extends CI_Model {
 
     public function get_product_slug($product_id, $slug)
     {
-        $this->db->select('*');
+        $this->db->select('*, ROUND (((original_price - sale_price) / original_price) * 100) savings', false);
         $this->db->where('product_id', $product_id);
         $this->db->where('slug', $slug);
         $this->db->where('published', 1);
@@ -418,7 +418,8 @@ class Model_product extends CI_Model {
         $against    = $tags .' '.$author;
         $param      = array($against, $product_id);
 
-        $sql = "SELECT product_id, title, slug, author, cover_image, original_price, sale_price, summary
+        $sql = "SELECT product_id, title, slug, author, cover_image, original_price, sale_price, summary,
+                       ROUND (((original_price - sale_price) / original_price) * 100) savings
                 FROM products
                 WHERE MATCH (title, tags, author, meta_keywords, meta_desc, summary, `desc`)
                 AGAINST (?)
