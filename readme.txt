@@ -29,6 +29,10 @@ http://bookmart.mediamaxx.in/login
 admin@bookmart.com
 pass123
 
+Normal user account
+nivincp@gmail.com
+pass123
+
 Developed Features
 ------------------
 Login / Registration

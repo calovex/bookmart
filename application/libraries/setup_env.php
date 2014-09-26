@@ -82,7 +82,10 @@ class Setup_env {
         $pages = array(
             'dashboard',
             'dashboard/index',
-            'orders/details'
+            'orders/details',
+            'orders/cancel',
+            'checkout/success',
+            'checkout/cancelled'
         );
 
         if(in_array($current_page, $pages))

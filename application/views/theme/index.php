@@ -2,16 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Book Mart Online Store">
-    <meta name="keywords" content="Book Mart Online Store">
-    <meta name="author" content="Nivin CP">
+    <meta name="description" content="<?php echo isset($meta_desc) ? $meta_desc : META_DESC; ?>">
+    <meta name="keywords" content="<?php echo isset($meta_keys) ? $meta_keys : META_KEYWORDS; ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo isset($page_title) ? $page_title : SITE_TITLE; ?></title>
     <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     <link rel="shortcut icon" type="image/png" href="<?php echo base_url('favicon.png'); ?>"/>
     <link rel="stylesheet" href="<?php echo base_url('css/main.css'); ?>">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,700">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="<?php echo base_url('js/core.js'); ?>"></script>
 </head>
 <body>
     <div class="top-header wrapper">
@@ -20,7 +20,7 @@
                 <ul>
                     <li>
                         <?php if( $this->session->userdata('logged_in') ): ?>
-                            Hi <?php echo $this->session->userdata('first_name'); ?>, welcome to Book-Mart!
+                            <?php echo anchor('profile', 'Hi '.$this->session->userdata('first_name').', welcome to Book-Mart!', 'class="profile-link"'); ?>
                         <?php else: ?>
                             Welcome to Book-Mart!
                         <?php endif; ?>
@@ -149,6 +149,5 @@
             All rights are reserved &copy; 2014 BOOK-MART
         </div>
     </div>
-    <script src="<?php echo base_url('js/core.js'); ?>"></script>
 </body>
 </html>

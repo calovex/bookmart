@@ -5,3 +5,7 @@
 <div class="spacer">
 	<?php echo anchor('/dashboard', 'Dashboard', 'class="input-btn light"'); ?>
 </div>
+
+<script>
+	redirect_to("<?php echo base_url('dashboard'); ?>", 5000);
+</script>

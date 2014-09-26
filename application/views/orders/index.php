@@ -8,7 +8,6 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Payer Email</th>
                 <th>Order Amount</th>
                 <th>Paid Amount</th>
                 <th>Currency</th>
@@ -22,9 +21,8 @@
                 <tr>
                     <td><?php echo $order->full_name; ?></td>
                     <td><?php echo $order->email; ?></td>
-                    <td><?php echo $order->payer_email; ?></td>
-                    <td><?php echo $order->order_amount; ?></td>
-                    <td><?php echo $order->paid_amount; ?></td>
+                    <td><?php echo number_format((float)$order->order_amount, 2); ?></td>
+                    <td><?php echo number_format((float)$order->paid_amount, 2); ?></td>
                     <td><?php echo $order->payment_currency; ?></td>
                     <td><?php echo $order->status; ?></td>
                     <td><?php echo $order->paid_at; ?></td>

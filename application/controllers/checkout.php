@@ -9,13 +9,37 @@ class Checkout extends CI_Controller {
 		if( $this->cart->contents() )
 		{
 			$this->load->model('model_cart');
+			
+			$user_id 			= $this->session->userdata('user_id');
+	        $data['page_title'] = 'Bookmart - Checkout';
 
-			$data['page_name'] 		= 'checkout/digital';
-	        $data['page_title'] 	= 'Bookmart - Checkout';
-	        $data['countries'] 		= $this->model_cart->get_countries();
-	        $data['order_id'] 		= $this->model_cart->create_order();
+	        if($user_id)
+	        {
+	        	/*
+	        		if there is a pending order id in session use it instead of
+	        		creating a new order else create abd add order id to session
+	        	*/
 
-	        $this->load->view('theme/index', $data);
+	        	$pending_order_id = $this->session->userdata('pending_order_id');
+
+	        	if($pending_order_id == false)
+	        	{
+	        		$pending_order_id = $this->model_cart->create_order($user_id);	        		
+	        		
+	        		$data = array('pending_order_id' => $pending_order_id);
+	        		$this->session->set_userdata($data);
+	        	}
+
+	        	$data['order_id'] = $pending_order_id;	        	
+	        	$this->load->view('checkout/logged_in', $data);
+	        }
+	        else
+	        {
+	        	$data['page_name'] = 'checkout/login';
+	        	$data['countries'] = $this->model_cart->get_countries();
+
+	        	$this->load->view('theme/index', $data);
+	        }	        
 	    }
 	    else
 	    {
@@ -37,7 +61,7 @@ class Checkout extends CI_Controller {
         {
         	$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
-			$data['page_name'] 		= 'checkout/digital';
+			$data['page_name'] 		= 'checkout/login';
 			$data['page_title'] 	= 'Bookmart - Checkout';
 			$data['countries'] 		= $this->model_user->get_countries();
 
@@ -91,7 +115,7 @@ class Checkout extends CI_Controller {
             }
         }
 
-        $data['page_name'] 		= 'checkout/digital';
+        $data['page_name'] 		= 'checkout/login';
         $data['page_title'] 	= 'Bookmart - Checkout';
         $data['countries'] 		= $this->model_user->get_countries();
 

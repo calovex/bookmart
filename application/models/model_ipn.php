@@ -2,24 +2,22 @@
 
 class Model_ipn extends CI_Model {
 
-    public function paypal_order_sent($order_id_received)
+    public function get_paypal_order($order_id)
     {
-        $this->db->select('order_amount,payment_currency,order_id_sent');
+        $this->db->select('order_amount,payment_currency');
         $this->db->from('orders');
-        $this->db->where('order_id', $order_id_received);
+        $this->db->where('order_id', $order_id);
+        $this->db->where('status', 'Pending');
         $data = $this->db->get()->result();
 
         return $data ? $data[0] : false;
     }
 
-    public function prev_paypal_txn_id($txn_id)
+    public function existing_paypal_txn_id($txn_id)
     {
-        $user_id = $this->session->userdata('user_id');
-
         $this->db->select('txn_id');
         $this->db->from('orders_logs');
         $this->db->where('txn_id', $txn_id);
-        $this->db->where('user_id', $user_id);
         $this->db->where('gateway', 'Paypal');
 
         $data = $this->db->get()->result();
@@ -32,9 +30,10 @@ class Model_ipn extends CI_Model {
         $this->db->insert('orders_logs', $data);
     }
 
-    public function update_order($data, $order_id_received)
+    public function update_order($data, $order_id)
     {
-        $this->db->where('order_id', $order_id_received);
+        $this->db->where('order_id', $order_id);
+        $this->db->where('status', 'Pending');
         $this->db->update('orders', $data);
     }
 

@@ -81,7 +81,12 @@ class Ipn extends CI_Controller {
         // Inspect IPN validation result and act accordingly
         if (strcmp ($res, "VERIFIED") == 0)
         {
-            $this->load->model('model_ipn');
+            // create transaction log
+            // check whether the payment_status is Completed
+            // check that txn_id has not been previously processed
+            // check that receiver_email is your PayPal email
+            // check that payment_amount/payment_currency are correct
+            // process payment and mark item as paid.
 
             // assign posted variables to local variables
             $payment_status     = $_POST['payment_status'];
@@ -90,88 +95,51 @@ class Ipn extends CI_Controller {
             $txn_id             = $_POST['txn_id'];
             $receiver_email     = $_POST['receiver_email'];
             $payer_email        = $_POST['payer_email'];
-            $order_id_received  = (int)$_POST['custom'];
+            $order_id           = (int)$_POST['custom'];
 
             // check whether the payment_status is Completed
             if($payment_status == 'Completed')
             {
-                $order_sent = $this->model_ipn->paypal_order_sent($order_id_received);
+                $this->load->model('model_ipn');
+                
+                $order_sent = $this->model_ipn->get_paypal_order($order_id);
 
                 if($order_sent == false)
                 {
                     exit();
                 }
 
-                $exp_amount      = $order_sent->order_amount;
-                $exp_currency    = $order_sent->payment_currency;
-                $exp_order_id    = $order_sent->order_id_sent;
-                $ex_txn_id       = $this->model_ipn->existing_paypal_txn_id($txn_id);
+                $expected_amount      = $order_sent->order_amount;
+                $expected_currency    = $order_sent->payment_currency;
+                $existing_txn_id      = $this->model_ipn->existing_paypal_txn_id($txn_id);
 
-                if($order_id_received != $exp_order_id)
+                if($txn_id != $existing_txn_id)
                 {
-                    $data                       = array();
-                    $data['order_id_received']  = $order_id_received;
-                    $data['user_id']            = $this->session->userdata('user_id');
-                    $data['txn_id']             = $txn_id;
-                    $data['ipn_request']        = $req;
-                    $data['created_at']         = date('Y-m-d H:i:s', time());
-                    $data['status']             = 'Failed';
+                    //log transaction request
+                    $log                       = array();
+                    $log['txn_id']             = $txn_id;
+                    $log['payer_email']        = $payer_email;
+                    $log['receiver_email']     = $receiver_email;
+                    $log['order_id_received']  = $order_id;
+                    $log['ipn_request']        = $req;            
+                    $log['created_at']         = date('Y-m-d H:i:s', time());
 
-                    $this->model_ipn->create_order_log($data);
+                    $this->model_ipn->create_order_log($log);
 
-                    exit();
-                }
-
-                // check that txn_id has not been previously processed
-                if($txn_id != $ex_txn_id)
-                {
-                    // check that receiver_email is your PayPal email
                     if($receiver_email == PAYPAL_RECEIVER_EMAIL)
                     {
-                        // check that payment_amount/payment_currency are correct
-                        if($payment_amount == $exp_amount && $payment_currency == $exp_currency)
+                        if($payment_amount == $expected_amount && $payment_currency == $expected_currency)
                         {
-                            //check the custom field
-                            if($order_id_received == $exp_order_id)
-                            {
-                                //payment process business logic and mark item as paid.
-                                $data                       = array();
-                                $data['order_id_received']  = $order_id_received;
-                                $data['user_id']            = $this->session->userdata('user_id');
-                                $data['txn_id']             = $txn_id;
-                                $data['ipn_request']        = $req;
-                                $data['created_at']         = date('Y-m-d H:i:s', time());
-                                $data['status']             = 'Confirmed';
+                            $data                  = array();                                
+                            $data['paid_amount']   = $payment_amount;
+                            $data['status']        = 'Confirmed';
+                            $data['paid_at']       = date('Y-m-d H:i:s', time());
 
-                                $this->model_ipn->create_order_log($data);
-
-                                unset($data);
-
-                                $data                       = array();
-                                $data['payer_email']        = $payer_email;
-                                $data['paid_amount']        = $payment_amount;
-                                $data['order_id_received']  = $order_id_received;
-                                $data['status']             = 'Confirmed';
-                                $data['paid_at']            = date('Y-m-d H:i:s', time());
-
-                                $this->model_ipn->update_order($data, $order_id_received);
-
-                                exit();
-                            }
+                            $this->model_ipn->update_order($data, $order_id);
                         }
                     }
                 }
             }
-
-            $data                       = array();
-            $data['order_id_received']  = $order_id_received;
-            $data['user_id']            = $this->session->userdata('user_id');
-            $data['txn_id']             = $txn_id;
-            $data['ipn_request']        = $req;
-            $data['created_at']         = date('Y-m-d H:i:s', time());
-            $data['status']             = 'Failed';
-
-            $this->model_ipn->create_order_log($data);
         }
     }
 }

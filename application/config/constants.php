@@ -37,6 +37,9 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 define('SITE_TITLE', 	'Bookmart Online Store');
+define('META_DESC', 	'Bookmart Online Store - Ebooks');
+define('META_KEYWORDS', 'Bookmart Online Store - Ebooks');
+
 define('UPLOADS_PATH',  'C:/xampp/htdocs/bookmart/uploads/');
 define('EBOOKS_PATH', 	'C:/xampp/htdocs/books/');
 define('THUMBS_PATH', 	UPLOADS_PATH.'thumbs/');

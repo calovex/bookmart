@@ -16,7 +16,7 @@
         </tr>
         <tr>
            <th class="right">Paid Amount</th>
-           <td class="left"><?php echo $order->paid_amount; ?></td>
+           <td class="left"><?php echo number_format((float)$order->paid_amount, 2); ?></td>
         </tr>
         <tr>
            <th class="right">Currency</th>

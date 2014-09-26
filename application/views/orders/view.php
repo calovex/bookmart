@@ -11,16 +11,12 @@
            <td class="left"><?php echo $order->email; ?></td>
         </tr>
         <tr>
-           <th class="right">Payer Email</th>
-           <td class="left"><?php echo $order->payer_email; ?></td>
-        </tr>
-        <tr>
            <th class="right">Order Amount</th>
            <td class="left"><?php echo number_format((float)$order->order_amount, 2); ?></td>
         </tr>
         <tr>
            <th class="right">Paid Amount</th>
-           <td class="left"><?php echo $order->paid_amount; ?></td>
+           <td class="left"><?php echo number_format((float)$order->paid_amount, 2); ?></td>
         </tr>
         <tr>
            <th class="right">Currency</th>
@@ -58,7 +54,8 @@
         <table class="table table-condensed table-hover">
             <thead>
                 <th>Transaction ID</th>
-                <th>Status</th>
+                <th>Payee</th>
+                <th>Receiver</th>
                 <th>Gateway</th>
                 <th>Created</th>
                 <th>IPN Request</th>
@@ -67,7 +64,8 @@
                 <?php foreach ($log as $log_item): ?>
                     <tr>
                         <td><?php echo $log_item->txn_id; ?></td>
-                        <td><?php echo $log_item->status; ?></td>
+                        <td><?php echo $log_item->payer_email; ?></td>
+                        <td><?php echo $log_item->receiver_email; ?></td>
                         <td><?php echo $log_item->gateway; ?></td>
                         <td><?php echo $log_item->created_at; ?></td>
                         <td>

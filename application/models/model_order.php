@@ -10,7 +10,7 @@ class Model_order extends CI_Model {
 
     public function orders($offset)
     {
-        $sql = "SELECT      o.order_id, o.payer_email, o.user_id, o.order_amount, o.paid_amount,
+        $sql = "SELECT      o.order_id, o.user_id, o.order_amount, o.paid_amount,
                             o.payment_currency, o.`status`, o.created_at, o.paid_at, u.email,
                             CONCAT(u.first_name, ' ', u.last_name) full_name
                 FROM        orders o
@@ -27,7 +27,7 @@ class Model_order extends CI_Model {
 
     public function get_order($order_id)
     {
-        $sql = "SELECT      o.order_id, o.payer_email, o.user_id, o.order_amount, o.paid_amount,
+        $sql = "SELECT      o.order_id, o.user_id, o.order_amount, o.paid_amount,
                             o.payment_currency, o.`status`, o.created_at, o.paid_at, u.email,
                             CONCAT(u.first_name, ' ', u.last_name) full_name
                 FROM        orders o
@@ -43,7 +43,7 @@ class Model_order extends CI_Model {
 
     public function get_user_order($order_id)
     {
-        $sql = "SELECT      o.order_id, o.payer_email, o.user_id, o.order_amount, o.paid_amount,
+        $sql = "SELECT      o.order_id,  o.user_id, o.order_amount, o.paid_amount,
                             o.payment_currency, o.`status`, o.created_at, o.paid_at, u.email,
                             CONCAT(u.first_name, ' ', u.last_name) full_name
                 FROM        orders o
@@ -83,6 +83,13 @@ class Model_order extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function cancel($order_id, $user_id)
+    {
+        $this->db->where('order_id', $order_id);
+        $this->db->where('user_id', $user_id);
+        $this->db->where('status', 'Pending');
+        $this->db->delete('orders');
+    }
 }
 
 /* End of file model_order.php */

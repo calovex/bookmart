@@ -75,6 +75,27 @@ class Orders extends CI_Controller {
         $this->load->view('theme/index', $data);
     }
 
+    public function cancel($order_id = 0)
+    {
+        $order_id   = (int)$order_id;
+        $user_id    = $this->session->userdata('user_id');
+
+        if(! $order_id)
+        {
+            redirect('/');
+        }
+
+        $this->load->model('model_order');
+        $this->model_order->cancel($order_id, $user_id);
+
+        $this->session->unset_userdata('pending_order_id');
+
+        $this->load->library('cart');
+        $this->cart->destroy();
+
+        redirect('cart');
+    }
+
 }
 
 /* End of file orders.php */

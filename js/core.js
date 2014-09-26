@@ -66,3 +66,9 @@ $(document).ready(function() {
     });
 
 });
+
+function redirect_to(page_url, page_time) {
+	window.setTimeout(function(){
+        window.location.href = page_url;
+    }, page_time);
+}

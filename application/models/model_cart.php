@@ -54,10 +54,9 @@ class Model_cart extends CI_Model {
         return $list;
     }
 
-    public function create_order()
+    public function create_order($user_id)
     {
     	$product_ids 	= array();
-    	$user_id 		= $this->session->userdata('user_id');
 
     	foreach ($this->cart->contents() as $items)
     	{
@@ -66,33 +65,18 @@ class Model_cart extends CI_Model {
 
     	$product_ids = implode(',', $product_ids);
 
-    	//delete orders that are not processed if any
-    	$this->db->where('status', 'Pending');
-    	$this->db->where('user_id', $user_id);
-        $this->db->delete('orders');
-
         //create order
         $data = array(
         	'product_ids' 	   => $product_ids,
         	'user_id' 		   => $user_id,
-            'receiver_email'   => PAYPAL_RECEIVER_EMAIL,
         	'order_amount' 	   => $this->cart->format_number($this->cart->total()),
             'payment_currency' => CURRENCY_CODE,
-        	'created_at'     => date('Y-m-d H:i:s', time())
+        	'created_at'       => date('Y-m-d H:i:s', time())
         );
 
         $this->db->insert('orders', $data);
 
-        $order_id = $this->db->insert_id();
-
-        //now update the order id send to later verify with the ipn script
-        $data = array('order_id_sent'=>$order_id);
-
-        $this->db->where('order_id', $order_id);
-        $this->db->where('user_id', $user_id);
-        $this->db->update('orders', $data);
-
-        return $order_id;
+        return $this->db->insert_id();
     }
 
 }

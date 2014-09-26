@@ -82,13 +82,14 @@ td .order-products {
     color: #666;
 }
 div.ipn-req {
-    width: 400px;
-    height: auto;
+    width: 170px;
+    max-height: 70px;
     padding: 7px;
     overflow: auto;
     border: 1px solid #EEE;
     font: normal 12px 'Oxygen', sans-serif;
 }
+
 /*lighbox effects*/
 
 body:after {
@@ -1223,9 +1224,26 @@ input[type="checkbox"] {
 .ex-customer {
     width: 550px;
 }
-.ex-customer.full-width {
-    width: 100%;
+.ex-customer.logged-in {
+    width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
     float: none;
+}
+.checkout-header {
+  min-width: 800px;
+  padding: 0 20px;
+  height: 35px;
+  margin-bottom: 40px;
+  background: transparent url('../images/top_header.png') 0 0 repeat-x;
+}
+.checkout-header-logo {
+  width: 800px;
+  margin: 0 auto;
+}
+.checkout-header img {
+  height: 15px;
+  margin: 10px 0;
 }
 .billing-address label{
     display: block;
@@ -1238,7 +1256,7 @@ input[type="checkbox"] {
     width: 480px;
     margin: 20px 0;
 }
-.full-width .item-summary .cart {
+.logged-in .item-summary .cart {
     width: 100%;
 }
 .item-summary .cart td {
@@ -1252,10 +1270,14 @@ input[type="checkbox"] {
     text-align: center;
 }
 .order-terms {
-    margin: 40px 0 10px 0;
+    margin: 15px 0;
     text-align: center;
     font: normal 12.5px 'Oxygen', sans-serif;
     color: #777;
+}
+.cancel-order {
+  margin-top: 40px;
+  text-align: center;
 }
 .payment-center-btn {
     margin: 40px 0 10px 0;
@@ -1268,4 +1290,8 @@ input[type="checkbox"] {
 }
 .my-orders .dash-header {
     margin-top: 50px;
+}
+.top-header-links li a.profile-link {
+  font-weight: normal;
+  font-size: 13px;
 }
