@@ -2,47 +2,47 @@
 
 class Register extends CI_Controller {
 
-	public function index()
-	{
-		if( $this->session->userdata('logged_in') )
-		{
-			redirect('dashboard');
-		}
-
-		$this->load->model('model_user');
-
-		if ($this->form_validation->run('user') == false)
+    public function index()
+    {
+        if( $this->session->userdata('logged_in') )
         {
-        	$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+            redirect('dashboard');
+        }
 
-			$data['page_name'] 		= 'user/register';
-			$data['page_title'] 	= 'Create a Bookmart Account';
-			$data['countries'] 		= $this->model_user->get_countries();
+        $this->load->model('model_user');
 
-			$this->load->view('theme/index', $data);
-		}
-		else
-		{
-			$this->model_user->create();
-			$data = $this->model_user->verify_login();
+        if ($this->form_validation->run('user') == false)
+        {
+            $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
-			if($data)
-			{ //login success
-				
-				$this->session->set_userdata($data);
+            $data['page_name']      = 'user/register';
+            $data['page_title']     = 'Create a Bookmart Account';
+            $data['countries']      = $this->model_user->get_countries();
 
-				$message = '<div class="bg-success">Thanks for creating an account with Bookmart, you have been logged in!</div>';
-				$this->session->set_flashdata('message', $message);
+            $this->load->view('theme/index', $data);
+        }
+        else
+        {
+            $this->model_user->create();
+            $data = $this->model_user->verify_login();
 
-				redirect('dashboard');
-			}
-			else
-			{ //login failed
-				
-				die('Something went wrong with the login.');
-			}
-		}
-	}
+            if($data)
+            { //login success
+                
+                $this->session->set_userdata($data);
+
+                $message = '<div class="bg-success">Thanks for creating an account with Bookmart, you have been logged in!</div>';
+                $this->session->set_flashdata('message', $message);
+
+                redirect('dashboard');
+            }
+            else
+            { //login failed
+                
+                die('Something went wrong with the login.');
+            }
+        }
+    }
 
 }
 

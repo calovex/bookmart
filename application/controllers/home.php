@@ -2,17 +2,17 @@
 
 class Home extends CI_Controller {
 
-	public function index()
-	{
+    public function index()
+    {
         $this->load->model('model_home');
 
-        $data['page_name'] 	    = 'home/index';
+        $data['page_name']      = 'home/index';
         $data['promotion']      = $this->model_home->get_promotion();
         $data['our_products']   = $this->model_home->our_products();
         $data['slides']         = $this->model_home->get_slides();
 
-		$this->load->view('theme/index', $data);
-	}
+        $this->load->view('theme/index', $data);
+    }
 
 }
 

@@ -2,42 +2,42 @@
 
 class Setup_env {
 
-  	protected 	$ci;
+    protected   $ci;
 
-	public function __construct()
-	{
+    public function __construct()
+    {
         $this->ci =& get_instance();
         $this->check_access();
-	}
+    }
 
-	public function check_access()
-	{
-		$logged_in 		= $this->ci->session->userdata('logged_in');
-		$user_type 		= $this->ci->session->userdata('user_type');
-		$uri1			= $this->ci->uri->segment(1);
-		$uri2 			= $this->ci->uri->segment(2);
-		$current_page 	= ($uri2 == '') ? $uri1.'/index' : $uri1.'/'.$uri2;
+    public function check_access()
+    {
+        $logged_in      = $this->ci->session->userdata('logged_in');
+        $user_type      = $this->ci->session->userdata('user_type');
+        $uri1           = $this->ci->uri->segment(1);
+        $uri2           = $this->ci->uri->segment(2);
+        $current_page   = ($uri2 == '') ? $uri1.'/index' : $uri1.'/'.$uri2;
 
         if($user_type == 'admin')
         {
             return true;
         }
 
-		if( $this->is_a_admin_page($current_page) && ($user_type != 'admin') )
-		{
-			redirect('/');
-		}
+        if( $this->is_a_admin_page($current_page) && ($user_type != 'admin') )
+        {
+            redirect('/');
+        }
 
         if( $this->is_a_normal_user_page($current_page) && ($user_type != 'normal_user') )
         {
             redirect('/');
         }
-	}
+    }
 
-	private function is_a_admin_page($current_page)
-	{
-		$pages = array(
-			'products',
+    private function is_a_admin_page($current_page)
+    {
+        $pages = array(
+            'products',
             'products/index',
             'products/create',
             'products/edit',
@@ -65,17 +65,17 @@ class Setup_env {
             'pages',
             'pages/index',
             'pages/edit'
-		);
+        );
 
-		if(in_array($current_page, $pages))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+        if(in_array($current_page, $pages))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     private function is_a_normal_user_page($current_page)
     {

@@ -2,7 +2,7 @@
 
 class Model_user extends CI_Model {
 
-	public function get_countries()
+    public function get_countries()
     {
         $countries = $this->db->get('countries')->result();
         

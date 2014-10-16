@@ -2,12 +2,12 @@
 
 class Login extends CI_Controller {
 
-	public function index()
+    public function index()
     {
-    	if( $this->session->userdata('logged_in') )
-		{
-			redirect('dashboard');
-		}
+        if( $this->session->userdata('logged_in') )
+        {
+            redirect('dashboard');
+        }
 
         if ($this->form_validation->run('login') == false)
         {
@@ -29,8 +29,8 @@ class Login extends CI_Controller {
             }
         }
 
-        $data['page_name'] 		= 'user/login';
-        $data['page_title'] 	= 'Bookmart Account - Login';
+        $data['page_name']      = 'user/login';
+        $data['page_title']     = 'Bookmart Account - Login';
 
         $this->load->view('theme/index', $data);
     }

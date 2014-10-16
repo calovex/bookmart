@@ -2,14 +2,14 @@
 
 class Errors extends CI_Controller {
 
-	public function page_missing()
-	{
-		$this->output->set_status_header('404'); 
+    public function page_missing()
+    {
+        $this->output->set_status_header('404'); 
         
         $data['page_name'] = 'error/404';
         
         $this->load->view('theme/index',$data); 
-	}
+    }
 
 }
 

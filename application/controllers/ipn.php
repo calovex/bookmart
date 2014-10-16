@@ -2,8 +2,8 @@
 
 class Ipn extends CI_Controller {
 
-	public function paypal()
-	{
+    public function paypal()
+    {
         // Read POST data
         // reading posted data directly from $_POST causes serialization
         // issues with array data in POST. Reading raw POST data from input stream instead.

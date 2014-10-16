@@ -2,12 +2,12 @@
 
 class Logout extends CI_Controller {
 
-	public function index()
-	{
-		$data = $this->session->all_userdata();
-		$this->session->sess_destroy();
-		redirect('/login');
-	}
+    public function index()
+    {
+        $data = $this->session->all_userdata();
+        $this->session->sess_destroy();
+        redirect('/login');
+    }
 
 }
 

@@ -18,75 +18,75 @@
 
 $(document).ready(function() {
 
-	//admin menu feature
-	$('.admin-link').on('click mouseenter', function(event) {
-		event.stopPropagation();
-		var admin_links = $(this).parent('li').find('ul.admin-links');
+    //admin menu feature
+    $('.admin-link').on('click mouseenter', function(event) {
+        event.stopPropagation();
+        var admin_links = $(this).parent('li').find('ul.admin-links');
 
-		if( $(admin_links).hasClass('visible') ) {
-			$(admin_links).removeClass('visible');
-		} else {
-			$(admin_links).addClass('visible');
-		}
+        if( $(admin_links).hasClass('visible') ) {
+            $(admin_links).removeClass('visible');
+        } else {
+            $(admin_links).addClass('visible');
+        }
 
-		$(document.body).on('click', function(){
-        	$('ul.admin-links').removeClass('visible');
-    	});
+        $(document.body).on('click', function(){
+            $('ul.admin-links').removeClass('visible');
+        });
 
-    	return false;
-	});
+        return false;
+    });
 
-	$('.confirm').on('click', function() {
-		var confirm_status = confirm('Are you sure you want to perform this action?');
-		if(confirm_status) {
-			return true;
-		} else {
-			return false;
-		}
-	});
+    $('.confirm').on('click', function() {
+        var confirm_status = confirm('Are you sure you want to perform this action?');
+        if(confirm_status) {
+            return true;
+        } else {
+            return false;
+        }
+    });
 
-	$('#new-billing-adress').on('click', function(){
-		$('#new-billing-adress-form').addClass('visible');
-	});
+    $('#new-billing-adress').on('click', function(){
+        $('#new-billing-adress-form').addClass('visible');
+    });
 
-	$('#same-as-shipping').on('click', function(){
-		$('#new-billing-adress-form').removeClass('visible');
-	});
+    $('#same-as-shipping').on('click', function(){
+        $('#new-billing-adress-form').removeClass('visible');
+    });
 
     $('.modal-link').on('click', function(){
-    	
-    	var modal_div = $(this).next('.modal');
+        
+        var modal_div = $(this).next('.modal');
 
-    	$(modal_div).addClass('visible');
+        $(modal_div).addClass('visible');
 
-    	$(document.body).on('click', function(){
-        	$(modal_div).removeClass('visible');
-    	});
+        $(document.body).on('click', function(){
+            $(modal_div).removeClass('visible');
+        });
 
-    	$(document).keyup(function(e) {
-  			if (e.keyCode == 27) {
-  				$(modal_div).removeClass('visible');
-  			}
-		});
+        $(document).keyup(function(e) {
+            if (e.keyCode == 27) {
+                $(modal_div).removeClass('visible');
+            }
+        });
 
-    	$(modal_div).find('.modal-content').on('click', function(event){
-    		event.stopPropagation();
-    	});
+        $(modal_div).find('.modal-content').on('click', function(event){
+            event.stopPropagation();
+        });
 
-    	return false;
+        return false;
     });
 
     handle_form('#forgot-pwd-form', function(data){
-    	$('#forgot-pwd-form').find('.ajax-resp').html(data.response);
-    	if(data.result == 1) {
-    		$('#forgot-pwd-email').val('');	
-    	}    	
+        $('#forgot-pwd-form').find('.ajax-resp').html(data.response);
+        if(data.result == 1) {
+            $('#forgot-pwd-email').val(''); 
+        }       
     });
 
 });
 
 function redirect_to(page_url, page_time) {
-	window.setTimeout(function(){
+    window.setTimeout(function(){
         window.location.href = page_url;
     }, page_time);
 }
@@ -111,7 +111,7 @@ function handle_form(el, success_callback) {
 }
 
 function start_slideshow() {
-	$('#slideshow').after('<ul id="slides-nav">').cycle({
+    $('#slideshow').after('<ul id="slides-nav">').cycle({
         timeout: 2000,
         speed: 1500,
         slideResize: false,

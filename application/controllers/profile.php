@@ -2,38 +2,38 @@
 
 class Profile extends CI_Controller {
 
-	public function index()
-	{
-		$this->load->model('model_user');
-		$user_id = $this->session->userdata('user_id');
+    public function index()
+    {
+        $this->load->model('model_user');
+        $user_id = $this->session->userdata('user_id');
 
-		if ($this->form_validation->run('user_profile') == false)
+        if ($this->form_validation->run('user_profile') == false)
         {
-        	$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+            $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
-        	$profile = $this->model_user->get_profile($user_id);
+            $profile = $this->model_user->get_profile($user_id);
 
-        	if($profile == false)
-        	{
-        		redirect('/');
-        	}
+            if($profile == false)
+            {
+                redirect('/');
+            }
 
-			$data['page_name'] 		= 'user/profile';
-        	$data['page_title'] 	= 'My Bookmart Profile Details';
-        	$data['profile'] 		= $profile;
-        	$data['countries'] 		= $this->model_user->get_countries();
+            $data['page_name']      = 'user/profile';
+            $data['page_title']     = 'My Bookmart Profile Details';
+            $data['profile']        = $profile;
+            $data['countries']      = $this->model_user->get_countries();
 
-        	$this->load->view('theme/index', $data);
+            $this->load->view('theme/index', $data);
         }
         else
         {
-        	$this->model_user->update_profile($user_id);
+            $this->model_user->update_profile($user_id);
 
-        	$message = '<div class="bg-success">Your profile has been updated successfully.</div>';
-			$this->session->set_flashdata('message', $message);
-        	redirect('profile');
+            $message = '<div class="bg-success">Your profile has been updated successfully.</div>';
+            $this->session->set_flashdata('message', $message);
+            redirect('profile');
         }
-	}
+    }
 
 }
 

@@ -2,43 +2,43 @@
 
 class Model_product extends CI_Model {
 
-	public function products_count()
-	{
-		return $this->db->count_all('products');
-	}
+    public function products_count()
+    {
+        return $this->db->count_all('products');
+    }
 
-	public function products($offset)
-	{
-		$this->db->select(
-			'product_id, slug, title, service_type, original_price,
-			sale_price, shipping_costs, weightage, views, created_at, updated_at'
-		);
-    	$this->db->from('products');
-		$this->db->order_by('updated_at', 'desc');
-		$this->db->limit(PRODUCTS_LIMIT, $offset);
+    public function products($offset)
+    {
+        $this->db->select(
+            'product_id, slug, title, service_type, original_price,
+            sale_price, shipping_costs, weightage, views, created_at, updated_at'
+        );
+        $this->db->from('products');
+        $this->db->order_by('updated_at', 'desc');
+        $this->db->limit(PRODUCTS_LIMIT, $offset);
 
-		return $this->db->get()->result();
-	}
+        return $this->db->get()->result();
+    }
 
-	public function create()
-	{
-		$data = array(
-            'title'      		=> $this->input->post('title'),
+    public function create()
+    {
+        $data = array(
+            'title'             => $this->input->post('title'),
             'tags'              => $this->input->post('tags'),
             'author'            => $this->input->post('author'),
             'our_product'       => $this->input->post('our_product'),
             'published'         => $this->input->post('published'),
             'service_type'      => $this->input->post('service_type'),
-            'type'      		=> $this->input->post('type'),
+            'type'              => $this->input->post('type'),
             'original_price'    => $this->input->post('original_price'),
             'sale_price'        => $this->input->post('sale_price'),
             'shipping_costs'    => $this->input->post('shipping_costs'),
-            'weightage'        	=> $this->input->post('weightage'),
-            'slug' 				=> url_title($this->input->post('title'), '-', true),
+            'weightage'         => $this->input->post('weightage'),
+            'slug'              => url_title($this->input->post('title'), '-', true),
             'meta_keywords'     => $this->input->post('meta_keywords'),
-            'meta_desc'        	=> $this->input->post('meta_desc'),
-            'summary'        	=> $this->input->post('summary'),
-            'desc'        		=> $this->input->post('desc'),
+            'meta_desc'         => $this->input->post('meta_desc'),
+            'summary'           => $this->input->post('summary'),
+            'desc'              => $this->input->post('desc'),
             'created_at'        => date('Y-m-d H:i:s', time()),
             'updated_at'        => date('Y-m-d H:i:s', time())
         );
@@ -46,22 +46,22 @@ class Model_product extends CI_Model {
 
         $this->db->insert('products', $data);
 
-        $product_id 	= $this->db->insert_id();
-        $categories 	= $this->input->post('category');
+        $product_id     = $this->db->insert_id();
+        $categories     = $this->input->post('category');
         $category_array = array();
 
         foreach ($categories as $category_id)
         {
-        	$category_array[] = array(
-        		'product_id' 	=> $product_id,
-        		'category_id' 	=> $category_id
-        	);
+            $category_array[] = array(
+                'product_id'    => $product_id,
+                'category_id'   => $category_id
+            );
         }
 
         $this->db->insert_batch('products_categories', $category_array);
 
         return $product_id;
-	}
+    }
 
     public function get_product($product_id)
     {
