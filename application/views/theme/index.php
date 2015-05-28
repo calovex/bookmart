@@ -64,82 +64,84 @@
             <span class="clear"></span>
         </div>
     </div>
-    <div class="logo-header wrapper">
-        <div class="container">
-            <div class="logo">
-                <a href="<?php echo base_url(); ?>" title="<?php echo SITE_TITLE; ?>">
-                    <img src="<?php echo base_url('images/logo.png'); ?>" alt="Book Mart">
-                </a>
-            </div>
-            <div class="search">
-                <form action="<?php echo base_url('search'); ?>">
-                    <input type="text" class="search-box"  name="query" placeholder="Search for anything here" value="<?php echo isset($_GET['query']) ? urldecode($_GET['query']) : ''; ?>">
-                    <button type="submit" class="search-btn">submit</button>
-                </form>
-            </div>
-            <div class="social-links">
-                <ul>
-                    <li><a href="https://plus.google.com" class="google" title="Google">Google</a></li>
-                    <li><a href="https://www.facebook.com/" class="fb" title="Facebook">Facebook</a></li>
-                    <li><a href="https://twitter.com/" class="twitter" title="Twitter">Twitter</a></li>
-                    <li><a href="https://www.youtube.com/" class="yt" title="YouTube">YouTube</a></li>
-                </ul>
-            </div>
-            <span class="clear"></span>
-        </div>
-    </div>
-    <div class="wrapper">
-        <div class="container">
-            <ul class="nav">
-                <li <?php echo active_menu(''); ?>>
-                    <?php echo anchor('/', 'Home'); ?>
-                </li>
-                <?php $top_menus = top_menu(); ?>
-                <?php if($top_menus): ?>
-                    <?php foreach ($top_menus as $top_menu): ?>
-                        <li <?php echo active_menu($top_menu->slug); ?>>
-                            <?php echo anchor('category/'.$top_menu->slug, $top_menu->name); ?>
-                        </li>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </ul>
-            <div class="custom-views">
-                <?php $this->load->view($page_name); ?>
-            </div>
-            <div class="footer-links">
-                <div class="footer-headers">
-                    <div class="col col-1">Deal<br>Mart</div>
-                    <div class="col col-2">Customer<br>Service</div>
-                    <div class="col col-3">Meet<br>Us On</div>
-                    <div class="col col-4 payment">Payment</div>
-                    <span class="clear"></span>
+    <div class="outer-wrapper">
+        <div class="logo-header wrapper">
+            <div class="container">
+                <div class="logo">
+                    <a href="<?php echo base_url(); ?>" title="<?php echo SITE_TITLE; ?>">
+                        <img src="<?php echo base_url('images/logo.png'); ?>" alt="Book Mart">
+                    </a>
                 </div>
-                <div class="footer-menus">
-                    <ul class="col col-1">
-                        <li><?php echo anchor('/', 'Home'); ?></li>
-                        <li><?php echo anchor('/about-us', 'About Us'); ?></li>
-                        <li><?php echo anchor('/user-agreement', 'User Agreement'); ?></li>
-                        <li><?php echo anchor('/privacy', 'Privacy'); ?></li>
-                        <li><?php echo anchor('/contact-us', 'Contact Us'); ?></li>
+                <div class="search">
+                    <form action="<?php echo base_url('search'); ?>">
+                        <input type="text" class="search-box"  name="query" placeholder="Search for anything here" value="<?php echo isset($_GET['query']) ? urldecode($_GET['query']) : ''; ?>">
+                        <button type="submit" class="search-btn">submit</button>
+                    </form>
+                </div>
+                <div class="social-links">
+                    <ul>
+                        <li><a href="https://plus.google.com" class="google" title="Google">Google</a></li>
+                        <li><a href="https://www.facebook.com/" class="fb" title="Facebook">Facebook</a></li>
+                        <li><a href="https://twitter.com/" class="twitter" title="Twitter">Twitter</a></li>
+                        <li><a href="https://www.youtube.com/" class="yt" title="YouTube">YouTube</a></li>
                     </ul>
-                    <ul class="col col-2 cx-service">
-                        <li><?php echo anchor('/customer-service', 'Customer Service'); ?></li>
-                        <li><?php echo anchor('/product-recalls', 'Product Recalls'); ?></li>
-                        <li><?php echo anchor('/order-status-tracking', 'Order Status &amp; Tracking'); ?></li>
-                        <li><?php echo anchor('/shipping-policy', 'Shipping Policy'); ?></li>
-                        <li><?php echo anchor('/warranty', 'Warranty'); ?></li>
-                        <li><?php echo anchor('/tips-advice', 'Tips &amp; Advice'); ?></li>
-                    </ul>
-                    <ul class="col col-3 social-media">
-                        <li><a href="https://www.facebook.com/">Facebook</a></li>
-                        <li><a href="https://twitter.com/">Twitter</a></li>
-                        <li><a href="https://www.youtube.com/">Youtube</a></li>
-                        <li class="last"><a href="https://plus.google.com">Google +</a></li>
-                    </ul>
-                    <div class="col col-4">
-                        <img src="<?php echo base_url('images/payment.png'); ?>">
+                </div>
+                <span class="clear"></span>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="container">
+                <ul class="nav">
+                    <li <?php echo active_menu(''); ?>>
+                        <?php echo anchor('/', 'Home'); ?>
+                    </li>
+                    <?php $top_menus = top_menu(); ?>
+                    <?php if($top_menus): ?>
+                        <?php foreach ($top_menus as $top_menu): ?>
+                            <li <?php echo active_menu($top_menu->slug); ?>>
+                                <?php echo anchor('category/'.$top_menu->slug, $top_menu->name); ?>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </ul>
+                <div class="custom-views">
+                    <?php $this->load->view($page_name); ?>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-headers">
+                        <div class="col col-1">Deal<br>Mart</div>
+                        <div class="col col-2">Customer<br>Service</div>
+                        <div class="col col-3">Meet<br>Us On</div>
+                        <div class="col col-4 payment">Payment</div>
+                        <span class="clear"></span>
                     </div>
-                    <span class="clear"></span>
+                    <div class="footer-menus">
+                        <ul class="col col-1">
+                            <li><?php echo anchor('/', 'Home'); ?></li>
+                            <li><?php echo anchor('/about-us', 'About Us'); ?></li>
+                            <li><?php echo anchor('/user-agreement', 'User Agreement'); ?></li>
+                            <li><?php echo anchor('/privacy', 'Privacy'); ?></li>
+                            <li><?php echo anchor('/contact-us', 'Contact Us'); ?></li>
+                        </ul>
+                        <ul class="col col-2 cx-service">
+                            <li><?php echo anchor('/customer-service', 'Customer Service'); ?></li>
+                            <li><?php echo anchor('/product-recalls', 'Product Recalls'); ?></li>
+                            <li><?php echo anchor('/order-status-tracking', 'Order Status &amp; Tracking'); ?></li>
+                            <li><?php echo anchor('/shipping-policy', 'Shipping Policy'); ?></li>
+                            <li><?php echo anchor('/warranty', 'Warranty'); ?></li>
+                            <li><?php echo anchor('/tips-advice', 'Tips &amp; Advice'); ?></li>
+                        </ul>
+                        <ul class="col col-3 social-media">
+                            <li><a href="https://www.facebook.com/">Facebook</a></li>
+                            <li><a href="https://twitter.com/">Twitter</a></li>
+                            <li><a href="https://www.youtube.com/">Youtube</a></li>
+                            <li class="last"><a href="https://plus.google.com">Google +</a></li>
+                        </ul>
+                        <div class="col col-4">
+                            <img src="<?php echo base_url('images/payment.png'); ?>">
+                        </div>
+                        <span class="clear"></span>
+                    </div>
                 </div>
             </div>
         </div>
