@@ -1,6 +1,6 @@
-### Technology Used ###
+### Tech Specs ###
 
-Linux, Apache, MySQL, PHP, JavaScript, CSS3
+Apache, MySQL, PHP, JavaScript, CSS3
 
 ### Important Logins ###
 
