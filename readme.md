@@ -4,7 +4,7 @@ Apache, MySQL, PHP, JavaScript, CSS3
 
 ### Important Logins ###
 
-### PayPal Sandbox Accounts ###
+#### PayPal Sandbox Accounts ####
 
 https://www.sandbox.paypal.com/in/webapps/mpp/home
 
@@ -16,7 +16,7 @@ Buyer Account
 demobuyer@bookmart.com
 pass1234
 
-### Bookmart Admin account ###
+#### Bookmart Admin account ####
 
 http://bookmart.dev/login
 admin@bookmart.com
@@ -26,7 +26,7 @@ Normal user account
 nivincp@gmail.com
 pass123
 
-### Developed Features ###
+### Features ###
 
 Login / Registration
 Profile management
