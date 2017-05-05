@@ -28,22 +28,22 @@ pass123
 
 ### Features ###
 
-Login / Registration
-Profile management
-Change password / reset password
-Products Management
-Checkout / shopping cart Integration
-PayPal integration (in Sandbox mode as of now) / IPN validations
-Order Management
-Download Protection for Ebook files
-Full text search
-Basic CMS to manage pages such about us, privacy etc.
-Category Management for top level menus
-Dynamic Slideshow / Promotions management
-Page views tracking
-User level access validations
-Manage Users (Basic features such as block, unblock)
-jQuery Cycle / Lightbox plugins integration
+    Login / Registration
+    Profile management
+    Change password / reset password
+    Products Management
+    Checkout / shopping cart Integration
+    PayPal integration (in Sandbox mode as of now) / IPN validations
+    Order Management
+    Download Protection for Ebook files
+    Full text search
+    Basic CMS to manage pages such about us, privacy etc.
+    Category Management for top level menus
+    Dynamic Slideshow / Promotions management
+    Page views tracking
+    User level access validations
+    Manage Users (Basic features such as block, unblock)
+    jQuery Cycle / Lightbox plugins integration
 
 ### Help ###
 
@@ -54,4 +54,5 @@ To test the payment features and to download the ebook you can use the demo buye
 ### Browser compatibility ###
 
 It's a fixed width css template and the browser compatibility results tested are as follows.
+
 Recent versions of Firefox and Chrome - works well
