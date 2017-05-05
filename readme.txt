@@ -30,7 +30,7 @@ pass123
 
 Login / Registration
 Profile management
-Change password / reset password (email is getting triggered from my sub domain info@bookmart.mediamaxx.in so if you don't receive the reset link please check your mailbox spam folder too.)
+Change password / reset password
 Products Management
 Checkout / shopping cart Integration
 PayPal integration (in Sandbox mode as of now) / IPN validations
