@@ -8,22 +8,22 @@ Apache, MySQL, PHP, JavaScript, CSS3
 
 https://www.sandbox.paypal.com/in/webapps/mpp/home
 
-Business Account
-payments@bookmart.com
+Business Account  
+payments@bookmart.com  
 pass1234
 
-Buyer Account
-demobuyer@bookmart.com
+Buyer Account  
+demobuyer@bookmart.com  
 pass1234
 
 #### Bookmart Admin account ####
 
-http://bookmart.dev/login
-admin@bookmart.com
+http://bookmart.dev/login  
+admin@bookmart.com  
 pass123
 
-Normal user account
-nivincp@gmail.com
+Normal user account  
+nivincp@gmail.com  
 pass123
 
 ### Features ###
@@ -53,6 +53,5 @@ To test the payment features and to download the ebook you can use the demo buye
 
 ### Browser compatibility ###
 
-It's a fixed width css template and the browser compatibility results tested are as follows.
-
+It's a fixed width css template and the browser compatibility results tested are as follows.  
 Recent versions of Firefox and Chrome - works well
